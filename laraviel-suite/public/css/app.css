@@ -1,0 +1,81 @@
+@import url('https://fonts.googleapis.com/css2?family=Aboreto&family=Allura&family=Kanit:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Karla:ital,wght@0,200..800;1,200..800&display=swap');
+
+.bg {
+    background-image: url('/images/HOTELMAINPAGEPIC.jpg');
+    height: 100vh; /* Set height if needed */
+    background-size: cover;
+    background-position: center;
+    position: relative; /* Positioning context */
+}
+
+
+.navbar {
+    background-color: transparent!important;
+}
+
+nav {
+    position: fixed; /* or absolute */
+    top: 0; /* Position at the top */
+    left: 0; /* Position at the left */
+    right: 0; /* Full width */
+    background-color: rgba(226, 221, 206, 0.16); /* #E2DDCE with 80% opacity */
+    z-index: 10;
+}
+.nav-link {
+    color: #FEF3E2;
+    font-family: 'karla';
+}
+.logo-name {
+    color: #FEF3E2;
+}
+.logo-name {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    text-align: center;
+    font-weight: bold;
+}
+
+.logo-name p {
+    margin: 0;
+    font-size: 24px; /* Adjust as needed */
+}
+
+.logo-name P {
+    margin: 0;
+    font-size: 16px; /* Adjust as needed */
+}
+.suites {
+    font-family: 'karla';
+    font-weight: normal;
+}
+.laraveil {
+    font-family: 'kanit';
+    font-size: 32px;
+}
+
+.elevate {
+    color: #FEF3E2;
+    font-family: 'aboreto';
+}
+.hotel-name {
+    color: #FEF3E2;
+    font-family: 'allura';
+    font-size: 50px;
+}
+.newSction {
+    height: 100vh;
+    width: 100%;
+    background-color: red;
+}
+.bookBtn {
+    border-radius: 40px;
+    font-size: 15px;
+    padding-left: 5px;
+    padding-right: 5px;
+    background-color: rgba(191, 167, 93, 0.16);
+    color: #FEF3E2;
+    font-family: 'karla';
+    border: solid;
+    border-width: 0.5px;
+}
