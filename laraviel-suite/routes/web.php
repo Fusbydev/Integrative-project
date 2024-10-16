@@ -7,5 +7,6 @@ Route::get('/', function () {
 });
 
 Route::view('/accommodation', 'categories.accommodation');
+Route::view('/home', 'categories.index');
 
 
