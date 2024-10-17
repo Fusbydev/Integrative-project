@@ -6,6 +6,13 @@
     height: 100vh; /* Full height */
     background-size: cover;
     background-position: center;
+    background-attachment: fixed; /* This makes the background fixed */
+    z-index: -1; /* Puts the background behind other content */
+}
+
+.d-flex {
+    position: relative;
+    z-index: 1; /* Ensures the content stays above the background */
 }
 
 body {
@@ -186,16 +193,7 @@ img {
     text-decoration: none;
     text-align: center;
 }
-/*accommodation*/
 
-.accomodation-bg {
-    background-image: url('/images/ACCOMODATION PAGE PIC.jpeg');
-    background-size: cover;
-    background-position: center;
-    background-attachment: fixed; /* Keeps the background fixed */
-    position: relative; /* Ensures elements inside the container are positioned properly */
-    overflow: hidden; /* Prevents overflow of content if needed */
-}
 
 #checkin, #checkout {
     border-top: none;
@@ -203,6 +201,20 @@ img {
     border-right: none;
 }
 
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.accomodation-bg {
+    background-image: url('/images/ACCOMODATION PAGE PIC.jpeg');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    position: relative; 
+    overflow: hidden; 
+}
 
 body::before {
     content: "";
@@ -213,12 +225,6 @@ body::before {
     height: 100%;
     background-color: rgba(0, 0, 0, 0.6);
     z-index: -1;
-}
-
-.container {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 20px;
 }
 
 h1, h2 {
@@ -284,6 +290,14 @@ h2.section-title {
     padding-right: 15px;
 }
 
+.modal-content {
+    background-color: #1E140C; 
+    color: #1E140C; 
+    border-radius: 15px; 
+    width: 20000px;   
+    max-width: 1000000%;
+}
+
 @media (max-width: 768px) {
     .suite {
         margin-bottom: 30px;
@@ -298,48 +312,134 @@ h2.section-title {
     }
 }
 /*book now*/
-.progress-bar-container {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 20px;
-    margin-bottom: 30px;
+
+.footer {
+    background-color: #1E140C;
+    padding: 5px;
+    height: auto;
+}
+.footer img {
+    width: 200px;
+}
+
+.aboutUs {
+    background-image: url('/images/homepage about us pic.png');
+    background-size: cover; /* Ensures the background covers the entire div */
+    background-position: center; /* Keeps the image centered */
+    background-repeat: no-repeat; /* Prevents the image from repeating */
+    background-attachment: fixed; /* Keeps the image fixed during scrolling */
+    padding: 0;
+    width: 100%;
+    height: 100vh; /* Full viewport height */
     position: relative;
 }
-.progress-bar-container::before {
-    content: '';
-    position: absolute;
-    top: 50%;
-    left: 0;
-    right: 0;
-    height: 2px;
-    background-color: #ccc;
-    z-index: 0;
+
+
+
+
+.aboutUs h1, p {
+    font-family: 'aboreto';
+    color: #FEF3E2;
+    
 }
-.progress-step {
-    position: relative;
-    z-index: 1;
+.connect {
+    display: inline-block; /* Makes the link behave like a button */
+    padding: 10px 20px; /* Adjust padding for desired size */
+    background-color: rgba(68, 46, 26, 0.54); /* Use rgba for opacity */
+    color: white; /* Text color */
+    text-decoration: none; /* Remove underline from link */
+    border-radius: 30px; /* Rounded corners */
+    font-weight: bold; /* Bold text */
+    text-align: center; /* Center the text */
+    transition: background-color 0.3s ease; /* Smooth hover transition */
+    font-family: 'Karla', sans-serif; /* Make sure the font family is properly loaded */
+    
+    /* Border properties */
+    border: 1px solid #FEF3E2; /* Border width, style, and color */
+}
+
+
+.aboutUs {
     display: flex;
     flex-direction: column;
-    align-items: center;
-    width: 100px;
+    height: auto; /* Full viewport height */
 }
-.progress-step .step-icon {
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    background-color: #ccc;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    color: #fff;
+
+.text {
+    flex: 0 1 auto; /* Content height based on text size */
+}
+
+.feedbacks {
+    flex: 1 1 auto; /* Makes feedback section stretch to fill the remaining space */
+    background-color: rgba(68, 46, 26, 0.66); /* Reduced opacity for more transparency */
+    padding: 20px;
+}
+
+.feed-text {
+    font-family: 'aboreto';
+}
+
+
+.feedbacks .row {
+    height: auto; /* Make the row fill the entire height */
+}
+
+h1, p {
+    margin: 0;
+    padding: 0;
+}
+.feed {
+    border: 1px transparent solid;
+}
+
+.feed p {
+    font-size: 12px;
+}
+.feed1 {
+    border: 2px solid #FEF3E2; /* Set the border color and transparency */
+    border-radius: 10px; /* Add rounded corners */
+    padding: 20px; /* Add padding inside the container */
+    margin: 20px 0; /* Optional: add margin for spacing between other elements */
+    min-height: 200px;
+}
+
+.footerData p{
+    font-size: 10px;
+}
+.footerData h2 {
+    font-family: 'aboreto';
     font-size: 20px;
-    transition: background-color 0.3s;
 }
-.progress-step.active .step-icon {
-    background-color: #28a745; /* Highlighted step */
+.footer {
+    padding: 10px;
 }
-.progress-step .step-label {
-    margin-top: 10px;
-    font-size: 14px;
+
+.booknow, .offers, .about {
+    height: 100vh;
+}
+
+i {
+    color: white;
+    margin: 3px;
+}
+
+.icons i {
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+.footer p, .footer h2, .icons i {
+    font-size: 16px; /* Default size for medium screens */
+}
+
+@media (max-width: 992px) {
+    .footer p, .footer h2, .icons i {
+        font-size: 14px; /* Adjust font-size for tablets and small desktops */
+    }
+}
+
+@media (max-width: 768px) {
+    .footer p, .footer h2, .icons i {
+        font-size: 12px; /* Adjust font-size for mobile devices */
+    }
 }

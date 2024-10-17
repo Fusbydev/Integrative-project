@@ -7,6 +7,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
     <title>@yield('title')</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <link rel="icon" href="{{ asset('./images/logo.png') }}" type="image/x-icon">
     @yield('custom-css')
@@ -60,6 +61,33 @@
     </div>
 
     <!-- JavaScript for hide navbar on scroll -->
+    <footer class="container-fluid footer">
+    <div class="container">
+        <div class="row footerData">
+            <div class="col-12 col-md-3">
+                <img src="./images/logo.png" alt="">
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do.</p>
+                <div class="container icons">
+                    <i class="bi bi-facebook"></i>
+                    <i class="bi bi-instagram"></i>
+                    <i class="bi bi-twitter"></i>
+                    <i class="bi bi-youtube"></i>
+                </div>
+            </div>
+            <div class="col-12 col-md-3 text-center">
+                <h2 class="idk">Contacts</h2>
+            </div>
+            <div class="col-12 col-md-3 text-center">
+                <h2 class="idk">Quick Links</h2>
+            </div>
+            <div class="col-12 col-md-3 text-center">
+                <h2 class="idk">Privacy and Policy</h2>
+            </div>
+        </div>
+    </div>
+</footer>
+
+
     <script>
         let lastScrollTop = 0;
         window.addEventListener("scroll", function() {
