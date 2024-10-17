@@ -43,30 +43,86 @@
         <div class="images container"> <!-- Opening images section -->
             <div class="grid-wrapper mt-5 pt-5">
                 <div>
-                    <img src="https://images.unsplash.com/photo-1541845157-a6d2d100c931?ixlib=rb-1.2.1&amp;ixid=eyJhcHBfaWQiOjEyMDd9&amp;auto=format&amp;fit=crop&amp;w=1350&amp;q=80" alt="" />
+                    <img src="./images/balcony.png" alt="" />
                 </div>
                 <div>
-                    <img src="https://images.unsplash.com/photo-1588282322673-c31965a75c3e?ixlib=rb-1.2.1&amp;ixid=eyJhcHBfaWQiOjEyMDd9&amp;auto=format&amp;fit=crop&amp;w=1351&amp;q=80" alt="" />
+                    <img src="./images/balcony.png" alt="" />
                 </div>
                 <div class="tall">
-                    <img src="https://images.unsplash.com/photo-1588117472013-59bb13edafec?ixlib=rb-1.2.1&amp;ixid=eyJhcHBfaWQiOjEyMDd9&amp;auto=format&amp;fit=crop&amp;w=500&amp;q=60" alt="">
+                    <img src="./images/balcony.png" alt="">
                 </div>
                 <div class="wide">
-                    <img src="https://images.unsplash.com/photo-1587588354456-ae376af71a25?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1350&q=80" alt="" />
+                    <img src="./images/balcony.png" alt="" />
                 </div>
                 <div>
-                    <img src=" https://images.unsplash.com/photo-1558980663-3685c1d673c4?ixlib=rb-1.2.1&amp;ixid=eyJhcHBfaWQiOjEyMDd9&amp;auto=format&amp;fit=crop&amp;w=1000&amp;q=60" alt="" />
+                    <img src="./images/balcony.png" alt="" />
                 </div>
                 <div class="tall">
-                    <img src="https://images.unsplash.com/photo-1588499756884-d72584d84df5?ixlib=rb-1.2.1&amp;auto=format&amp;fit=crop&amp;w=2134&amp;q=80" alt="" />
+                    <img src="./images/balcony.png" alt="" />
                 </div>
                 <div class="wide">
-                <img src="https://images.unsplash.com/photo-1587588354456-ae376af71a25?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1350&q=80" alt="" />
+                <img src="./images/balcony.png" alt="" />
                 </div>
                 <div>
-                    <img src="https://images.unsplash.com/photo-1588247866001-68fa8c438dd7?ixlib=rb-1.2.1&amp;auto=format&amp;fit=crop&amp;w=564&amp;q=80" alt="" />
+                    <img src="./images/balcony.png" alt="" />
                 </div>
             </div>
         </div> <!-- Closing images section -->
     </div> <!-- Closing newSction -->
+    <div class="container-fluid aboutUs">
+    <div class="container">
+        <div class="row">
+            <div class="col-12 text-center p-4 text">
+                <h1>About us</h1>
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Mollitia vitae beatae numquam aperiam, illo odio obcaecati voluptatum nam eligendi cumque molestiae harum quo esse asperiores amet voluptates non ducimus reprehenderit.
+                Corrupti eaque magni minima voluptates beatae vero aut similique repudiandae, accusamus id voluptatem nam laboriosam eligendi sequi dignissimos! Laboriosam exercitationem sunt minus tenetur culpa. Repellat officiis deserunt distinctio eveniet fuga?
+                Blanditiis porro natus ullam minus, distinctio quibusdam nisi nobis aliquid suscipit eius quia eveniet dolor possimus pariatur optio voluptatem reprehenderit adipisci itaque dignissimos eligendi ea iure unde quos quidem. Eaque.
+                In, cupiditate. Nemo nostrum velit sed odio error quasi ipsum maiores nam mollitia ipsa eos, id, quibusdam itaque asperiores accusantium a voluptas illo commodi repellat veritatis! Aliquam omnis quis odit!</p>
+                <a href="" class="connect mt-3">Connect With Us</a>
+            </div>
+        </div>
+    </div>
+    <div class="container-fluid feedbacks text-center">
+        <h1 class="feed-text">Client Feedbacks</h1>
+        <div class="row h-100">
+
+                <div class="row text-center feedbacks1 mt-3">
+                    <div class="col-md-4 col-lg-3 col-sm-12 feed">
+                        <div class="container feed1">
+                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Debitis culpa quod quia dicta esse, labore recusandae iusto sit placeat consectetur quis aliquam et reiciendis deleniti dolore soluta quo quasi ducimus.
+                            </p>
+                            <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>
+                        </div>
+                    </div>
+                    <div class="col-md-4 col-lg-3 col-sm-12 feed">
+                        <div class="container feed1">
+                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Debitis culpa quod quia dicta esse, labore recusandae iusto sit placeat consectetur quis aliquam et reiciendis deleniti dolore soluta quo quasi ducimus.
+                            </p>
+                            <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star"></i><i class="bi bi-star"></i><i class="bi bi-star"></i>
+                        </div>
+                    </div>
+                    <div class="col-md-4 col-lg-3 col-sm-12 feed">
+                        <div class="container feed1">
+                            <p>Service is ass asf
+                            </p>
+                            <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>
+                        </div>
+                    </div>
+                    <div class="col-md-4 col-lg-3 col-sm-12 feed">
+                        <div class="container feed1">
+                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Debitis culpa quod quia dicta esse, labore recusandae iusto sit placeat consectetur quis aliquam et reiciendis deleniti dolore soluta quo quasi ducimus.
+                            </p>
+                            <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star"></i>
+                        </div>
+                    </div>
+                </div>
+        </div>
+    </div>
+</div>
+
+
+    <!-- Feedbacks container -->
+   
+</div>
+
 @endsection
