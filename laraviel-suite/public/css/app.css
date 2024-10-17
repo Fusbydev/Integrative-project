@@ -8,7 +8,9 @@
     background-position: center;
 }
 
-
+body {
+    background-color: #442E1A;
+}
 .navbar {
     background-color: transparent!important;
 }
@@ -20,7 +22,18 @@ nav {
     right: 0; /* Full width */
     background-color: rgba(226, 221, 206, 0.16);
     z-index: 10;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
 }
+.hide-nav {
+    transform: translateY(-100%);
+    transition: transform 0.3s ease-in-out;
+}
+
+.navbar-wrapper {
+    transition: transform 0.3s ease-in-out;
+}
+
 .nav-link {
     color: #FEF3E2;
     font-family: 'karla';
@@ -170,6 +183,8 @@ img {
     padding: 10px;
     border-radius: 40px;
     border-width: 1px;
+    text-decoration: none;
+    text-align: center;
 }
 /*accommodation*/
 
@@ -180,6 +195,12 @@ img {
     background-attachment: fixed; /* Keeps the background fixed */
     position: relative; /* Ensures elements inside the container are positioned properly */
     overflow: hidden; /* Prevents overflow of content if needed */
+}
+
+#checkin, #checkout {
+    border-top: none;
+    border-left: none;
+    border-right: none;
 }
 
 
@@ -210,6 +231,7 @@ h2.section-title {
     font-size: 2em;
     color: #FEF3E2;
     text-align: left;
+    font-family: 'aboreto';
 }
 
 
@@ -225,6 +247,7 @@ h2.section-title {
     font-size: 1.5em;
     color: #FEF3E2;
     margin-bottom: 10px;
+    font-family: 'aboreto';
 }
 
 .card-text {
@@ -273,4 +296,50 @@ h2.section-title {
     h2 {
         font-size: 1.8em;
     }
+}
+/*book now*/
+.progress-bar-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+    margin-bottom: 30px;
+    position: relative;
+}
+.progress-bar-container::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background-color: #ccc;
+    z-index: 0;
+}
+.progress-step {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100px;
+}
+.progress-step .step-icon {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: #ccc;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #fff;
+    font-size: 20px;
+    transition: background-color 0.3s;
+}
+.progress-step.active .step-icon {
+    background-color: #28a745; /* Highlighted step */
+}
+.progress-step .step-label {
+    margin-top: 10px;
+    font-size: 14px;
 }
