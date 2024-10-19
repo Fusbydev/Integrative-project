@@ -19,16 +19,15 @@
     <div class="newSction container-fluid">
         <div class="container checkInOut"> <!-- Opening container -->
             <div class="row text-align-center"> <!-- Opening row -->
-                <div class="col-md-5"> <!-- Check-In column -->
-                    <label for="checkin" class="form-label checkIn">Check-In</label>
-                    <input type="date" id="checkin" class="form-control transparent-input">
-                </div> <!-- Closing col-md-5 -->
+            <div class="col-md-5"> <!-- Check-In column -->
+                <label for="checkin" class="form-label checkIn">Check-In</label>
+                <input type="date" id="checkin" class="form-control transparent-input">
+            </div>
 
-                <div class="col-md-5"> <!-- Check-Out column -->
-                    <label for="checkout" class="form-label checkIn">Check-Out</label>
-                    <input type="date" id="checkout" class="form-control transparent-input">
-                </div> <!-- Closing col-md-5 -->
-
+            <div class="col-md-5"> <!-- Check-Out column -->
+                <label for="checkout" class="form-label checkIn">Check-Out</label>
+                <input type="date" id="checkout" class="form-control transparent-input">
+            </div>
                 <div class="col-md-2 d-flex align-items-end"> <!-- Button aligned to the bottom -->
                 <a href="/book-now" class="checkBtn w-100">Check Availability</a>
                 </div> <!-- Closing col-md-2 -->

@@ -93,7 +93,7 @@ document.addEventListener("DOMContentLoaded", function() {
                     document.querySelector('.check-in').textContent = checkInDate;
                     checkInCell = parentTd; // Store reference to check-in cell
                     dateSelectionStep = 1; // Move to next step
-
+                
                     // Highlight the check-in cell
                     parentTd.classList.add('active-cell'); // Add active class to check-in cell
                 } else {
@@ -101,22 +101,45 @@ document.addEventListener("DOMContentLoaded", function() {
                     checkOutDate = selectedDate;
                     document.querySelector('.check-out').textContent = checkOutDate;
                     checkOutCell = parentTd; // Store reference to check-out cell
-                    calculateNights(checkInDate, checkOutDate);
-                    dateSelectionStep = 0; // Reset for new selection
-
-                    // Remove active class from all cells
-                    const allCells = document.querySelectorAll(`#${calendarId} td`);
-                    allCells.forEach(cell => cell.classList.remove('active-cell'));
-
-                    // Highlight both cells if within the same month
-                    if (new Date(checkInDate).getMonth() === new Date(checkOutDate).getMonth() && 
-                        new Date(checkInDate).getFullYear() === new Date(checkOutDate).getFullYear()) {
-                        checkInCell.classList.add('active-cell'); // Highlight check-in cell
-                        checkOutCell.classList.add('active-cell'); // Highlight check-out cell
+                
+                    // Calculate nights and reset step
+                    if (calculateNights(checkInDate, checkOutDate)) {
+                        dateSelectionStep = 0; // Reset for new selection
+                
+                        // Remove active class from all cells
+                        const allCells = document.querySelectorAll(`#${calendarId} td`);
+                        allCells.forEach(cell => cell.classList.remove('active-cell'));
+                
+                        // Highlight the check-in and check-out cells
+                        checkInCell.classList.add('active-cell');
+                        checkOutCell.classList.add('active-cell');
+                
+                        // Highlight all dates between check-in and check-out
+                        let currentDate = new Date(checkInDate);
+                        const checkOutDateObject = new Date(checkOutDate);
+                
+                        while (currentDate <= checkOutDateObject) {
+                            const year = currentDate.getFullYear();
+                            const month = currentDate.getMonth() + 1; // getMonth() is 0-indexed, so add 1
+                            const day = currentDate.getDate();
+                
+                            // Format date as `YYYY-M-D` to match `data-date` attribute format
+                            const dateString = `${year}-${month}-${day}`;
+                
+                            // Find the <span> element for this date and add active-cell class
+                            const dayElement = document.querySelector(`.clickable-day[data-date="${dateString}"]`);
+                            if (dayElement) {
+                                dayElement.parentElement.classList.add('active-cell'); // Highlight the <td> containing this day
+                            }
+                
+                            // Move to the next day
+                            currentDate.setDate(currentDate.getDate() + 1);
+                        }
                     } else {
-                        checkOutCell.classList.add('active-cell'); // Highlight only check-out cell
+                        alert('Invalid date selection! Please select valid check-in and check-out dates.');
                     }
                 }
+                
             });
         });
     }

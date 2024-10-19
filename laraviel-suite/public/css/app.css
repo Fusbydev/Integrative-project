@@ -471,7 +471,7 @@ i {
     margin: 0 10px;
 }
 .light {
-    background-color: greenyellow; /* Or any highlight color you prefer */
+    background-color: #FFB000; /* Or any highlight color you prefer */
     border-color: #FEF3E2; /* Make the border match the highlight */
     transition: ease-in 0.5s;
 }
@@ -556,25 +556,26 @@ i {
      /* Default to transparent background */
     color: #FEF3E2; /* Default text color */
     transition: background-color 0.3s ease, color 0.3s ease; /* Smooth transition */
+    font-weight: bold;
 }
 .table-borderless {
     background-color: transparent; /* Remove any background color */
 }
 /* Hover state */
 .table-borderless td:hover {
-    background-color: green !important; /* Apply hover background color */
-    color: #FEF3E2 !important; /* Ensure text color changes */
+    background-color: #FFB000 !important; /* Apply hover background color */
+    color: #292929 !important; /* Ensure text color changes */
 }
 
 /* Active state when clicked */
 .table-borderless td:active {
-    background-color: green !important; /* Apply background color on click */
-    color: #FEF3E2 !important; /* Change text color on click */
+    background-color: #FFB000 !important; /* Apply background color on click */
+    color: #292929 !important; /* Change text color on click */
 }
 /* Active class for clicked cells */
 .active-cell {
-    background-color: green!important; /* Background color when active */
-    color: #FEF3E2 !important; /* Text color when active */
+    background-color: #FFB000!important; /* Background color when active */
+    color: #292929 !important; /* Text color when active */
 }
 
 .table-borderless td,
