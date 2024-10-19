@@ -1,4 +1,41 @@
 document.addEventListener("DOMContentLoaded", function() {
+
+    fetch('/rooms')
+    .then(response => {
+        if (!response.ok) {
+            throw new Error('Network response was not ok ' + response.statusText);
+        }
+        return response.json(); // Parse the JSON data from the response
+    })
+    .then(data => {
+        const container = document.querySelector('.standard-room'); // Select the container
+        data.forEach(room => {
+            const roomHtml = `
+                <div class="col-md-4">
+                    <div class="suite card">
+                        <img src="${room.image_path}" class="card-img-top w-369.33" alt="${room.room_type}">
+                        <div class="card-body">
+                            <h3 class="card-title">${room.room_type}</h3>
+                            <p class="card-text">${room.description}</p>
+                            <h4 class="suite-price">Php ${parseFloat(room.price).toFixed(2)}/per night</h4>
+                            <button class="btn btn-outline-light">Book now</button>
+                            <button class="btn btn-outline-light" data-toggle="modal" data-target="#amenitiesModal">Check amenities</button>
+                        </div>
+                    </div>
+                </div>
+            `;
+            container.insertAdjacentHTML('beforeend', roomHtml); // Append to the container
+        });
+    })
+    .catch(error => {
+        console.error('Error fetching rooms:', error);
+    });
+
+
+
+
+
+
     let currentStep = 1;
     const circles = document.querySelectorAll('.circle');
     const nextButton = document.querySelector('.nextBtn');
@@ -146,15 +183,37 @@ document.addEventListener("DOMContentLoaded", function() {
 
     // Check if the user can proceed by validating the dates before advancing the step
     nextButton.addEventListener('click', function () {
-        if (isValidDateSelection()) {
-            if (currentStep < circles.length) {
-                circles[currentStep].classList.add('light'); // Highlight the step
-                currentStep++; // Move to the next step
+        console.log("Button clicked!");
+
+    if (isValidDateSelection()) {
+        console.log("Is valid date selection?", isValidDateSelection());
+
+        if (currentStep < circles.length) {
+            // Highlight the current step
+            circles[currentStep].classList.add('light'); 
+
+            // Handle visibility based on currentStep
+            if (currentStep === 1) {
+                document.querySelector('#select-accommodation').classList.remove('d-none');
+                document.querySelector('#date-picker').classList.add('d-none');
+                
+                currentStep++;
+            } else if (currentStep === 2) {
+                document.querySelector('#guest-info').classList.remove('d-none');
+                document.querySelector('#select-accommodation').classList.add('d-none');
+                currentStep++;
+            } else if (currentStep == 3) {
+                document.querySelector('#guest-info').classList.add('d-none');
+                document.querySelector('#booking-confirmation').classList.remove('d-none');
             }
-        } else {
-            alert('Please select a valid Check-in and Check-out date!');
         }
-    });
+    } else {
+        alert('Please select a valid Check-in and Check-out date!');
+    }
+    console.log(currentStep);
+});
+
+
 
     const currentDate = new Date();
 
@@ -163,4 +222,8 @@ document.addEventListener("DOMContentLoaded", function() {
 
     // Generate the next month calendar
     generateCalendar(currentDate.getFullYear(), currentDate.getMonth() + 1, 'nextMonthCalendar', 'nextMonthTitle');
+
+    // Make the GET request using the fetch API
+
+
 });

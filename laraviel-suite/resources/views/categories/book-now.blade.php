@@ -57,8 +57,8 @@
         </div>
     </div>
     <div class="container-fluid booking-contents d-flex">
-        <div class="container-fluid date-picker" id="date-picker">
-            <div class="row p-2 gap-3 justify-content-center text-center">
+    <div class="container-fluid date-picker" id="date-picker">
+        <div class="row p-2 gap-3 justify-content-center text-center">
             <div class="col-md-5 col-lg-5 col-sm-12 rounded">
             <h2 id="currentMonthTitle"></h2>
             <table
@@ -74,10 +74,16 @@
             ></table>
             </div>
         </div>
-        <div class="container-fluid select-accomodation" id="select-accommodation">
-            
         </div>
-        </div>
+    </div>
+    <div class="container-fluid select-accomodation d-none" id="select-accommodation">
+        <h1>Select Accomodation</h1>
+    </div>
+    <div class="container-fluid guest-info d-none" id="guest-info">
+        <h1>Guest info</h1>
+    </div>
+    <div class="container-fluid booking-confirmation d-none" id="booking-confirmation">
+        <h1>Booking Confirmation</h1>
     </div>
     <div class="container-fluid text-end">
         <button class="nextBtn">

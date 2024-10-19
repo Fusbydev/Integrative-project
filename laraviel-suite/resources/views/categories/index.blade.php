@@ -7,7 +7,7 @@
 
 @section('content')
     <!-- Full-height container with background -->
-    <div class="container-fluid bg"> 
+    <div class="container-fluid bg overlay"> 
         <div class="d-flex align-items-center justify-content-center h-100 text-center">
             <div class="d-flex flex-column">
                 <h1 class="mx-auto elevate">ELEVATE YOUR STAY</h1>
@@ -68,7 +68,7 @@
             </div>
         </div> <!-- Closing images section -->
     </div> <!-- Closing newSction -->
-    <div class="container-fluid aboutUs">
+    <div class="container-fluid aboutUs overlay1">
     <div class="container">
         <div class="row">
             <div class="col-12 text-center p-4 text">

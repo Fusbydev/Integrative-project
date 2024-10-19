@@ -7,9 +7,14 @@
     background-size: cover;
     background-position: center;
     background-attachment: fixed; /* This makes the background fixed */
-    z-index: -1; /* Puts the background behind other content */
+    z-index: 1; /* Puts the background behind other content */
 }
-
+.overlay {
+    border-image: fill 1 linear-gradient(#0003,#1E140C); /* your gradient here */
+}
+.overlay1 {
+    border-image: fill 1 linear-gradient(#1E140C, #0003); /* your gradient here */
+}
 .d-flex {
     position: relative;
     z-index: 1; /* Ensures the content stays above the background */
@@ -200,6 +205,7 @@ img {
     border-top: none;
     border-left: none;
     border-right: none;
+    border-radius: 0px;
 }
 
 .container {
@@ -608,17 +614,4 @@ td, th {
 }
 
 /* CSS for sliding transition */
-.slide {
-    transition: transform 0.5s ease-in-out;
-    position: relative;
-}
 
-.hidden {
-    transform: translateX(-100%);
-    opacity: 0;
-}
-
-.visible {
-    transform: translateX(0);
-    opacity: 1;
-}

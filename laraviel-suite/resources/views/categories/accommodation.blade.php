@@ -5,43 +5,8 @@
 @section('content')
 <div class="container-fluid p-5 accomodation-bg">
     <h2 class="section-title text-left">STANDARD SUITES</h2>
-    <div class="row justify-content-around"> 
-        <div class="col-md-4">
-            <div class="suite card">
-                <img src="./images/standard 1.png" class="card-img-top" alt="Standard Room">
-                <div class="card-body">
-                    <h3 class="card-title">STANDARD ROOM</h3>
-                    <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-                    <h4 class="suite-price">Php 7,899/per night</h4>
-                    <button class="btn btn-outline-light">Book now</button>
-                    <button class="btn btn-outline-light" data-toggle="modal" data-target="#amenitiesModal">Check amenities</button>
-                </div>
-            </div>
-        </div>
-        <div class="col-md-4">
-            <div class="suite card">
-                <img src="./images/standard 1.png" class="card-img-top" alt="Standard Room">
-                <div class="card-body">
-                    <h3 class="card-title">STANDARD ROOM</h3>
-                    <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-                    <h4 class="suite-price">Php 7,899/per night</h4>
-                    <button class="btn btn-outline-light">Book now</button>
-                    <button class="btn btn-outline-light" data-toggle="modal" data-target="#amenitiesModal">Check amenities</button>
-                </div>
-            </div>
-        </div>
-        <div class="col-md-4">
-            <div class="suite card">
-                <img src="./images/standard 1.png" class="card-img-top" alt="Standard Room">
-                <div class="card-body">
-                    <h3 class="card-title">STANDARD ROOM</h3>
-                    <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-                    <h4 class="suite-price">Php 7,899/per night</h4>
-                    <button class="btn btn-outline-light">Book now</button>
-                    <button class="btn btn-outline-light" data-toggle="modal" data-target="#amenitiesModal">Check amenities</button>
-                </div>
-            </div>
-        </div>
+    <div class="row justify-content-around standard-room"> 
+        
     </div>
 
     <h2 class="section-title text-left">DELUXE SUITES</h2>
