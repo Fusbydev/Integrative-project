@@ -15,7 +15,7 @@
             <div class="suite card">
                 <img src="./images/standard 1.png" class="card-img-top" alt="Deluxe Room">
                 <div class="card-body">
-                    <h3 class="card-title">DELUXE ROOM</h3>
+                    <h3 class="card-title">DELUXE ROOM1</h3>
                     <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
                     <h4 class="suite-price">Php 9,899/per night</h4>
                     <button class="btn btn-outline-light">Book now</button>
