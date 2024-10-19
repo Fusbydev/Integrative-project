@@ -8,7 +8,7 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
     <title>@yield('title')</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
-    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    
     <link rel="icon" href="{{ asset('./images/logo.png') }}" type="image/x-icon">
     @yield('custom-css')
 </head>
@@ -87,7 +87,8 @@
     </div>
 </footer>
 
-
+<script src="{{ asset('js/script.js') }}">
+</script>
     <script>
         let lastScrollTop = 0;
         window.addEventListener("scroll", function() {
@@ -102,6 +103,8 @@
                 navbar.classList.remove("hide-nav");
             }
             lastScrollTop = scrollTop <= 0 ? 0 : scrollTop; // Prevent negative scroll
+
+            
         });
     </script>
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>

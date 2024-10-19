@@ -41,7 +41,7 @@
         </div> <!-- Closing container -->
 
         <div class="images container"> <!-- Opening images section -->
-            <div class="grid-wrapper mt-5 pt-5">
+            <div class="grid-wrapper mt-3 pt-5">
                 <div>
                     <img src="./images/balcony.png" alt="" />
                 </div>

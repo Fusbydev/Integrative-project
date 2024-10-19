@@ -1,5 +1,7 @@
 @extends('layouts.app')
-
+@section('custom-css')
+<link href="{{ asset('css/app.css') }}" rel="stylesheet">
+@endsection
 @section('content')
 <div class="container-fluid p-5 accomodation-bg">
     <h2 class="section-title text-left">STANDARD SUITES</h2>

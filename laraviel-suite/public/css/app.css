@@ -77,11 +77,12 @@ nav {
 .elevate {
     color: #FEF3E2;
     font-family: 'aboreto';
+    font-size: 100px;
 }
 .hotel-name {
     color: #FEF3E2;
     font-family: 'allura';
-    font-size: 50px;
+    font-size: 100px;
 }
 .newSction {
     height: auto;
@@ -319,7 +320,7 @@ h2.section-title {
     height: auto;
 }
 .footer img {
-    width: 200px;
+    width: 100px;
 }
 
 .aboutUs {
@@ -442,4 +443,181 @@ i {
     .footer p, .footer h2, .icons i {
         font-size: 12px; /* Adjust font-size for mobile devices */
     }
+}
+/*book now*/
+.book-container {
+    background-image: url('/images/book-now.png');
+    position: relative;
+    height: auto; /* Full height */
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed; /* This makes the background fixed */
+    z-index: 1; /* Puts the background behind other content */
+    width: 100%;
+    background-repeat: no-repeat;
+}
+
+.circle {
+    width: 50px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 2px solid white;
+    border-radius: 50%; /* Make it a perfect circle */
+}
+
+.step {
+    margin: 0 10px;
+}
+.light {
+    background-color: greenyellow; /* Or any highlight color you prefer */
+    border-color: #FEF3E2; /* Make the border match the highlight */
+    transition: ease-in 0.5s;
+}
+
+.circle h1 {
+    margin: 0;
+    font-size: 24px;
+}
+
+.step {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.step-label {
+    margin-top: 10px;
+    font-size: 12px;
+    color: white;
+}
+
+.d-flex {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+@media (max-width: 768px) {
+    .circle {
+        width: 40px;
+        height: 40px;
+    }
+
+    .line {
+        width: 30px;
+    }
+
+    .circle h1 {
+        font-size: 18px;
+    }
+
+    .step-label {
+        font-size: 10px;
+    }
+}
+
+@media (max-width: 576px) {
+    .circle {
+        width: 35px;
+        height: 35px;
+    }
+
+    .line {
+        width: 20px;
+    }
+
+    .circle h1 {
+        font-size: 16px;
+    }
+
+    .step-label {
+        font-size: 8px;
+    }
+}
+
+.deets-container {
+    height: auto;
+}
+
+.clickable-day {
+    cursor: pointer;
+}
+/* Base styling for table */
+.rounded .table-custom {
+    background-color: rgba(68, 46, 26, 0.8)!important;
+    border-radius: 10px;
+}
+
+/* Ensure table cells are transparent initially */
+.table-borderless td,
+.table-borderless th {
+     /* Default to transparent background */
+    color: #FEF3E2; /* Default text color */
+    transition: background-color 0.3s ease, color 0.3s ease; /* Smooth transition */
+}
+.table-borderless {
+    background-color: transparent; /* Remove any background color */
+}
+/* Hover state */
+.table-borderless td:hover {
+    background-color: green !important; /* Apply hover background color */
+    color: #FEF3E2 !important; /* Ensure text color changes */
+}
+
+/* Active state when clicked */
+.table-borderless td:active {
+    background-color: green !important; /* Apply background color on click */
+    color: #FEF3E2 !important; /* Change text color on click */
+}
+/* Active class for clicked cells */
+.active-cell {
+    background-color: green!important; /* Background color when active */
+    color: #FEF3E2 !important; /* Text color when active */
+}
+
+.table-borderless td,
+.table-borderless th {
+    background-color: transparent; /* Make sure the table cells also have no background */
+    color: #FEF3E2; /* Text color */
+}
+
+#currentMonthTitle, #nextMonthTitle {
+    font-family: 'aboreto';
+}
+td, th {
+    font-family: 'aboreto';
+}
+
+.nextBtn {
+    border-radius: 40px;
+    font-size: 20px;
+    padding-left: 10px;
+    padding-right: 10px;
+    background-color: rgba(191, 167, 93, 0.16);
+    color: #FEF3E2;
+    font-family: 'karla';
+    border: solid;
+    border-width: 0.5px;
+    margin-bottom: 5px;
+}
+.select-accommodation {
+    height: 100vh;
+}
+
+/* CSS for sliding transition */
+.slide {
+    transition: transform 0.5s ease-in-out;
+    position: relative;
+}
+
+.hidden {
+    transform: translateX(-100%);
+    opacity: 0;
+}
+
+.visible {
+    transform: translateX(0);
+    opacity: 1;
 }
