@@ -31,11 +31,6 @@ document.addEventListener("DOMContentLoaded", function() {
         console.error('Error fetching rooms:', error);
     });
 
-
-
-
-
-
     let currentStep = 1;
     const circles = document.querySelectorAll('.circle');
     const nextButton = document.querySelector('.nextBtn');
@@ -64,6 +59,9 @@ document.addEventListener("DOMContentLoaded", function() {
 
         if (nights >= 0) {
             document.querySelector('.nights').textContent = nights + ' nights';
+            document.querySelector('#checkIndd').textContent = checkIn;
+            document.querySelector('#checkOutdd').textContent = checkOut;
+            document.querySelector('#totalNightsInput').value = nights;
             return true; // Valid date range
         } else {
             alert('Check-out date should be after Check-in date!');
@@ -184,6 +182,7 @@ document.addEventListener("DOMContentLoaded", function() {
     // Check if the user can proceed by validating the dates before advancing the step
     nextButton.addEventListener('click', function () {
         console.log("Button clicked!");
+        
 
     if (isValidDateSelection()) {
         console.log("Is valid date selection?", isValidDateSelection());

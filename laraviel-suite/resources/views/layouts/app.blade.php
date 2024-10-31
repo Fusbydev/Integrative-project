@@ -88,7 +88,9 @@
     </div>
 </footer>
 
-<script src="{{ asset('js/script.js') }}">
+<script src="{{ asset('js/script.js') }}"></script>
+<script src="{{ asset('js/book-now.js') }}"></script>
+
 </script>
     <script>
         let lastScrollTop = 0;

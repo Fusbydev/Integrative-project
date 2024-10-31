@@ -254,6 +254,7 @@ h2.section-title {
     overflow: hidden;
     margin-bottom: 30px;
     transition: transform 0.3s ease;
+    max-height: 300px;
 }
 
 .card-title {
@@ -631,9 +632,24 @@ td, th {
 .reciept-container {
     background-color: rgba(255, 255, 255, 0.35);
     font-family: 'karla';
-    padding: 10px 0;
+    padding: 10px;
     border-radius: 10px;
 }
 .reciept-container p{
     font-size: 12px;
+}
+.m {
+    padding: 0;
+}
+
+.book-room-dex {
+    font-size: 10px;
+}
+.book-card {
+    max-height: 300px;
+    min-height: 300px;
+}
+
+.form-check-label {
+    color: #FEF3E2;
 }

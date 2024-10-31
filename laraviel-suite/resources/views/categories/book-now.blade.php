@@ -76,71 +76,13 @@
     <div class="container accomodation-page">
         <div class="row">
             <div class="col-12 col-md-9 text-center"> <!-- Adjusted column size for cards -->
-                <div class="row justify-content-center"> <!-- Center the row -->
-                    <div class="col-12 col-sm-6 col-md-4 d-flex justify-content-center mb-4"> <!-- Responsive column sizes -->
-                        <div class="card">
-                            <img src="..." class="card-img-top" alt="...">
-                            <div class="card-body">
-                                <h5 class="card-title">Card title</h5>
-                                <p class="card-text">ETO PALITAN NYO ROOM INFO...</p>
-                                <a href="#" class="btn btn-primary">Go somewhere</a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-12 col-sm-6 col-md-4 d-flex justify-content-center mb-4">
-                        <div class="card">
-                            <img src="..." class="card-img-top" alt="...">
-                            <div class="card-body">
-                                <h5 class="card-title">Card title</h5>
-                                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                                <a href="#" class="btn btn-primary">Go somewhere</a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-12 col-sm-6 col-md-4 d-flex justify-content-center mb-4">
-                        <div class="card">
-                            <img src="..." class="card-img-top" alt="...">
-                            <div class="card-body">
-                                <h5 class="card-title">Card title</h5>
-                                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                                <a href="#" class="btn btn-primary">Go somewhere</a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-12 col-sm-6 col-md-4 d-flex justify-content-center mb-4">
-                        <div class="card">
-                            <img src="..." class="card-img-top" alt="...">
-                            <div class="card-body">
-                                <h5 class="card-title">Card title</h5>
-                                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                                <a href="#" class="btn btn-primary">Go somewhere</a>
-                            </div>
-                        </div>
-                    </div>
+                <div class="row justify-content-center book-room"> <!-- Center the row -->
+                <input type="hidden" id="totalNightsInput" name="totalNights" value="">
+
                 </div>
             </div>
-            <div class="col-12 col-md-3"> <!-- Adjusted column size for receipt -->
-                <div class="container-fluid resibo text-center p-4">
-                    <p>Booking Receipt</p>
-                    <div class="container-fluid reciept-container">
-                        <p><strong>Date</strong> : October 9 - October 10, 2024</p>
-                    </div>
-                    <div class="container-fluid text-start mt-2">
-                        <p>Booked Room(s)</p>
-                        <div class="container-fluid reciept-container text-center">
-                            <p><strong>Standard Room</strong> : Php 7,890.00</p>
-                        </div>
-                    </div>
-                    <div class="container-fluid text-start mt-2">
-                        <p>Other Charges</p>
-                        <div class="container-fluid reciept-container text-center mb-3">
-                            <p><strong>Service Charge & Tax</strong> : Php 1,500.00</p>
-                        </div>
-                        <div class="container-fluid reciept-container text-center">
-                            <p><strong>Total Bill</strong> : Php 9,399.00</p>
-                        </div>
-                    </div>
-                </div>
+            <div class="col-12 col-md-3 d-reciept"> <!-- Adjusted column size for receipt -->
+            
             </div>
         </div>
     </div>
@@ -153,28 +95,8 @@
             <div class="col-12 col-md-9 text-center"> <!-- Adjusted column size for cards -->
                 <h1>IRAH EDIT MO TO CUSTOMER INFORMATION SA LOOB NG DIV NA TO TNX TAS YUNG CARD SA SELECT ACCOMODATION PABAGO NG LAMAN, KAHIT YUNG ISANG CARD LANG LAGYAN MO NG ROOM INFORMATION, KASI LALAGYAN YAN NG JS...</h1>
             </div>
-            <div class="col-12 col-md-3"> <!-- Adjusted column size for receipt -->
-                <div class="container-fluid resibo text-center p-4">
-                    <p>Booking Receipt</p>
-                    <div class="container-fluid reciept-container">
-                        <p><strong>Date</strong> : October 9 - October 10, 2024</p>
-                    </div>
-                    <div class="container-fluid text-start mt-2">
-                        <p>Booked Room(s)</p>
-                        <div class="container-fluid reciept-container text-center">
-                            <p><strong>Standard Room</strong> : Php 7,890.00</p>
-                        </div>
-                    </div>
-                    <div class="container-fluid text-start mt-2">
-                        <p>Other Charges</p>
-                        <div class="container-fluid reciept-container text-center mb-3">
-                            <p><strong>Service Charge & Tax</strong> : Php 1,500.00</p>
-                        </div>
-                        <div class="container-fluid reciept-container text-center">
-                            <p><strong>Total Bill</strong> : Php 9,399.00</p>
-                        </div>
-                    </div>
-                </div>
+            <div class="col-12 col-md-3 d-reciept"> <!-- Adjusted column size for receipt -->
+                
             </div>
         </div>
     </div>
