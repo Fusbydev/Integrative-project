@@ -631,8 +631,9 @@ td, th {
 .reciept-container {
     background-color: rgba(255, 255, 255, 0.35);
     font-family: 'karla';
+    padding: 10px 0;
     border-radius: 10px;
 }
 .reciept-container p{
-    font-size: 13px;
+    font-size: 12px;
 }
