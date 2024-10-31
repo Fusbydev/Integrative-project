@@ -615,3 +615,24 @@ td, th {
 
 /* CSS for sliding transition */
 
+.accomodation-page {
+    background-color: #1E140C;
+}
+
+
+.resibo {
+    background-color: #BFA75D;
+    border-radius: 10px;
+}
+.resibo p {
+    font-family: 'karla';
+}
+
+.reciept-container {
+    background-color: rgba(255, 255, 255, 0.35);
+    font-family: 'karla';
+    border-radius: 10px;
+}
+.reciept-container p{
+    font-size: 13px;
+}
