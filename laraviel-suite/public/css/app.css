@@ -710,3 +710,8 @@ td, th {
 hr {
     color: white;
 }
+
+.save p{
+    font-family: 'karla';
+    letter-spacing: 5px;
+}

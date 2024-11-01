@@ -9,11 +9,7 @@ $(document).ready(function() {
         const value = localStorage.getItem(key);
         console.log(`${key}: ${value}`);
     }
-
-
-
     
-
     // Fetch and render room data
     fetch('/rooms')
     .then(response => {
