@@ -49,7 +49,7 @@
             </div>
             <div class="col-4">
                 <p>Check-out</p>
-                <p class="check-out">Select a date</p>
+                <p class="check-out">Select a date..</p>
             </div>
             <div class="col-4">
                 <p>Number of Nights</p>
