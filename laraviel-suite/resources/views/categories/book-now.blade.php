@@ -183,6 +183,11 @@
                     </div>
                 </div>
                 <div class="row">
+                    <div class="col-md-12 text-center save">
+                        <p>SAVE INFORMATION & REGISTER</p>
+                    </div>
+                </div>
+                <div class="row">
                     <div class="col-md-12">
                         <div class="form-check">
                             <input type="checkbox" class="form-check-input" id="privacy">
