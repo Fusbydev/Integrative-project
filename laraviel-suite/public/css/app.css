@@ -653,3 +653,60 @@ td, th {
 .form-check-label {
     color: #FEF3E2;
 }
+
+.guest-info {
+    background-color: #1E140C;
+    color: rgb(254, 243, 226);;
+}
+.req {
+    color: red;
+}
+.gender {
+    background-color: white !important;
+    color: black!important;
+}
+
+.highlight-text {
+    cursor: pointer; /* Change the cursor to indicate it's clickable */
+    color: #BFA75D; /* Change text color to Bootstrap primary color */
+    text-decoration: underline; /* Underline the text */
+}
+
+.highlight-text:hover {
+    color: #BFA75D; /* Darker shade on hover */
+}
+.modal-privacy {
+    background-color: #1E140C!important;
+}
+.modal-body {
+    overflow-y: scroll;
+    max-height: 300px;
+    overflow-x: hidden;
+}
+.modal-body p {
+    font-family: 'karla';
+}
+.pri-header {
+    color: #BFA75D;
+}
+
+.modal-body p{
+    font-size: 12px;
+}
+.collect ol li {
+    font-size: 12px;
+    color: #FEF3E2;
+}
+.collect ol li strong{
+    color: #BFA75D;
+}
+.rights li {
+    font-size: 12px;
+    color: #FEF3E2;
+}
+.modal-title {
+    color: #FEF3E2;
+}
+hr {
+    color: white;
+}
