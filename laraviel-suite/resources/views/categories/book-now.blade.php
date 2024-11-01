@@ -143,7 +143,7 @@
                         <ul class="dropdown-menu">
                             <li><a class="dropdown-item" href="#">Male</a></li>
                             <li><a class="dropdown-item" href="#">Female</a></li>
-                            <li><a class="dropdown-item" href="#">Something else, idk</a></li>
+                            <li><a class="dropdown-item" href="#">Something else, idk..</a></li>
                         </ul>
                     </div>
                 </div>
