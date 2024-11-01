@@ -135,18 +135,19 @@
                         <input type="date" class="form-control" id="birthdate" required>
                     </div>
                     <div class="col-md-6 col-lg-6 col-sm-12 mb-3">
-                        <label for="gender">Gender <span class="req">*</span></label>
-                        <div class="dropdown">
-                            <button class="btn btn-secondary dropdown-toggle gender" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                Gender
-                            </button>
-                            <div class="dropdown-menu">
-                                <a class="dropdown-item" href="#">Male</a>
-                                <a class="dropdown-item" href="#">Female</a>
-                                <a class="dropdown-item" href="#">Something else, idk</a>
-                            </div>
-                        </div>
+                    <label for="gender">Gender <span class="req">*</span></label>
+                    <div class="dropdown">
+                        <button class="btn btn-secondary dropdown-toggle gender" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            Gender
+                        </button>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="#">Male</a></li>
+                            <li><a class="dropdown-item" href="#">Female</a></li>
+                            <li><a class="dropdown-item" href="#">Something else, idk</a></li>
+                        </ul>
                     </div>
+                </div>
+
                 </div>
                 <div class="row">
                     <div class="col-md-4 col-lg-4 col-sm-12 mb-3">
