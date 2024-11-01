@@ -73,4 +73,5 @@ $(document).ready(function() {
         $('.booked-rooms').html(bookedRooms);
     });
     
+    
 });

@@ -1,3 +1,4 @@
+
 @extends('layouts.app')
 
 @section('title', 'Laraveil Suite')
@@ -112,8 +113,90 @@
     <div class="container-fluid guest-info d-none" id="guest-info">
     <div class="container accomodation-page">
         <div class="row">
-            <div class="col-12 col-md-9 text-center"> <!-- Adjusted column size for cards -->
-                <h1>IRAH EDIT MO TO CUSTOMER INFORMATION SA LOOB NG DIV NA TO TNX TAS YUNG CARD SA SELECT ACCOMODATION PABAGO NG LAMAN, KAHIT YUNG ISANG CARD LANG LAGYAN MO NG ROOM INFORMATION, KASI LALAGYAN YAN NG JS...</h1>
+            <div class="col-12 col-md-9"> <!-- Adjusted column size for cards -->
+            <form action="">
+                <div class="row">
+                    <div class="col-md-4 col-lg-4 col-sm-6 mb-3">
+                        <label for="lastname">Lastname <span class="req">*</span></label>
+                        <input type="text" class="form-control" placeholder="Lastname" id="lastname" required>
+                    </div>
+                    <div class="col-md-4 col-lg-4 col-sm-6 mb-3">
+                        <label for="firstname">Firstname <span class="req">*</span></label>
+                        <input type="text" class="form-control" placeholder="Firstname" id="firstname" required>
+                    </div>
+                    <div class="col-md-4 col-lg-4 col-sm-12 mb-3">
+                        <label for="salutation">Salutation <span class="req">*</span></label>
+                        <input type="text" class="form-control" placeholder="Mr/Mrs" id="salutation" required>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6 col-lg-6 col-sm-12 mb-3">
+                        <label for="birthdate">Birthdate <span class="req">*</span></label>
+                        <input type="date" class="form-control" id="birthdate" required>
+                    </div>
+                    <div class="col-md-6 col-lg-6 col-sm-12 mb-3">
+                        <label for="gender">Gender <span class="req">*</span></label>
+                        <div class="dropdown">
+                            <button class="btn btn-secondary dropdown-toggle gender" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Gender
+                            </button>
+                            <div class="dropdown-menu">
+                                <a class="dropdown-item" href="#">Male</a>
+                                <a class="dropdown-item" href="#">Female</a>
+                                <a class="dropdown-item" href="#">Something else, idk</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-4 col-lg-4 col-sm-12 mb-3">
+                        <label for="guestCount">Number of Guests:</label>
+                        <input type="number" class="form-control" id="guestCount" min="1" required>
+                    </div>
+                    <div class="col-md-4 col-lg-4 col-sm-12 mb-3">
+                        <h6>Discount Options:</h6>
+                        <div class="form-check">
+                            <input type="checkbox" class="form-check-input" id="discountStudent">
+                            <label class="form-check-label" for="discountStudent">Student Discount (-20%)</label>
+                        </div>
+                        <div class="form-check">
+                            <input type="checkbox" class="form-check-input" id="discountSenior">
+                            <label class="form-check-label" for="discountSenior">Senior Citizen Discount (-20%)</label>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6 col-lg-6 col-sm-12 mb-3">
+                        <label for="email">Email <span class="req">*</span></label>
+                        <input type="email" class="form-control" placeholder="Email" id="email" required>
+                    </div>
+                    <div class="col-md-6 col-lg-6 col-sm-12 mb-3">
+                        <label for="contactNumber">Contact Number <span class="req">*</span></label>
+                        <input type="tel" class="form-control" placeholder="Contact Number" id="contactNumber" required>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12 mb-3">
+                        <label for="address">Address <span class="req">*</span></label>
+                        <input type="text" class="form-control" placeholder="Address" id="address" required>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="form-check">
+                            <input type="checkbox" class="form-check-input" id="privacy">
+                            <label class="form-check-label" for="privacy">
+                                I have read and agreed to the <span class="highlight-text privacy-modal">privacy policies and terms and conditions.</span>
+                            </label>
+                        </div>
+                        <div class="form-check">
+                            <input type="checkbox" class="form-check-input" id="reservation">
+                            <label class="form-check-label" for="reservation">Create my guest account for future reservations.</label>
+                        </div>
+                    </div>
+                </div>
+                
+            </form>
             </div>
             <div class="col-12 col-md-3 d-reciept"> <!-- Adjusted column size for receipt -->
             <div class="container-fluid resibo text-center p-4">
@@ -150,4 +233,106 @@
         </button>
     </div>
 </div>
+<div class="modal fade" id="privacyModal" tabindex="-1" aria-labelledby="privacyModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-header  modal-privacy">
+                        <h5 class="modal-title" id="privacyModalLabel">Privacy Policies and Terms</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body modal-privacy">
+                        <div class="row text-center">
+                            <div class="col-12">
+                                <img src="https://picsum.photos/50/50" alt="">
+                            </div>
+                            <div class="col-12">
+                                <p class="pri-header">Privacy and Policies</p>
+                            </div>
+                            <div class="col-12">
+                                <p class="mb-2">Laraveil suites is committed to protecting your privacy. This Privacy Policy explains how we collect, use, disclose, and safeguard your information when you make a reservation with us or visit our website. Please read this policy carefully. If you do not agree with the terms of this policy, please do not use our services.</p>
+                            </div>
+                            <hr>
+                            <div class="col-12">
+                                <p class="pri-header">Information We Collect</p>
+                            </div>
+                            <div class="col-12 text-start collect">
+                                <ol class="list-unstyled">
+                                    <li><strong>1. Personal Information:</strong> This includes your name, email address, phone number, mailing address, and payment information.</li>
+                                    <li><strong>2. Reservation Information:</strong> Details about your stay, such as check-in and check-out dates, room preferences, and special requests.</li>
+                                    <li><strong>3. Usage Data:</strong> Information about how you use our website, including your IP address, browser type, and pages visited.</li>
+                                    <li><strong>4. Cookies and Tracking Technologies:</strong> We use cookies to enhance your experience on our website. You can control cookie preferences through your browser settings.</li>
+                                </ol>
+                                <hr>
+                                <div class="col-12 text-center">
+                                    <p class="pri-header">Information We Collect</p>
+                                </div>
+                                <div class="col-12 text-start collect">
+                                    <p class="mb-2">We may share your information with:</p>
+                                    <ol class="list-unstyled">
+                                        <li><strong>Service Providers</strong>: Third-party vendors who assist us in operating our business </li>
+                                        <li><strong>Legal Authorities</strong>: If required by law or in response to valid requests by public authorities.</li>
+                                        <li><strong>Business Transfers</strong>: In connection with any merger, sale of company assets, or acquisition of all or a portion of our business.</li>
+                                    </ol>
+                            </div>
+                            <hr>
+                            <div class="row">
+                                <div class="col-12 text-center">
+                                    <p class="pri-header">Your Rights</p>
+                                </div>
+                                <div class="col-12 rights">
+                                    <ul>
+                                        <li>The right to access and receive a copy of your personal information.</li>
+                                        <li>The right to request corrections to your personal information.</li>
+                                        <li>The right to request the deletion of your personal information.</li>
+                                        <li>The right to object to or restrict the processing of your personal information.</li>
+                                    </ul>
+                                    <p>To exercise these rights, please contact us using the information provided below.</p>
+                                </div>
+                            </div>
+                            <hr>
+                            <div class="row text-center">
+                                <div class="col-12">
+                                    <p class="pri-header">Changes to This Privacy Policy</p>
+                                    <p>We may update our Privacy Policy from time to time. We will notify you of any changes by posting the new Privacy Policy on this page and updating the effective date. We encourage you to review this Privacy Policy periodically for any updates.</p>
+                                </div>
+                            </div>
+                            <hr>
+                            <div class="row text-center">
+                                <p class="pri-header">Contact Us</p>
+                                <p>If you have any questions or concerns about this Privacy Policy or our practices, please contact us at:</p>
+                                <div class="container">
+                                    <p>Laraveil Suites <br>
+                                        Fort Bonifacio, Taguig <br>
+                                        laraveilsuites@gmail.com <br>
+                                        +63 98521364752</p> 
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer modal-privacy">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+
+    </div>
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const privacyCheckbox = document.getElementById('privacy');
+        const privacyModal = new bootstrap.Modal(document.getElementById('privacyModal'));
+        const privacySpan = document.querySelector('.privacy-modal'); // Select the span element
+    
+        // Event listener for the span
+        privacySpan.addEventListener('click', function() {
+            privacyModal.show(); // Show the modal when the span is clicked
+        });
+    
+        // Event listener for the checkbox (no action on click)
+        privacyCheckbox.addEventListener('click', function() {
+            // Do not show the modal when the checkbox is clicked
+        });
+    });
+    
+</script>
 @endsection
