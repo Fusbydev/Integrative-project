@@ -51,8 +51,7 @@ $(document).ready(function() {
     });
 
     // Update total price and room details on checkbox change
-    $(document).on('change', '.room-checkbox', function() {
-        
+    $(document).on('change', '.room-checkbox, #discountStudent, #discountSenior', function() {
         let baseTotal = 1500; // Initial total to account for service charge & tax
         let bookedRooms = '';
         let totalNights = parseInt($('#totalNightsInput').val()) || 0; // Retrieve total nights value
@@ -63,15 +62,26 @@ $(document).ready(function() {
             let roomPrice = parseFloat($(this).data('price'));
             roomTotal += roomPrice; // Add the room price to room total
             bookedRooms += `<p><strong>${$(this).data('room-type')}</strong> : Php ${roomPrice.toFixed(2)}</p>`;
-        }); 
+        });
     
         // Calculate the total price based on the number of nights
         let total = baseTotal + (roomTotal * totalNights); // Include total nights multiplied by room prices
+    
+        // Apply discounts if applicable
+        let studentDiscount = $('#discountStudent').is(':checked') ? 0.20 : 0; // 20% discount for students
+        let seniorDiscount = $('#discountSenior').is(':checked') ? 0.20 : 0; // 20% discount for seniors
+    
+        // Calculate total discount
+        let totalDiscount = total * (studentDiscount + seniorDiscount);
+    
+        // Final total after discounts
+        total -= totalDiscount;
     
         // Update totalPrice and booked rooms in the receipt
         $('.totalPriceDisplay').text(total.toFixed(2));
         $('.booked-rooms').html(bookedRooms);
     });
+    
     
     
 });
