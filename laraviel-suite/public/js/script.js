@@ -183,6 +183,14 @@ document.addEventListener("DOMContentLoaded", function() {
     nextButton.addEventListener('click', function () {
         console.log("Button clicked!");
         
+        
+        var checkIndate1 = $('#checkIndd').text();
+        var checkOutdate1 = $('#checkOutdd').text();
+        console.log("yawa "+checkIndate1);  
+        console.log("yawa "+checkOutdate1);
+        
+        $('.checkIndd').text(checkIndate1);
+        $('.checkOutdd').text(checkOutdate1);
 
     if (isValidDateSelection()) {
         console.log("Is valid date selection?", isValidDateSelection());
