@@ -1,0 +1,442 @@
+body {
+    overflow-x: hidden;
+}
+.hero-section {
+    background-image: url('/images/about 1.jpg');
+    position: relative;
+    height: 100vh;
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    z-index: 1;
+}
+
+.hero-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(rgba(30, 20, 12, 0.7), rgba(68, 46, 26, 0.7)); /* Using your theme colors */
+    z-index: -1;
+}
+
+.hero-content {
+    position: relative;
+    z-index: 2;
+    color: #FEF3E2;
+    max-width: 800px;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+.hero-title {
+    font-family: 'Aboreto', serif;
+    font-size: 8rem;
+    color: #FEF3E2;
+    text-align: center;
+    line-height: 1.1;
+    letter-spacing: 0.1em;
+    margin-left: 0.0em;
+    text-transform: none;
+}
+
+.hero-subtitle {
+    font-family: 'Aboreto', serif;
+    font-size: 1.5rem;
+    font-weight: 300;
+    margin-bottom: 2.5rem;
+    color: #FEF3E2;
+    text-align: center;
+    width: 100%;
+}
+
+/* Using your existing button style */
+.hero-content .checkBtn {
+    background-color: rgba(191, 167, 93, 0.16);
+    border: 1px solid #FEF3E2;
+    padding: 15px 30px;
+    font-size: 1.1rem;
+    transition: all 0.3s ease;
+}
+
+.hero-content .checkBtn:hover {
+    background-color: rgba(191, 167, 93, 0.3);
+    transform: translateY(-2px);
+}
+
+@media (max-width: 768px) {
+    .hero-title {
+        font-size: 4.5rem;
+        letter-spacing: 4px;
+    }
+    
+    .hero-subtitle {
+        font-size: 1.2rem;
+    }
+
+    .hero-content .checkBtn {
+        padding: 12px 25px;
+        font-size: 1rem;
+    }
+}
+
+@media (max-width: 576px) {
+    .hero-title {
+        font-size: 3rem;
+        letter-spacing: 2px;
+    }
+    
+    .hero-subtitle {
+        font-size: 1rem;
+    }
+}
+.about {
+    height: auto!important;
+}
+
+/* Add these new styles */
+.about-image-container {
+    display: flex;
+    gap: 10px;  /* Space between images */
+}
+
+.about-image-half {
+    width: 50%;
+    height: 300px;  /* Fixed height for consistency */
+    object-fit: cover;  /* Maintains aspect ratio while filling space */
+    border-radius: 5px;  /* Optional: adds rounded corners */
+}
+
+/* Add these new styles */
+.image-grid {
+    display: grid;
+    grid-template-rows: 1fr 1fr; /* Two equal rows */
+    gap: 15px;
+    height: 100%;
+}
+
+.grid-image {
+    width: 100%;
+    height: 200px; /* Adjust this value as needed */
+    object-fit: cover;
+    border-radius: 10px;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .grid-image {
+        height: 150px;
+    }
+    
+    .image-grid {
+        gap: 10px;
+        margin-bottom: 20px;
+    }
+}
+
+.mission-vision-section {
+    padding: 40px;
+    background-color: #1E140C;
+}
+
+.info-box {
+    padding: 40px;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+/* Specific background colors for each box */
+.mission-box {
+    background-color: #382614;
+    height: auto!important;
+}
+
+.vision-box {
+    background-color: #302414;
+    height: auto!important;
+}
+
+.approach-box {
+    background-color: #603D1B;
+    height: auto!important;
+}
+
+.mission-box, .approach-box {
+    height: calc(50vh - 30px); /* Half viewport height minus margin */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.vision-box {
+    height: calc(100vh - 40px); /* Full viewport height minus padding */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.info-box h2 {
+    font-family: 'Aboreto', serif;
+    color: #FEF3E2;
+    font-size: 3.5rem;
+    margin-bottom: 30px;
+    letter-spacing: 2px;
+    text-transform: none;
+}
+
+.info-box p {
+    font-family: 'Aboreto', serif;
+    color: #FEF3E2;
+    font-size: 1.4rem;
+    line-height: 1.6;
+    margin-bottom: 20px;
+    font-weight: 300;
+    text-transform: none;
+}
+
+.info-box ul {
+    list-style: none;
+    padding: 0;
+    text-align: left;
+    font-family: 'Aboreto', serif;
+}
+
+.info-box ul li {
+    font-family: 'Aboreto', serif;
+    color: #FEF3E2;
+    font-size: 1.4rem;
+    margin-bottom: 15px;
+    padding-left: 20px;
+    position: relative;
+    font-weight: 300;
+    text-transform: none;
+}
+
+.info-box ul li:before {
+    content: "•";
+    position: absolute;
+    left: 0;
+    color: #BFA75D;
+}
+
+.info-box .highlight {
+    font-family: 'Karla', sans-serif;
+    font-size: 2rem;
+    text-transform: capitalize;
+}
+
+@media (max-width: 768px) {
+    .mission-box, .approach-box, .vision-box {
+        height: auto;
+        min-height: 300px;
+    }
+
+    .info-box h2 {
+        font-size: 2.5rem;
+    }
+
+    .info-box p, .info-box ul li {
+        font-size: 1.2rem;
+    }
+
+    .info-box .highlight {
+        font-size: 1.8rem;
+    }
+}
+
+/* Offers Page Specific Styles */
+.offers-hero {
+    position: relative;
+    height: 100vh;
+    background-image: url('/images/offers.jpg');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+}
+
+.hero-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: #cdbcae73;
+}
+
+.offers-title {
+    position: relative;
+    font-family: 'Aboreto', serif;
+    font-size: 100px;
+    color: #000000;  /* Changed to white/off-white color to match image */
+    text-align: center;
+    line-height: 1.1;
+    letter-spacing: 0.1em;  /* Increased letter spacing */
+    margin-left: 0.0em;  /* Offset to compensate for letter spacing */
+}
+
+.offer-card {
+    background-color: rgba(30, 20, 12, 0.95);
+    border: 1px solid #BFA75D;
+    border-radius: 15px;
+    padding: 40px;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    min-height: 700px;
+}
+
+.offer-header {
+    text-align: center;
+    padding-bottom: 30px;
+    height: 200px; /* Fixed height for header to ensure alignment */
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+}
+
+.offer-header h3 {
+    font-family: 'Aboreto', serif;
+    color: #FEF3E2;
+    font-size: 2rem;
+    margin-bottom: 15px;
+    letter-spacing: 2px;
+}
+
+.luxury-badge {
+    display: inline-block;
+    background-color: #BFA75D;
+    color: #1E140C;
+    padding: 8px 20px;
+    border-radius: 25px;
+    font-family: 'Karla', sans-serif;
+    font-weight: bold;
+    letter-spacing: 1px;
+    margin-bottom: 10px;
+}
+
+.tagline {
+    color: #BFA75D;
+    font-style: italic;
+    font-size: 1.1rem;
+    margin: 10px 0 30px 0;
+}
+
+.offer-content {
+    color: #FEF3E2;
+    font-family: 'Karla', sans-serif;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    border-top: 1px solid rgba(191, 167, 93, 0.3);
+    padding-top: 30px;
+}
+
+.offer-description {
+    font-family: 'Karla', sans-serif !important;
+    margin-bottom: 20px;
+    min-height: 120px; /* Fixed height for description to ensure equal height */
+    display: flex;
+    align-items: center;
+}
+
+.offer-features {
+    list-style: disc;
+    padding-left: 20px;
+    margin: 25px 0;
+    flex-grow: 1;
+}
+
+.offer-features li {
+    color: #FEF3E2;
+    margin-bottom: 10px;
+    font-family: 'Karla', sans-serif;
+}
+
+.offer-validity {
+    margin-top: 30px;
+    padding-top: 20px;
+    border-top: 1px solid rgba(191, 167, 93, 0.3);
+}
+
+.offer-validity p {
+    color: #BFA75D;
+    font-size: 0.9rem;
+    margin-bottom: 5px;
+}
+
+.indulgence-wrapper {
+    background-color: rgba(30, 20, 12, 0.95);
+    border: 1px solid #BFA75D;
+    border-radius: 15px;
+    padding: 40px;
+}
+
+.indulgence-card h2 {
+    font-family: 'Aboreto', serif;
+    color: #FEF3E2;
+    font-size: 2.5rem;
+    margin-bottom: 25px;
+    line-height: 1.3;
+}
+
+.key-benefits h3 {
+    font-family: 'Aboreto', serif;
+    color: #FEF3E2;
+    font-size: 2rem;
+    margin-bottom: 25px;
+}
+
+.indulgence-footer p {
+    color: #BFA75D;
+    font-style: italic;
+    font-size: 1.1rem;
+    position: relative;
+    padding-top: 20px; /* Space for the line above */
+    margin-top: 20px; /* Additional spacing */
+}
+
+.indulgence-footer p::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%; /* Full width line */
+    height: 1px;
+    background-color: rgba(191, 167, 93, 0.3); /* Gold color with transparency */
+}
+
+@media (max-width: 768px) {
+    
+    .offer-card {
+        padding: 25px;
+        margin-bottom: 20px;
+    }
+    
+    .offer-header h3 {
+        font-size: 1.6rem;
+    }
+    
+    .indulgence-card h2 {
+        font-size: 2rem;
+    }
+}
+
+.indulgence-description {
+    text-transform: none !important; /* Force remove any text transformation */
+    font-family: 'Karla', sans-serif !important;
+    color: #FEF3E2;
+    font-size: 1.1rem;
+    line-height: 1.6;
+    margin-bottom: 20px;
+}

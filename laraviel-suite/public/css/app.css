@@ -715,3 +715,7 @@ hr {
     font-family: 'karla';
     letter-spacing: 5px;
 }
+
+.logo-modal img {
+    height: 50px;
+}

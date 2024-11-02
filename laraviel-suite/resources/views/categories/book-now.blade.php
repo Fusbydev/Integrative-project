@@ -248,8 +248,8 @@
                     </div>
                     <div class="modal-body modal-privacy">
                         <div class="row text-center">
-                            <div class="col-12">
-                                <img src="https://picsum.photos/50/50" alt="">
+                            <div class="col-12 logo-modal">
+                            <img src="{{ asset('images/logo.png') }}" alt="Logo">
                             </div>
                             <div class="col-12">
                                 <p class="pri-header">Privacy and Policies</p>
