@@ -1,7 +1,30 @@
 $(document).ready(function() {
     console.log('loaded');
 
+    // Function to handle the gender selection
+function selectGender(gender) {
+    console.log("Selected gender:", gender);
+    const genderButton = document.querySelector('.dropdown-toggle.gender');
+    genderButton.textContent = gender;
+}
 
+// Wait until the DOM content is fully loaded
+
+    // Get the dropdown menu element
+    const genderDropdown = document.getElementById("genderDropdown");
+    
+    // Add a 'click' event listener to the dropdown menu
+    genderDropdown.addEventListener("click", function(event) {
+        console.log('clicked')
+        // Check if the clicked element is a dropdown item
+        if (event.target.classList.contains("dropdown-item")) {
+            // Get the gender value from the data-value attribute
+            const gender = event.target.getAttribute("data-value");
+            selectGender(gender);
+        }
+    });
+
+    
     // Log all items in localStorage
     console.log("Local Storage Items:");
     for (let i = 0; i < localStorage.length; i++) {
@@ -47,7 +70,7 @@ $(document).ready(function() {
     });
 
     // Update total price and room details on checkbox change
-    $(document).on('change', '.room-checkbox, #discountStudent, #discountSenior', function() {
+    $(document).on('change', '.room-checkbox, #discountStudent, #discountSenior, #noDiscount', function() {
         let baseTotal = 1500; // Initial total to account for service charge & tax
         let bookedRooms = '';
         let totalNights = parseInt($('#totalNightsInput').val()) || 0; // Retrieve total nights value
@@ -63,12 +86,16 @@ $(document).ready(function() {
         // Calculate the total price based on the number of nights
         let total = baseTotal + (roomTotal * totalNights); // Include total nights multiplied by room prices
     
-        // Apply discounts if applicable
-        let studentDiscount = $('#discountStudent').is(':checked') ? 0.20 : 0; // 20% discount for students
-        let seniorDiscount = $('#discountSenior').is(':checked') ? 0.20 : 0; // 20% discount for seniors
+        // Determine the selected discount option
+        let discountOption = $('input[name="discountOption"]:checked').val();
+        let totalDiscount = 0;
     
-        // Calculate total discount
-        let totalDiscount = total * (studentDiscount + seniorDiscount);
+        // Apply discounts based on the selected option
+        if (discountOption === 'student') {
+            totalDiscount = total * 0.20; // 20% discount for students
+        } else if (discountOption === 'senior') {
+            totalDiscount = total * 0.20; // 20% discount for seniors
+        }
     
         // Final total after discounts
         total -= totalDiscount;
@@ -77,7 +104,7 @@ $(document).ready(function() {
         $('.totalPriceDisplay').text(total.toFixed(2));
         $('.booked-rooms').html(bookedRooms);
     });
-    
+
     
     
 });

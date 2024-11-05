@@ -209,8 +209,10 @@ document.addEventListener("DOMContentLoaded", function() {
                 document.querySelector('#guest-info').classList.remove('d-none');
                 document.querySelector('#select-accommodation').classList.add('d-none');
                 currentStep++;
+               
             } else if (currentStep == 3) {
                 document.querySelector('#guest-info').classList.add('d-none');
+                finalConfirmation();
                 document.querySelector('#booking-confirmation').classList.remove('d-none');
             }
         }
@@ -219,6 +221,45 @@ document.addEventListener("DOMContentLoaded", function() {
     }
     console.log(currentStep);
 });
+
+
+
+
+
+function finalConfirmation() {
+    // Extract values from the form inputs
+    const lastname = document.getElementById('lastname').value;
+    const firstname = document.getElementById('firstname').value;
+    const salutation = document.getElementById('salutation').value;
+    const birthdate = document.getElementById('birthdate').value;
+    const gender = document.querySelector('.dropdown-toggle.gender').textContent; // Get the text from the dropdown
+    const guestCount = document.getElementById('guestCount').value;
+    const discountOption = document.querySelector('input[name="discountOption"]:checked').value;
+    const email = document.getElementById('email').value;
+    const contactNumber = document.getElementById('contactNumber').value;
+    const address = document.getElementById('address').value;
+    const privacyPolicyAccepted = document.getElementById('privacy').checked;
+    const createAccount = document.getElementById('reservation').checked;
+
+    // Log the extracted values for confirmation
+    console.log('Lastname:', lastname);
+    console.log('Firstname:', firstname);
+    console.log('Salutation:', salutation);
+    console.log('Birthdate:', birthdate);
+    console.log('Gender:', gender);
+    console.log('Number of Guests:', guestCount);
+    console.log('Discount Option:', discountOption);
+    console.log('Email:', email);
+    console.log('Contact Number:', contactNumber);
+    console.log('Address:', address);
+    console.log('Privacy Policy Accepted:', privacyPolicyAccepted);
+    console.log('Create Account for Future Reservations:', createAccount);
+
+    // Optionally, you can show a confirmation alert or proceed with form submission
+    alert('Your information has been saved successfully!');
+
+    // Add any additional processing you want here, such as sending data to a server
+}
 
 
 
