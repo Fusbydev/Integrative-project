@@ -136,18 +136,18 @@
                     </div>
                     <div class="col-md-6 col-lg-6 col-sm-12 mb-3">
                     <label for="gender">Gender <span class="req">*</span></label>
-                    <div class="dropdown">
-                        <button class="btn btn-secondary dropdown-toggle gender" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                            Gender
-                        </button>
-                        <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="#">Male</a></li>
-                            <li><a class="dropdown-item" href="#">Female</a></li>
-                            <li><a class="dropdown-item" href="#">Something else, idk...</a></li>
-                        </ul>
-                    </div>
-                </div>
+                <div class="dropdown">
+                <button class="btn btn-secondary dropdown-toggle gender" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    Gender
+                </button>
+                <ul class="dropdown-menu" id="genderDropdown">
+                    <li><a class="dropdown-item" href="#" data-value="Male">Male</a></li>
+                    <li><a class="dropdown-item" href="#" data-value="Female">Female</a></li>
+                    <li><a class="dropdown-item" href="#" data-value="Something else, idk...">Something else, idk...</a></li>
+                </ul>
 
+                </div>
+                </div>
                 </div>
                 <div class="row">
                     <div class="col-md-4 col-lg-4 col-sm-12 mb-3">
@@ -155,16 +155,20 @@
                         <input type="number" class="form-control" id="guestCount" min="1" required>
                     </div>
                     <div class="col-md-4 col-lg-4 col-sm-12 mb-3">
-                        <h6>Discount Options:</h6>
-                        <div class="form-check">
-                            <input type="checkbox" class="form-check-input" id="discountStudent">
-                            <label class="form-check-label" for="discountStudent">Student Discount (-20%)</label>
-                        </div>
-                        <div class="form-check">
-                            <input type="checkbox" class="form-check-input" id="discountSenior">
-                            <label class="form-check-label" for="discountSenior">Senior Citizen Discount (-20%)</label>
-                        </div>
+                    <h6>Discount Options:</h6>
+                    <div class="form-check">
+                        <input type="radio" class="form-check-input" id="discountStudent" name="discountOption" value="student" required>
+                        <label class="form-check-label" for="discountStudent">Student Discount (-20%)</label>
                     </div>
+                    <div class="form-check">
+                        <input type="radio" class="form-check-input" id="discountSenior" name="discountOption" value="senior">
+                        <label class="form-check-label" for="discountSenior">Senior Citizen Discount (-20%)</label>
+                    </div>
+                    <div class="form-check">
+                        <input type="radio" class="form-check-input" id="noDiscount" name="discountOption" value="none" checked>
+                        <label class="form-check-label" for="noDiscount">No Discount</label>
+                    </div>
+                </div>
                 </div>
                 <div class="row">
                     <div class="col-md-6 col-lg-6 col-sm-12 mb-3">
@@ -325,6 +329,10 @@
     </div>
 <script>
     document.addEventListener('DOMContentLoaded', function() {
+
+
+
+
         const privacyCheckbox = document.getElementById('privacy');
         const privacyModal = new bootstrap.Modal(document.getElementById('privacyModal'));
         const privacySpan = document.querySelector('.privacy-modal'); // Select the span element
@@ -338,6 +346,8 @@
         privacyCheckbox.addEventListener('click', function() {
             // Do not show the modal when the checkbox is clicked
         });
+
+        
     });
     
 </script>

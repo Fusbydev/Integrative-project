@@ -10,8 +10,7 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
     <title>@yield('title')</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
-    <script src="{{ asset('js/book-now.js') }}"></script>
-    <script src="{{ asset('js/script.js') }}"></script>
+    
     <link rel="icon" href="{{ asset('./images/logo.png') }}" type="image/x-icon">
     @yield('custom-css')
 </head>
@@ -89,10 +88,6 @@
         </div>
     </div>
 </footer>
-
-
-
-</script>
     <script>
         let lastScrollTop = 0;
         window.addEventListener("scroll", function() {
@@ -111,6 +106,9 @@
             
         });
     </script>
+    <script src="{{ asset('js/book-now.js') }}"></script>
+    <script src="{{ asset('js/script.js') }}"></script>
+    
     
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.2/dist/umd/popper.min.js"></script>
