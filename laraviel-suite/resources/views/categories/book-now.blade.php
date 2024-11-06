@@ -245,16 +245,13 @@
                 <div class="container-fluid body p-0">
                     <div class="row">
                         <div class="col-12 text-start">
-                            <p>Dear [salutation][name],</p>
+                            <p class="greeting"></p>
                             <p>Thank you for choosing to stay with Laraveil Suites! <br>
                                 We are delighted to confirm your reservation and are excited to welcome you. <br>   
                                 Below are the details of your reservation for your convenience: </p>
                                 <h1 class="mt-2 mb-2">RESERVATION CONFIRMATION</h1>
                                 <div class="information mb-2">
-                                    <p>Guest Name: <span>[name]</span><br>
-                                        Check-In Date: <span>[check-in date]</span><br>
-                                        Check-Out Date: <span>[check-out date]</span><br>
-                                        Room Type: <span>[room type]</span>
+                                    <p class="guest-info1">
                                     </p>
                                 </div>
                         </div>
@@ -263,9 +260,9 @@
             </div>
             <hr class="text-white">
             <div class="information text-start mb-3">
-                <p>Services charge and taxes: <span>[amount]</span><br>
+                <p>Services charge and taxes: <span>Php 1500</span><br>
                     Room rate: <span>[check-in date]</span><br>
-                    TOTAL AMOUNT TO BE PAID: <span>[check-out date]</span>
+                    TOTAL AMOUNT TO BE PAID: <span class="total-price">[check-out date]</span>
                 </p>
             </div>
             <hr class="text-white">
