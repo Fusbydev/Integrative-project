@@ -235,7 +235,52 @@
     </div>
     </div>
     <div class="container-fluid booking-confirmation d-none" id="booking-confirmation">
-        <h1>Booking Confirmation</h1>
+    <div class="container accomodation-page1 px-5">
+        <div class="row text-center confirmation">
+            <div class="col-12">
+            <img src="{{ asset('images/logo.png') }}" alt="Logo">
+            </div>
+            <hr class="text-white">
+            <div class="col-12 text-start intro">
+                <div class="container-fluid body p-0">
+                    <div class="row">
+                        <div class="col-12 text-start">
+                            <p>Dear [salutation][name],</p>
+                            <p>Thank you for choosing to stay with Laraveil Suites! <br>
+                                We are delighted to confirm your reservation and are excited to welcome you. <br>   
+                                Below are the details of your reservation for your convenience: </p>
+                                <h1 class="mt-2 mb-2">RESERVATION CONFIRMATION</h1>
+                                <div class="information mb-2">
+                                    <p>Guest Name: <span>[name]</span><br>
+                                        Check-In Date: <span>[check-in date]</span><br>
+                                        Check-Out Date: <span>[check-out date]</span><br>
+                                        Room Type: <span>[room type]</span>
+                                    </p>
+                                </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <hr class="text-white">
+            <div class="information text-start mb-3">
+                <p>Services charge and taxes: <span>[amount]</span><br>
+                    Room rate: <span>[check-in date]</span><br>
+                    TOTAL AMOUNT TO BE PAID: <span>[check-out date]</span>
+                </p>
+            </div>
+            <hr class="text-white">
+            <div class="information text-end">
+                <p>Warm regards, <br>
+                    Laraviel Suites Team <br>
+                    <span>
+                        +639 234 2345 <br>
+                        123 st. Manila <br>
+                        LaraveilSuite.com
+                    </span>
+                </p>
+            </div>
+        </div>
+    </div>
     </div>
     <div class="container-fluid text-end">
         <button class="nextBtn">

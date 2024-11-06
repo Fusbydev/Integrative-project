@@ -47,7 +47,7 @@ function selectGender(gender) {
             const roomHtml = `
                 <div class="col-md-4 book-card">
                     <div class="suite card">
-                        <img src="" class="card-img-top w-369.33" alt="${room.room_type}">
+                        <img src="${room.image_path}" class="card-img-top w-369.33" alt="${room.room_type}">
                         <div class="card-body">
                             <h3 class="card-title">${room.room_type}</h3>
                             <p class="card-text book-room-dex">${room.description}</p>
