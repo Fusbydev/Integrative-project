@@ -212,7 +212,7 @@ document.addEventListener("DOMContentLoaded", function() {
                
             } else if (currentStep == 3) {
                 document.querySelector('#guest-info').classList.add('d-none');
-                finalConfirmation();
+                finalConfirmation(checkIndate1, checkOutdate1);
                 document.querySelector('#booking-confirmation').classList.remove('d-none');
             }
         }
@@ -226,7 +226,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
 
 
-function finalConfirmation() {
+function finalConfirmation(cin, cout) {
     // Extract values from the form inputs
     const lastname = document.getElementById('lastname').value;
     const firstname = document.getElementById('firstname').value;
@@ -240,6 +240,20 @@ function finalConfirmation() {
     const address = document.getElementById('address').value;
     const privacyPolicyAccepted = document.getElementById('privacy').checked;
     const createAccount = document.getElementById('reservation').checked;
+
+    let bookedRooms = $(".booked-rooms").text();
+
+    $('.greeting').text("Dear " + salutation +" " + lastname +",");
+
+    $('.guest-info1').append(
+    `Guest Name: <span>${lastname}, ${firstname}</span> <br>
+    Check-In Date: <span>${cin}</span><br>
+    Check-Out Date: <span>${cout}</span><br>
+    Room Type: <span>[room type]</span>`);
+
+    let priceTotal = $("span.totalPriceDisplay").text();
+
+    $('span.total-price').text(parseInt(priceTotal).toFixed(2));
 
     // Log the extracted values for confirmation
     console.log('Lastname:', lastname);
