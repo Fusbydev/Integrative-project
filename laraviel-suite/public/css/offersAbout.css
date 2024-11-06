@@ -440,3 +440,32 @@ body {
     line-height: 1.6;
     margin-bottom: 20px;
 }
+
+.accomodation-page1{
+    background-color: #442E1A;
+}
+.accomodation-page h1{
+    color: white;
+}
+.confirmation img {
+    height: 120px;
+}
+
+.intro p{
+    color: white;
+    font-family: 'karla';
+}
+
+.body h1 {
+    font-family: 'karla';
+    color: #F2D886;
+}
+
+.information p {
+    color: #F2D886;
+    font-family: 'karla';
+}
+
+.information span {
+    color: white;
+}
