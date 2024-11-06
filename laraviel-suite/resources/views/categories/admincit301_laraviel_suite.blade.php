@@ -1,1 +1,1 @@
-<h1>Edit admin side</h1>
+<h1>TRY GITHUB PULL</h1>
