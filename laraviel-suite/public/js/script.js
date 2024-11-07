@@ -227,6 +227,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
 
 function finalConfirmation(cin, cout) {
+
     // Extract values from the form inputs
     const lastname = document.getElementById('lastname').value;
     const firstname = document.getElementById('firstname').value;
@@ -243,17 +244,22 @@ function finalConfirmation(cin, cout) {
 
     let bookedRooms = $(".booked-rooms").text();
 
+    // Use a regular expression to add a line break after each price
+    bookedRooms = bookedRooms.replace(/(\d{4,}\.\d{2})/g, "$1<br>");
+
+
     $('.greeting').text("Dear " + salutation +" " + lastname +",");
 
-    $('.guest-info1').append(
-    `Guest Name: <span>${lastname}, ${firstname}</span> <br>
+    $('.guest-info1').append(`
+    Guest Name: <span>${lastname}, ${firstname}</span> <br>
     Check-In Date: <span>${cin}</span><br>
     Check-Out Date: <span>${cout}</span><br>
-    Room Type: <span>[room type]</span>`);
+    Room Type and Room Rates: <br><span>${bookedRooms}</span>
+    `);
 
     let priceTotal = $("span.totalPriceDisplay").text();
 
-    $('span.total-price').text(parseInt(priceTotal).toFixed(2));
+    $('span.total-price').text('Php ' +parseInt(priceTotal).toFixed(2) );
 
     // Log the extracted values for confirmation
     console.log('Lastname:', lastname);

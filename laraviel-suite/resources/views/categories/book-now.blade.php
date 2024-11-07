@@ -245,7 +245,7 @@
                 <div class="container-fluid body p-0">
                     <div class="row">
                         <div class="col-12 text-start">
-                            <p class="greeting"></p>
+                            <p class="greeting" style="color:#F2D886;"></p>
                             <p>Thank you for choosing to stay with Laraveil Suites! <br>
                                 We are delighted to confirm your reservation and are excited to welcome you. <br>   
                                 Below are the details of your reservation for your convenience: </p>
@@ -261,7 +261,6 @@
             <hr class="text-white">
             <div class="information text-start mb-3">
                 <p>Services charge and taxes: <span>Php 1500</span><br>
-                    Room rate: <span>[check-in date]</span><br>
                     TOTAL AMOUNT TO BE PAID: <span class="total-price">[check-out date]</span>
                 </p>
             </div>
