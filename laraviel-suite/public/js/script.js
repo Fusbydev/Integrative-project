@@ -84,7 +84,7 @@ document.addEventListener("DOMContentLoaded", function() {
         
         // Get the weekday of the first day of the month
         const firstDay = new Date(year, month, 1).getDay();
-
+    
         // Create table headers for the weekdays
         let table = `<thead><tr>
             <th>Sun</th>
@@ -95,33 +95,35 @@ document.addEventListener("DOMContentLoaded", function() {
             <th>Fri</th>
             <th>Sat</th>
         </tr></thead><tbody><tr>`;
-
+    
         // Fill the first row with empty cells until the first day of the month
         for (let i = 0; i < firstDay; i++) {
             table += `<td></td>`;
         }
-
+    
         // Fill in the days of the month, each day is wrapped in a clickable span
         for (let day = 1; day <= daysInMonth; day++) {
-            table += `<td><span class="clickable-day" data-date="${year}-${month + 1}-${day}">${day}</span></td>`;
+            // Add 0-padding to single-digit days (e.g., 1 becomes 01)
+            const paddedDay = String(day).padStart(2, '0');
+            table += `<td><span class="clickable-day" data-date="${year}-${month + 1}-${paddedDay}">${paddedDay}</span></td>`;
             if ((day + firstDay) % 7 === 0) {
                 table += `</tr><tr>`; // Start a new row after every Saturday
             }
         }
-
+    
         // Close the table rows and body
         table += `</tr></tbody>`;
         
         // Set the table content to the calendar element
         document.getElementById(calendarId).innerHTML = table;
-
+    
         // Add event listeners to all clickable days
         const clickableDays = document.querySelectorAll(`#${calendarId} .clickable-day`);
         clickableDays.forEach(day => {
             day.addEventListener('click', function() {
                 const selectedDate = this.getAttribute('data-date');
                 const parentTd = this.parentElement; // Get the parent <td> element
-
+    
                 if (dateSelectionStep === 0) {
                     // First click: Set Check-in date
                     checkInDate = selectedDate;
@@ -159,7 +161,7 @@ document.addEventListener("DOMContentLoaded", function() {
                             const day = currentDate.getDate();
                 
                             // Format date as `YYYY-M-D` to match `data-date` attribute format
-                            const dateString = `${year}-${month}-${day}`;
+                            const dateString = `${year}-${month}-${String(day).padStart(2, '0')}`;
                 
                             // Find the <span> element for this date and add active-cell class
                             const dayElement = document.querySelector(`.clickable-day[data-date="${dateString}"]`);
@@ -178,6 +180,7 @@ document.addEventListener("DOMContentLoaded", function() {
             });
         });
     }
+    
 
     // Check if the user can proceed by validating the dates before advancing the step
     nextButton.addEventListener('click', function () {
@@ -209,7 +212,7 @@ document.addEventListener("DOMContentLoaded", function() {
                 document.querySelector('#guest-info').classList.remove('d-none');
                 document.querySelector('#select-accommodation').classList.add('d-none');
                 currentStep++;
-               
+            
             } else if (currentStep == 3) {
                 document.querySelector('#guest-info').classList.add('d-none');
                 finalConfirmation(checkIndate1, checkOutdate1);
@@ -227,13 +230,11 @@ document.addEventListener("DOMContentLoaded", function() {
 
 
 function finalConfirmation(cin, cout) {
-
-    // Extract values from the form inputs
     const lastname = document.getElementById('lastname').value;
     const firstname = document.getElementById('firstname').value;
     const salutation = document.getElementById('salutation').value;
     const birthdate = document.getElementById('birthdate').value;
-    const gender = document.querySelector('.dropdown-toggle.gender').textContent; // Get the text from the dropdown
+    const gender = document.querySelector('.dropdown-toggle.gender').textContent;
     const guestCount = document.getElementById('guestCount').value;
     const discountOption = document.querySelector('input[name="discountOption"]:checked').value;
     const email = document.getElementById('email').value;
@@ -242,44 +243,63 @@ function finalConfirmation(cin, cout) {
     const privacyPolicyAccepted = document.getElementById('privacy').checked;
     const createAccount = document.getElementById('reservation').checked;
 
-    let bookedRooms = $(".booked-rooms").text();
+    let bookedRooms = $(".booked-rooms").text().trim();
 
-    // Use a regular expression to add a line break after each price
-    bookedRooms = bookedRooms.replace(/(\d{4,}\.\d{2})/g, "$1<br>");
-
-
-    $('.greeting').text("Dear " + salutation +" " + lastname +",");
-
-    $('.guest-info1').append(`
-    Guest Name: <span>${lastname}, ${firstname}</span> <br>
-    Check-In Date: <span>${cin}</span><br>
-    Check-Out Date: <span>${cout}</span><br>
-    Room Type and Room Rates: <br><span>${bookedRooms}</span>
-    `);
-
+// Add a space after the prices
+bookedRooms = bookedRooms.replace(/(\d{4,}\.\d{2})(?=\w)/g, "$1 "); 
     let priceTotal = $("span.totalPriceDisplay").text();
+    let priceTotal1 = parseFloat(priceTotal.replace('Php', '').trim()).toFixed(2);
 
-    $('span.total-price').text('Php ' +parseInt(priceTotal).toFixed(2) );
+    $('.greeting').text("Dear " + salutation + " " + lastname + ",");
+    $('.guest-info1').append(`
+        Guest Name: <span>${lastname}, ${firstname}</span> <br>
+        Check-In Date: <span>${cin}</span><br>
+        Check-Out Date: <span>${cout}</span><br>
+        Room Type and Room Rates: <br><span>${bookedRooms}</span>
+    `);
+    $('span.total-price').text('Php ' + priceTotal1);
 
-    // Log the extracted values for confirmation
-    console.log('Lastname:', lastname);
-    console.log('Firstname:', firstname);
-    console.log('Salutation:', salutation);
-    console.log('Birthdate:', birthdate);
-    console.log('Gender:', gender);
-    console.log('Number of Guests:', guestCount);
-    console.log('Discount Option:', discountOption);
-    console.log('Email:', email);
-    console.log('Contact Number:', contactNumber);
-    console.log('Address:', address);
-    console.log('Privacy Policy Accepted:', privacyPolicyAccepted);
-    console.log('Create Account for Future Reservations:', createAccount);
+    const guestData = {
+        lastname: lastname,
+        firstname: firstname,
+        salutation: salutation,
+        birthdate: birthdate,
+        gender: gender,
+        guestCount: guestCount,
+        discountOption: discountOption,
+        email: email,
+        contactNumber: contactNumber,
+        address: address,
+        checkIn: cin,
+        checkOut: cout,
+        bookedRooms: bookedRooms, // Correctly pass the room type
+        priceTotal: priceTotal1
+    };
 
-    // Optionally, you can show a confirmation alert or proceed with form submission
-    alert('Your information has been saved successfully!');
-
-    // Add any additional processing you want here, such as sending data to a server
+    fetch('/submit-guest-info', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+            'Accept': 'application/json',
+            'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content')
+        },
+        body: JSON.stringify(guestData)
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.errors) {
+            console.log('Validation errors:', data.errors);
+        } else {
+            console.log('Response from server:', data);
+        }
+    })
+    .catch(error => {
+        console.error('Error:', error);
+    });
 }
+
+
+
 
 
 
