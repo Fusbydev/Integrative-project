@@ -69,7 +69,7 @@
         <div class="row footerData">
             <div class="col-12 col-md-3">
                 <img src="./images/logo.png" alt="">
-                <p>Luxuryliving! Find your peace in the pulse of BGC</p>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do.</p>
                 <div class="container icons">
                     <i class="bi bi-facebook"></i>
                     <i class="bi bi-instagram"></i>
@@ -79,22 +79,12 @@
             </div>
             <div class="col-12 col-md-3 text-center">
                 <h2 class="idk">Contacts</h2>
-                <p>Fort Bonifacio, Taguig</p>
-                <p>+63 98763643812</p>
-                <p>laraveilsuites@gmail.com</p>
             </div>
             <div class="col-12 col-md-3 text-center">
                 <h2 class="idk">Quick Links</h2>
-                <ul class="list-unstyled">
-                    <li><a href="/offers" class="footer-link"><p>OFFERS</p></a></li>
-                    <li><a href="/about" class="footer-link"><p>ABOUT</p></a></li>
-                    <li><a href="/home" class="footer-link"><p>GALLERY</p></a></li>
-                    <li><a href="/accommodation" class="footer-link"><p>ACCOMMODATION</p></a></li>
-                </ul>
             </div>
             <div class="col-12 col-md-3 text-center">
                 <h2 class="idk">Privacy and Policy</h2>
-                <p><a href="{{ url('/privacy-policy') }}" class="footer-link">Privacy & Policy</a></p>
             </div>
         </div>
     </div>
