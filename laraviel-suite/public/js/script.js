@@ -32,7 +32,7 @@ document.addEventListener("DOMContentLoaded", function() {
         console.error('Error fetching rooms:', error);
     });
 
-    
+
     const monthNames = [
         "January", "February", "March", "April", "May", "June",
         "July", "August", "September", "October", "November", "December"
@@ -165,10 +165,53 @@ document.addEventListener("DOMContentLoaded", function() {
                     document.querySelector('#guest-info').classList.remove('d-none');
                     document.querySelector('#select-accommodation').classList.add('d-none');
                     currentStep++;
-                }
+                } else if (currentStep === 3) {
+                    document.querySelector('#guest-info').classList.add('d-none');
+                    finalConfirmation(checkIndate1, checkOutdate1);
+                    document.querySelector('#booking-confirmation').classList.remove('d-none');
             }
         }
+    }
     });
+
+    function finalConfirmation(cin, cout) {
+        const guestData = {
+            lastname: document.getElementById('lastname').value,
+            firstname: document.getElementById('firstname').value,
+            salutation: document.getElementById('salutation').value,
+            birthdate: document.getElementById('birthdate').value,
+            gender: document.querySelector('.dropdown-toggle.gender').textContent,
+            guestCount: document.getElementById('guestCount').value,
+            discountOption: document.querySelector('input[name="discountOption"]:checked').value,
+            email: document.getElementById('email').value,
+            contactNumber: document.getElementById('contactNumber').value,
+            address: document.getElementById('address').value,
+            checkIn: cin,
+            checkOut: cout,
+            bookedRooms: $(".booked-rooms").text().trim().replace(/(\d{4,}\.\d{2})(?=\w)/g, "$1 "),
+            priceTotal: parseFloat($("span.totalPriceDisplay").text().replace('Php', '').trim()).toFixed(2)
+        };
+        $('.greeting').text(`Dear ${guestData.salutation} ${guestData.lastname},`);
+        $('.guest-info1').append(`
+            Guest Name: <span>${guestData.lastname}, ${guestData.firstname}</span><br>
+            Check-In Date: <span>${cin}</span><br>
+            Check-Out Date: <span>${cout}</span><br>
+            Room Type and Room Rates: <br><span>${guestData.bookedRooms}</span>
+        `);
+        $('span.total-price').text(`Php ${guestData.priceTotal}`);
+        fetch('/submit-guest-info', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'Accept': 'application/json',
+                'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content')
+            },
+            body: JSON.stringify(guestData)
+        })
+            .then(response => response.json())
+            .then(data => data.errors ? console.log('Validation errors:', data.errors) : console.log('Response from server:', data))
+            .catch(console.error);
+    }
 
     // Initialize calendars
     generateCalendar(currentYear, currentMonth, 'currentMonthCalendar', 'currentMonthTitle');
