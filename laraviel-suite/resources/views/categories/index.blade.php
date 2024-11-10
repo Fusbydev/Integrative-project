@@ -42,28 +42,28 @@
         <div class="images container"> <!-- Opening images section -->
             <div class="grid-wrapper mt-3 pt-5">
                 <div>
-                    <img src="./images/balcony.png" alt="" />
+                    <img src="./images/food.jpg" alt="" />
                 </div>
                 <div>
-                    <img src="./images/balcony.png" alt="" />
+                    <img src="./images/service.jpg" alt="" />
                 </div>
                 <div class="tall">
-                    <img src="./images/balcony.png" alt="">
+                    <img src="./images/pool 1.jpg" alt="">
                 </div>
                 <div class="wide">
-                    <img src="./images/balcony.png" alt="" />
+                    <img src="./images/resto.jpg" alt="" />
                 </div>
                 <div>
-                    <img src="./images/balcony.png" alt="" />
+                    <img src="./images/lobby.jpg" alt="" />
                 </div>
                 <div class="tall">
-                    <img src="./images/balcony.png" alt="" />
+                    <img src="./images/top view.jpg" alt="" />
                 </div>
                 <div class="wide">
-                <img src="./images/balcony.png" alt="" />
+                <img src="./images/pool side.jpg" alt="" />
                 </div>
                 <div>
-                    <img src="./images/balcony.png" alt="" />
+                    <img src="./images/room.jpg" alt="" />
                 </div>
             </div>
         </div> <!-- Closing images section -->
