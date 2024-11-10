@@ -1,0 +1,100 @@
+<?php
+
+namespace App\Http\Controllers;
+use App\Models\Guest;
+
+use Illuminate\Http\Request;
+
+class GuestController extends Controller
+{
+    /**
+     * Display a listing of the resource.
+     */
+    public function index()
+    {
+        //
+    }
+
+    /**
+     * Show the form for creating a new resource.
+     */
+    public function create()
+    {
+        //
+    }
+
+    /**
+     * Store a newly created resource in storage.
+     */
+    public function store(Request $request)
+    {
+        $validatedData = $request->validate([
+            'lastname' => 'required|string|max:255',
+            'firstname' => 'required|string|max:255',
+            'salutation' => 'nullable|string|max:50',
+            'birthdate' => 'nullable|date',
+            'gender' => 'nullable|string|max:10',
+            'guestCount' => 'required|integer',
+            'discountOption' => 'nullable|string',
+            'email' => 'required|email',
+            'contactNumber' => 'required|string|max:20',
+            'address' => 'required|string',
+            'checkIn' => 'required|date',
+            'checkOut' => 'required|date',
+            'bookedRooms' => 'required|string',
+            'priceTotal' => 'required|numeric',
+        ]);
+
+        // Save the data into the database
+        $guest = Guest::create([
+            'lastname' => $validatedData['lastname'],
+            'firstname' => $validatedData['firstname'],
+            'salutation' => $validatedData['salutation'],
+            'birthdate' => $validatedData['birthdate'],
+            'gender' => $validatedData['gender'],
+            'guest_count' => $validatedData['guestCount'],
+            'discount_option' => $validatedData['discountOption'],
+            'email' => $validatedData['email'],
+            'contact_number' => $validatedData['contactNumber'],
+            'address' => $validatedData['address'],
+            'check_in' => $validatedData['checkIn'],
+            'check_out' => $validatedData['checkOut'],
+            'booked_rooms' => $validatedData['bookedRooms'],
+            'price_total' => $validatedData['priceTotal'],
+        ]);
+
+        return response()->json(['message' => 'Guest information submitted successfully!', 'data' => $guest], 201);
+    }
+
+    /**
+     * Display the specified resource.
+     */
+    public function show(string $id)
+    {
+        //
+    }
+
+    /**
+     * Show the form for editing the specified resource.
+     */
+    public function edit(string $id)
+    {
+        //
+    }
+
+    /**
+     * Update the specified resource in storage.
+     */
+    public function update(Request $request, string $id)
+    {
+        //
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     */
+    public function destroy(string $id)
+    {
+        //
+    }
+}

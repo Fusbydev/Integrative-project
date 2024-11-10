@@ -59,18 +59,29 @@
     </div>
     <div class="container-fluid booking-contents d-flex">
         <div class="container-fluid date-picker" id="date-picker">
-            <div class="row p-2 gap-3 justify-content-center text-center">
-                <div class="col-md-5 col-lg-5 col-sm-12 rounded">
-                    <h2 id="currentMonthTitle"></h2>
-                    <div class="col-12">
-                        <table id="currentMonthCalendar" class="table table-borderless table-custom"></table>
-                    </div>
-                </div>
-                <div class="col-md-5 col-lg-5 col-sm-12 rounded">
-                    <h2 id="nextMonthTitle"></h2>
-                    <table id="nextMonthCalendar" class="table table-borderless table-custom"></table>
-                </div>
-            </div>
+        <div class="row p-2 gap-3 justify-content-center text-center">
+    <div class="col-md-5 col-lg-5 col-sm-12 rounded">
+        <div class="d-flex justify-content-center align-items-center">
+            <h2 id="currentMonthTitle" class="me-2"></h2>
+            <select id="currentMonthDropdown" class="form-select w-auto">
+                <!-- Month options will be populated dynamically -->
+            </select>
+        </div>
+        <div class="col-12">
+            <table id="currentMonthCalendar" class="table table-borderless table-custom"></table>
+        </div>
+    </div>
+    <div class="col-md-5 col-lg-5 col-sm-12 rounded">
+        <div class="d-flex justify-content-center align-items-center">
+            <h2 id="nextMonthTitle" class="me-2"></h2>
+            <select id="nextMonthDropdown" class="form-select w-auto">
+                <!-- Month options will be populated dynamically -->
+            </select>
+        </div>
+        <table id="nextMonthCalendar" class="table table-borderless table-custom"></table>
+    </div>
+</div>
+
         </div>
     </div>
     <div class="container-fluid select-accomodation d-none" id="select-accommodation">
@@ -245,16 +256,13 @@
                 <div class="container-fluid body p-0">
                     <div class="row">
                         <div class="col-12 text-start">
-                            <p>Dear [salutation][name],</p>
+                            <p class="greeting" style="color:#F2D886;"></p>
                             <p>Thank you for choosing to stay with Laraveil Suites! <br>
                                 We are delighted to confirm your reservation and are excited to welcome you. <br>   
                                 Below are the details of your reservation for your convenience: </p>
                                 <h1 class="mt-2 mb-2">RESERVATION CONFIRMATION</h1>
                                 <div class="information mb-2">
-                                    <p>Guest Name: <span>[name]</span><br>
-                                        Check-In Date: <span>[check-in date]</span><br>
-                                        Check-Out Date: <span>[check-out date]</span><br>
-                                        Room Type: <span>[room type]</span>
+                                    <p class="guest-info1">
                                     </p>
                                 </div>
                         </div>
@@ -263,9 +271,8 @@
             </div>
             <hr class="text-white">
             <div class="information text-start mb-3">
-                <p>Services charge and taxes: <span>[amount]</span><br>
-                    Room rate: <span>[check-in date]</span><br>
-                    TOTAL AMOUNT TO BE PAID: <span>[check-out date]</span>
+                <p>Services charge and taxes: <span>Php 1500</span><br>
+                    TOTAL AMOUNT TO BE PAID: <span class="total-price">[check-out date]</span>
                 </p>
             </div>
             <hr class="text-white">
