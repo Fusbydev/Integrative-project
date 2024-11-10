@@ -719,20 +719,3 @@ hr {
 .logo-modal img {
     height: 50px;
 }
-
-.footer {
-    background-color: #1E140C; /* Background color of the footer */
-    padding: 20px; /* Padding for the footer */
-    text-align: center; /* Center text in footer */
-}
-
-.footer a {
-    color: #FEF3E2; /* Change the text color */
-    text-decoration: none; /* Remove underline */
-    transition: color 0.3s; /* Smooth transition for color change on hover */
-}
-
-.footer a:hover {
-    color: #FEF3E2; /* Change color on hover */
-    text-decoration: underline; /* Optional: Add underline on hover */
-}
