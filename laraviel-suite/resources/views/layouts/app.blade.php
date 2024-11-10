@@ -87,7 +87,7 @@
                 <ul class="list-unstyled">
                     <li><a href="/offers" class="footer-link"><p>OFFERS</p></a></li>
                     <li><a href="/about" class="footer-link"><p>ABOUT</p></a></li>
-                    <li><a href="/index" class="footer-link"><p>GALLERY</p></a></li>
+                    <li><a href="/home" class="footer-link"><p>GALLERY</p></a></li>
                     <li><a href="/accommodation" class="footer-link"><p>ACCOMMODATION</p></a></li>
                 </ul>
             </div>
