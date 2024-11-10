@@ -7,7 +7,7 @@
     <h2 class="section-title text-left">STANDARD SUITES</h2>
     <div class="row justify-content-around standard-room"> 
         
-</div>
+    </div>
 
 <!-- Modal for Standard Room Amenities -->
 <div class="modal fade" id="amenitiesModal" tabindex="-1" aria-labelledby="amenitiesModalLabel" aria-hidden="true">

@@ -59,18 +59,29 @@
     </div>
     <div class="container-fluid booking-contents d-flex">
         <div class="container-fluid date-picker" id="date-picker">
-            <div class="row p-2 gap-3 justify-content-center text-center">
-                <div class="col-md-5 col-lg-5 col-sm-12 rounded">
-                    <h2 id="currentMonthTitle"></h2>
-                    <div class="col-12">
-                        <table id="currentMonthCalendar" class="table table-borderless table-custom"></table>
-                    </div>
-                </div>
-                <div class="col-md-5 col-lg-5 col-sm-12 rounded">
-                    <h2 id="nextMonthTitle"></h2>
-                    <table id="nextMonthCalendar" class="table table-borderless table-custom"></table>
-                </div>
-            </div>
+        <div class="row p-2 gap-3 justify-content-center text-center">
+    <div class="col-md-5 col-lg-5 col-sm-12 rounded">
+        <div class="d-flex justify-content-center align-items-center">
+            <h2 id="currentMonthTitle" class="me-2"></h2>
+            <select id="currentMonthDropdown" class="form-select w-auto">
+                <!-- Month options will be populated dynamically -->
+            </select>
+        </div>
+        <div class="col-12">
+            <table id="currentMonthCalendar" class="table table-borderless table-custom"></table>
+        </div>
+    </div>
+    <div class="col-md-5 col-lg-5 col-sm-12 rounded">
+        <div class="d-flex justify-content-center align-items-center">
+            <h2 id="nextMonthTitle" class="me-2"></h2>
+            <select id="nextMonthDropdown" class="form-select w-auto">
+                <!-- Month options will be populated dynamically -->
+            </select>
+        </div>
+        <table id="nextMonthCalendar" class="table table-borderless table-custom"></table>
+    </div>
+</div>
+
         </div>
     </div>
     <div class="container-fluid select-accomodation d-none" id="select-accommodation">

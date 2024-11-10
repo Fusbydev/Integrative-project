@@ -1,30 +1,75 @@
 document.addEventListener("DOMContentLoaded", function() {
 
+
     fetch('/rooms')
-        .then(response => response.ok ? response.json() : Promise.reject('Error fetching rooms'))
-        .then(data => {
-            const container = document.querySelector('.standard-room');
-            data.forEach(room => {
-                container.insertAdjacentHTML('beforeend', `
-                    <div class="col-md-4">
-                        <div class="suite card">
-                            <img src="${room.image_path}" class="card-img-top w-369.33" alt="${room.room_type}">
-                            <div class="card-body">
-                                <h3 class="card-title">${room.room_type}</h3>
-                                <p class="card-text">${room.description}</p>
-                                <h4 class="suite-price">Php ${parseFloat(room.price).toFixed(2)}/per night</h4>
-                                <button class="btn btn-outline-light">Book now</button>
-                                <button class="btn btn-outline-light" data-toggle="modal" data-target="#amenitiesModal">Check amenities</button>
-                            </div>
+    .then(response => {
+        if (!response.ok) {
+            throw new Error('Network response was not ok ' + response.statusText);
+        }
+        return response.json(); // Parse the JSON data from the response
+    })
+    .then(data => {
+        const container = document.querySelector('.standard-room'); // Select the container
+        data.forEach(room => {
+            const roomHtml = `
+                <div class="col-md-4">
+                    <div class="suite card">
+                        <img src="${room.image_path}" class="card-img-top w-369.33" alt="${room.room_type}">
+                        <div class="card-body">
+                            <h3 class="card-title">${room.room_type}</h3>
+                            <p class="card-text">${room.description}</p>
+                            <h4 class="suite-price">Php ${parseFloat(room.price).toFixed(2)}/per night</h4>
+                            <button class="btn btn-outline-light">Book now</button>
+                            <button class="btn btn-outline-light" data-toggle="modal" data-target="#amenitiesModal">Check amenities</button>
                         </div>
                     </div>
-                `);
-            });
-        })
-        .catch(console.error);
+                </div>
+            `;
+            container.insertAdjacentHTML('beforeend', roomHtml); // Append to the container
+        });
+    })
+    .catch(error => {
+        console.error('Error fetching rooms:', error);
+    });
+
+    
+    const monthNames = [
+        "January", "February", "March", "April", "May", "June",
+        "July", "August", "September", "October", "November", "December"
+    ];
+
+    const currentMonthDropdown = document.getElementById("currentMonthDropdown");
+    const nextMonthDropdown = document.getElementById("nextMonthDropdown");
+
+    const currentDate = new Date();
+    const currentMonth = currentDate.getMonth(); // Current month index (0-11)
+    const currentYear = currentDate.getFullYear();
+
+    // Populate the current month dropdown with months from the current month onward
+    for (let i = currentMonth; i < monthNames.length; i++) {
+        const option = document.createElement("option");
+        option.value = i + 1; // Month value (1-12)
+        option.textContent = monthNames[i];
+        currentMonthDropdown.appendChild(option);
+    }
+
+    // Populate the next month dropdown with months from the current month onward, and wrap around for next year
+    for (let i = currentMonth + 1; i < monthNames.length + currentMonth + 1; i++) {
+        const monthIndex = i % 12; // Wrap around after December
+        const yearOffset = Math.floor(i / 12); // Increment year after December
+        const option = document.createElement("option");
+        option.value = monthIndex + 1; // Month value (1-12)
+        option.textContent = `${monthNames[monthIndex]} ${currentYear + yearOffset}`;
+        nextMonthDropdown.appendChild(option);
+    }
+
+    // Set the default selected option to the current month
+    currentMonthDropdown.value = currentMonth + 1;
+    nextMonthDropdown.value = (currentMonth + 1) % 12 === 0 ? 1 : currentMonth + 2; // Set next month or wrap around to January
+
 
     let currentStep = 1, dateSelectionStep = 0, checkInDate = null, checkOutDate = null, checkInCell = null, checkOutCell = null;
-    
+
     function isValidDateSelection() {
         if (checkInDate && checkOutDate) {
             const checkInDateObject = new Date(checkInDate), checkOutDateObject = new Date(checkOutDate);
@@ -95,6 +140,18 @@ document.addEventListener("DOMContentLoaded", function() {
         });
     }
 
+    // Event listeners for the month dropdowns
+    currentMonthDropdown.addEventListener('change', function() {
+        const selectedMonth = parseInt(currentMonthDropdown.value) - 1; // Convert to 0-based index
+        generateCalendar(currentDate.getFullYear(), selectedMonth, 'currentMonthCalendar', 'currentMonthTitle');
+    });
+
+    nextMonthDropdown.addEventListener('change', function() {
+        const selectedMonth = parseInt(nextMonthDropdown.value) - 1; // Convert to 0-based index
+        const selectedYear = selectedMonth <= currentMonth ? currentYear + 1 : currentYear; // Check if we need to increment the year
+        generateCalendar(selectedYear, selectedMonth, 'nextMonthCalendar', 'nextMonthTitle');
+    });
+
     document.querySelector('.nextBtn').addEventListener('click', function() {
         if (isValidDateSelection()) {
             const checkIndate1 = $('#checkIndd').text(), checkOutdate1 = $('#checkOutdd').text();
@@ -108,60 +165,12 @@ document.addEventListener("DOMContentLoaded", function() {
                     document.querySelector('#guest-info').classList.remove('d-none');
                     document.querySelector('#select-accommodation').classList.add('d-none');
                     currentStep++;
-                } else if (currentStep === 3) {
-                    document.querySelector('#guest-info').classList.add('d-none');
-                    finalConfirmation(checkIndate1, checkOutdate1);
-                    document.querySelector('#booking-confirmation').classList.remove('d-none');
                 }
             }
-        } else {
-            alert('Please select a valid Check-in and Check-out date!');
         }
     });
 
-    function finalConfirmation(cin, cout) {
-        const guestData = {
-            lastname: document.getElementById('lastname').value,
-            firstname: document.getElementById('firstname').value,
-            salutation: document.getElementById('salutation').value,
-            birthdate: document.getElementById('birthdate').value,
-            gender: document.querySelector('.dropdown-toggle.gender').textContent,
-            guestCount: document.getElementById('guestCount').value,
-            discountOption: document.querySelector('input[name="discountOption"]:checked').value,
-            email: document.getElementById('email').value,
-            contactNumber: document.getElementById('contactNumber').value,
-            address: document.getElementById('address').value,
-            checkIn: cin,
-            checkOut: cout,
-            bookedRooms: $(".booked-rooms").text().trim().replace(/(\d{4,}\.\d{2})(?=\w)/g, "$1 "),
-            priceTotal: parseFloat($("span.totalPriceDisplay").text().replace('Php', '').trim()).toFixed(2)
-        };
-
-        $('.greeting').text(`Dear ${guestData.salutation} ${guestData.lastname},`);
-        $('.guest-info1').append(`
-            Guest Name: <span>${guestData.lastname}, ${guestData.firstname}</span><br>
-            Check-In Date: <span>${cin}</span><br>
-            Check-Out Date: <span>${cout}</span><br>
-            Room Type and Room Rates: <br><span>${guestData.bookedRooms}</span>
-        `);
-        $('span.total-price').text(`Php ${guestData.priceTotal}`);
-
-        fetch('/submit-guest-info', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-                'Accept': 'application/json',
-                'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content')
-            },
-            body: JSON.stringify(guestData)
-        })
-            .then(response => response.json())
-            .then(data => data.errors ? console.log('Validation errors:', data.errors) : console.log('Response from server:', data))
-            .catch(console.error);
-    }
-
-    const currentDate = new Date();
-    generateCalendar(currentDate.getFullYear(), currentDate.getMonth(), 'currentMonthCalendar', 'currentMonthTitle');
-    generateCalendar(currentDate.getFullYear(), currentDate.getMonth() + 1, 'nextMonthCalendar', 'nextMonthTitle');
-
+    // Initialize calendars
+    generateCalendar(currentYear, currentMonth, 'currentMonthCalendar', 'currentMonthTitle');
+    generateCalendar(currentYear, currentMonth + 1, 'nextMonthCalendar', 'nextMonthTitle');
 });
