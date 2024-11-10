@@ -7,7 +7,6 @@
     <link href="{{ asset('css/style.css') }}" rel="stylesheet">
     <link href="{{ asset('css/offersAbout.css') }}" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-    <meta name="csrf-token" content="{{ csrf_token() }}">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
     <title>@yield('title')</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
@@ -69,7 +68,7 @@
         <div class="row footerData">
             <div class="col-12 col-md-3">
                 <img src="./images/logo.png" alt="">
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do.</p>
+                <p>Luxuryliving! Find your peace in the pulse of BGC</p>
                 <div class="container icons">
                     <i class="bi bi-facebook"></i>
                     <i class="bi bi-instagram"></i>
@@ -79,12 +78,22 @@
             </div>
             <div class="col-12 col-md-3 text-center">
                 <h2 class="idk">Contacts</h2>
+                <p>Fort Bonifacio, Taguig</p>
+                <p>+63 98763643812</p>
+                <p>laraveilsuites@gmail.com</p>
             </div>
             <div class="col-12 col-md-3 text-center">
                 <h2 class="idk">Quick Links</h2>
+                <ul class="list-unstyled">
+                    <li><a href="/offers" class="footer-link"><p>OFFERS</p></a></li>
+                    <li><a href="/about" class="footer-link"><p>ABOUT</p></a></li>
+                    <li><a href="/home" class="footer-link"><p>GALLERY</p></a></li>
+                    <li><a href="/accommodation" class="footer-link"><p>ACCOMMODATION</p></a></li>
+                </ul>
             </div>
             <div class="col-12 col-md-3 text-center">
                 <h2 class="idk">Privacy and Policy</h2>
+                <p><a href="{{ url('/privacy-policy') }}" class="footer-link">Privacy & Policy</a></p>
             </div>
         </div>
     </div>
