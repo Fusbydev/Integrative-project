@@ -1,9 +1,11 @@
 <?php
 
 namespace App\Http\Controllers;
-use App\Models\Guest;
 
+use App\Models\Guest;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\SendReceipt;  // Use your SendReceipt Mailable
 
 class GuestController extends Controller
 {
@@ -29,6 +31,7 @@ class GuestController extends Controller
     public function store(Request $request)
     {
         $validatedData = $request->validate([
+            'bookingId' => 'required|string|unique:guests,booking_id|max:50',
             'lastname' => 'required|string|max:255',
             'firstname' => 'required|string|max:255',
             'salutation' => 'nullable|string|max:50',
@@ -47,6 +50,7 @@ class GuestController extends Controller
 
         // Save the data into the database
         $guest = Guest::create([
+            'booking_id' => $validatedData['bookingId'],
             'lastname' => $validatedData['lastname'],
             'firstname' => $validatedData['firstname'],
             'salutation' => $validatedData['salutation'],
@@ -63,7 +67,10 @@ class GuestController extends Controller
             'price_total' => $validatedData['priceTotal'],
         ]);
 
-        return response()->json(['message' => 'Guest information submitted successfully!', 'data' => $guest], 201);
+        // Send the booking confirmation email using SendReceipt
+        Mail::to($guest->email)->send(new SendReceipt($validatedData));
+
+        return response()->json(['message' => 'Guest information submitted successfully and email sent!', 'data' => $guest], 201);
     }
 
     /**
