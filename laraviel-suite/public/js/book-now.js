@@ -1,21 +1,21 @@
-$(document).ready(function() {
-    console.log('loaded');
+$(document).ready(function () {
+    console.log("loaded");
 
     // Function to handle the gender selection
-function selectGender(gender) {
-    console.log("Selected gender:", gender);
-    const genderButton = document.querySelector('.dropdown-toggle.gender');
-    genderButton.textContent = gender;
-}
+    function selectGender(gender) {
+        console.log("Selected gender:", gender);
+        const genderButton = document.querySelector(".dropdown-toggle.gender");
+        genderButton.textContent = gender;
+    }
 
-// Wait until the DOM content is fully loaded
+    // Wait until the DOM content is fully loaded
 
     // Get the dropdown menu element
     const genderDropdown = document.getElementById("genderDropdown");
-    
+
     // Add a 'click' event listener to the dropdown menu
-    genderDropdown.addEventListener("click", function(event) {
-        console.log('clicked')
+    genderDropdown.addEventListener("click", function (event) {
+        console.log("clicked");
         // Check if the clicked element is a dropdown item
         if (event.target.classList.contains("dropdown-item")) {
             // Get the gender value from the data-value attribute
@@ -24,7 +24,6 @@ function selectGender(gender) {
         }
     });
 
-    
     // Log all items in localStorage
     console.log("Local Storage Items:");
     for (let i = 0; i < localStorage.length; i++) {
@@ -32,29 +31,43 @@ function selectGender(gender) {
         const value = localStorage.getItem(key);
         console.log(`${key}: ${value}`);
     }
-    
+
     // Fetch and render room data
-    fetch('/rooms')
-    .then(response => {
-        if (!response.ok) {
-            throw new Error('Network response was not ok ' + response.statusText);
-        }
-        return response.json();
-    })
-    .then(data => {
-        const container = document.querySelector('.book-room');
-        data.forEach(room => {
-            const roomHtml = `
+    fetch("/rooms")
+        .then((response) => {
+            if (!response.ok) {
+                throw new Error(
+                    "Network response was not ok " + response.statusText
+                );
+            }
+            return response.json();
+        })
+        .then((data) => {
+            const container = document.querySelector(".book-room");
+            data.forEach((room) => {
+                const roomHtml = `
                 <div class="col-md-4 book-card">
                     <div class="suite card">
-                        <img src="" class="card-img-top w-369.33" alt="${room.room_type}">
+                        <img src="" class="card-img-top w-369.33" alt="${
+                            room.room_type
+                        }">
                         <div class="card-body">
                             <h3 class="card-title">${room.room_type}</h3>
-                            <p class="card-text book-room-dex">${room.description}</p>
-                            <h4 class="suite-price">Php ${parseFloat(room.price).toFixed(2)}/per night</h4>
+                            <p class="card-text book-room-dex">${
+                                room.description
+                            }</p>
+                            <h4 class="suite-price">Php ${parseFloat(
+                                room.price
+                            ).toFixed(2)}/per night</h4>
                             <div class="form-check">
-                                <input class="form-check-input room-checkbox" type="checkbox" id="selectRoom${room.id}" data-price="${room.price}" data-room-type="${room.room_type}">
-                                <label class="form-check-label" for="selectRoom${room.id}">
+                                <input class="form-check-input room-checkbox" type="checkbox" id="selectRoom${
+                                    room.id
+                                }" data-price="${room.price}" data-room-type="${
+                    room.room_type
+                }">
+                                <label class="form-check-label" for="selectRoom${
+                                    room.id
+                                }">
                                     Select Room
                                 </label>
                             </div>
@@ -62,49 +75,54 @@ function selectGender(gender) {
                     </div>
                 </div>
             `;
-            container.insertAdjacentHTML('beforeend', roomHtml);
+                container.insertAdjacentHTML("beforeend", roomHtml);
+            });
+        })
+        .catch((error) => {
+            console.error("Error fetching rooms:", error);
         });
-    })
-    .catch(error => {
-        console.error('Error fetching rooms:', error);
-    });
 
     // Update total price and room details on checkbox change
-    $(document).on('change', '.room-checkbox, #discountStudent, #discountSenior, #noDiscount', function() {
-        let baseTotal = 1500; // Initial total to account for service charge & tax
-        let bookedRooms = '';
-        let totalNights = parseInt($('#totalNightsInput').val()) || 0; // Retrieve total nights value
-        let roomTotal = 0; // Total for selected rooms
-    
-        // Loop through each checked checkbox to add up prices and get room types
-        $('.room-checkbox:checked').each(function() {
-            let roomPrice = parseFloat($(this).data('price'));
-            roomTotal += roomPrice; // Add the room price to room total
-            bookedRooms += `<p><strong>${$(this).data('room-type')}</strong> : Php ${roomPrice.toFixed(2)}</p>`;
-        });
-    
-        // Calculate the total price based on the number of nights
-        let total = baseTotal + (roomTotal * totalNights); // Include total nights multiplied by room prices
-    
-        // Determine the selected discount option
-        let discountOption = $('input[name="discountOption"]:checked').val();
-        let totalDiscount = 0;
-    
-        // Apply discounts based on the selected option
-        if (discountOption === 'student') {
-            totalDiscount = total * 0.20; // 20% discount for students
-        } else if (discountOption === 'senior') {
-            totalDiscount = total * 0.20; // 20% discount for seniors
-        }
-    
-        // Final total after discounts
-        total -= totalDiscount;
-    
-        // Update totalPrice and booked rooms in the receipt
-        $('.totalPriceDisplay').text(total.toFixed(2));
-        $('.booked-rooms').html(bookedRooms);
-    });
+    $(document).on(
+        "change",
+        ".room-checkbox, #discountStudent, #discountSenior, #noDiscount",
+        function () {
+            let baseTotal = 1500; // Initial total to account for service charge & tax
+            let bookedRooms = "";
+            let totalNights = parseInt($("#totalNightsInput").val()) || 0; // Retrieve total nights value
+            let roomTotal = 0; // Total for selected rooms
 
-    
-    
+            // Loop through each checked checkbox to add up prices and get room types
+            $(".room-checkbox:checked").each(function () {
+                let roomPrice = parseFloat($(this).data("price"));
+                roomTotal += roomPrice; // Add the room price to room total
+                bookedRooms += `<p><strong>${$(this).data(
+                    "room-type"
+                )}</strong> : Php ${roomPrice.toFixed(2)}</p>`;
+            });
+
+            // Calculate the total price based on the number of nights
+            let total = baseTotal + roomTotal * totalNights; // Include total nights multiplied by room prices
+
+            // Determine the selected discount option
+            let discountOption = $(
+                'input[name="discountOption"]:checked'
+            ).val();
+            let totalDiscount = 0;
+
+            // Apply discounts based on the selected option
+            if (discountOption === "student") {
+                totalDiscount = total * 0.2; // 20% discount for students
+            } else if (discountOption === "senior") {
+                totalDiscount = total * 0.2; // 20% discount for seniors
+            }
+
+            // Final total after discounts
+            total -= totalDiscount;
+
+            // Update totalPrice and booked rooms in the receipt
+            $(".totalPriceDisplay").text(total.toFixed(2));
+            $(".booked-rooms").html(bookedRooms);
+        }
+    );
 });
