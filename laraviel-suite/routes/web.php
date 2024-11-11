@@ -1,6 +1,7 @@
 <?php
 use App\Http\Controllers\RoomController;
 use App\Http\Controllers\GuestController;
+use App\Http\Controllers\BookingController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -20,4 +21,5 @@ Route::view('/admincit301_laraviel_suite', 'categories.admincit301_laraviel_suit
 Route::get('/rooms', [RoomController::class, 'index']);
 Route::post('/submit-guest-info', [GuestController::class, 'store']);
 Route::view('/privacy-policy', 'categories.privacy-policy');
+Route::get('/view-booking', [BookingController::class, 'showBooking']);
 
