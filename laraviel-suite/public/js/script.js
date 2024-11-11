@@ -1,5 +1,5 @@
 document.addEventListener("DOMContentLoaded", function() {
-
+console.log(localStorage.getItem('bookingId'));
 
     fetch('/rooms')
     .then(response => {
@@ -163,7 +163,7 @@ document.addEventListener("DOMContentLoaded", function() {
                     currentStep++;
                 } else if (currentStep === 2) {
                     document.querySelector('#guest-info').classList.remove('d-none');
-                    document.querySelector('#select-accommodation').classList.add('d-none');
+                    document.querySelector('#select-accommodation').classList.add('d-none');    
                     currentStep++;
                 } else if (currentStep === 3) {
                     document.querySelector('#guest-info').classList.add('d-none');
@@ -174,8 +174,26 @@ document.addEventListener("DOMContentLoaded", function() {
     }
     });
 
+    function generateUniqueId() {
+        const uniqueId = Math.random().toString(36).substr(2, 9) + Date.now().toString(36);
+        localStorage.setItem('bookingId', uniqueId);
+        return uniqueId;
+    }
+    
     function finalConfirmation(cin, cout) {
+        // Call generateUniqueId if bookingId doesn't already exist in localStorage
+        let bookingId = localStorage.getItem('bookingId');
+        if (!bookingId) {
+            // If no bookingId, generate and store a new one
+            bookingId = generateUniqueId();
+        } else {
+            // If bookingId exists, remove it from localStorage before generating a new one
+            localStorage.removeItem('bookingId');
+            bookingId = generateUniqueId();  // Generate a new uniqueId
+        }
+    
         const guestData = {
+            bookingId: bookingId,
             lastname: document.getElementById('lastname').value,
             firstname: document.getElementById('firstname').value,
             salutation: document.getElementById('salutation').value,
@@ -191,6 +209,7 @@ document.addEventListener("DOMContentLoaded", function() {
             bookedRooms: $(".booked-rooms").text().trim().replace(/(\d{4,}\.\d{2})(?=\w)/g, "$1 "),
             priceTotal: parseFloat($("span.totalPriceDisplay").text().replace('Php', '').trim()).toFixed(2)
         };
+    
         $('.greeting').text(`Dear ${guestData.salutation} ${guestData.lastname},`);
         $('.guest-info1').append(`
             Guest Name: <span>${guestData.lastname}, ${guestData.firstname}</span><br>
@@ -199,6 +218,7 @@ document.addEventListener("DOMContentLoaded", function() {
             Room Type and Room Rates: <br><span>${guestData.bookedRooms}</span>
         `);
         $('span.total-price').text(`Php ${guestData.priceTotal}`);
+    
         fetch('/submit-guest-info', {
             method: 'POST',
             headers: {
@@ -211,8 +231,10 @@ document.addEventListener("DOMContentLoaded", function() {
             .then(response => response.json())
             .then(data => data.errors ? console.log('Validation errors:', data.errors) : console.log('Response from server:', data))
             .catch(console.error);
+    
+        console.log(guestData);
     }
-
+    
     // Initialize calendars
     generateCalendar(currentYear, currentMonth, 'currentMonthCalendar', 'currentMonthTitle');
     generateCalendar(currentYear, currentMonth + 1, 'nextMonthCalendar', 'nextMonthTitle');

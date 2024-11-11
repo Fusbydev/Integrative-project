@@ -29,6 +29,7 @@ class GuestController extends Controller
     public function store(Request $request)
     {
         $validatedData = $request->validate([
+            'bookingId' => 'required|string|unique:guests,booking_id|max:50',
             'lastname' => 'required|string|max:255',
             'firstname' => 'required|string|max:255',
             'salutation' => 'nullable|string|max:50',
@@ -47,6 +48,7 @@ class GuestController extends Controller
 
         // Save the data into the database
         $guest = Guest::create([
+            'booking_id' => $validatedData['bookingId'],
             'lastname' => $validatedData['lastname'],
             'firstname' => $validatedData['firstname'],
             'salutation' => $validatedData['salutation'],

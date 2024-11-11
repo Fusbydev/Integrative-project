@@ -8,7 +8,7 @@
 
 @section('content')
 <div class="container-fluid privacy-policy">
-    <div class="body privacy-body">
+    <div class="body privacy-body1">
         <div class="row text-center">
             
             <div class="col-12 logo-modal">
