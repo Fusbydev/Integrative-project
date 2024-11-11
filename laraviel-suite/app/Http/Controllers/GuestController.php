@@ -1,9 +1,11 @@
 <?php
 
 namespace App\Http\Controllers;
-use App\Models\Guest;
 
+use App\Models\Guest;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\SendReceipt;  // Use your SendReceipt Mailable
 
 class GuestController extends Controller
 {
@@ -65,7 +67,10 @@ class GuestController extends Controller
             'price_total' => $validatedData['priceTotal'],
         ]);
 
-        return response()->json(['message' => 'Guest information submitted successfully!', 'data' => $guest], 201);
+        // Send the booking confirmation email using SendReceipt
+        Mail::to($guest->email)->send(new SendReceipt($validatedData));
+
+        return response()->json(['message' => 'Guest information submitted successfully and email sent!', 'data' => $guest], 201);
     }
 
     /**
