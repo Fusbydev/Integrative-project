@@ -64,9 +64,8 @@
     <div class="email-container">
         <div class="email-header">
             <h1>Booking Confirmation</h1>
-            <p>Dear {{ $guest['firstname'] }} {{ $guest['lastname'] }},</p>
         </div>
-
+        <p>Dear {{ $guest['firstname'] }} {{ $guest['lastname'] }},</p>
         <div class="email-content">
             <p>Thank you for booking with us! Here are your booking details:</p>
             <ul>
@@ -74,7 +73,7 @@
                 <li><strong>Check-in Date:</strong> {{ $guest['checkIn'] }}</li>
                 <li><strong>Check-out Date:</strong> {{ $guest['checkOut'] }}</li>
                 <li><strong>Booked Rooms:</strong> {{ $guest['bookedRooms'] }}</li>
-                <li><strong>Total Price:</strong> ${{ $guest['priceTotal'] }}</li>
+                <li><strong>Total Price:</strong> Php{{ $guest['priceTotal'] }}</li>
             </ul>
             
             <p>If you have any questions, feel free to contact us!</p>
