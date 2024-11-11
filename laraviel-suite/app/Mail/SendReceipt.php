@@ -21,6 +21,7 @@ class SendReceipt extends Mailable
     public function build()
     {
         return $this->subject('Booking Confirmation Receipt')  // Set the subject for the email
-                    ->view('emails.bookingConfirmation');  // Reference to the email view
+                    ->view('emails.bookingConfirmation')  // Reference to the email view
+                    ->with(['guest' => $this->guestData]);  // Pass guest data to the view
     }
 }

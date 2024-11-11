@@ -1,25 +1,90 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>Booking Confirmation Receipt</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Booking Confirmation</title>
     <style>
         body {
-            background-color: red;
+            font-family: Arial, sans-serif;
+            background-color: #f7f7f7;
+            margin: 0;
+            padding: 0;
+        }
+
+        .email-container {
+            width: 100%;
+            background-color: #ffffff;
+            margin: 20px auto;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .email-header {
+            text-align: center;
+            color: #333;
+        }
+
+        .email-header h1 {
+            font-size: 24px;
+            margin-bottom: 10px;
+        }
+
+        .email-content {
+            margin-top: 20px;
+            line-height: 1.6;
+            color: #555;
+        }
+
+        .footer {
+            margin-top: 40px;
+            text-align: center;
+            font-size: 14px;
+            color: #888;
+        }
+
+        .button {
+            text-decoration: none;
+            display: inline-block;
+            background-color: #007bff;
+            color: #fff;
+            padding: 10px 20px;
+            text-decoration: none;
+            border-radius: 5px;
+            margin-top: 20px;
+        }
+
+        .button:hover {
+            background-color: #0056b3;
         }
     </style>
 </head>
 <body>
-    <h1>Dear {{ $guestData['salutation'] }} {{ $guestData['lastname'] }},</h1>
-    <h3>Booking ID: {{ $guestData['bookingId'] }}</h3>
-    <p>Save your booking ID for tracking your services!</p>
-    <p>Thank you for your booking. Below are the details of your reservation:</p>
+    <div class="email-container">
+        <div class="email-header">
+            <h1>Booking Confirmation</h1>
+            <p>Dear {{ $guest['firstname'] }} {{ $guest['lastname'] }},</p>
+        </div>
 
-    <p><strong>Guest Name:</strong> {{ $guestData['lastname'] }}, {{ $guestData['firstname'] }}</p>
-    <p><strong>Check-In Date:</strong> {{ $guestData['checkIn'] }}</p>
-    <p><strong>Check-Out Date:</strong> {{ $guestData['checkOut'] }}</p>
-    <p><strong>Booked Rooms:</strong> {{ $guestData['bookedRooms'] }}</p>
-    <p><strong>Total Price:</strong> Php {{ $guestData['priceTotal'] }}</p>
+        <div class="email-content">
+            <p>Thank you for booking with us! Here are your booking details:</p>
+            <ul>
+                <li><strong>Booking ID:</strong> {{ $guest['bookingId'] }}</li>
+                <li><strong>Check-in Date:</strong> {{ $guest['checkIn'] }}</li>
+                <li><strong>Check-out Date:</strong> {{ $guest['checkOut'] }}</li>
+                <li><strong>Booked Rooms:</strong> {{ $guest['bookedRooms'] }}</li>
+                <li><strong>Total Price:</strong> ${{ $guest['priceTotal'] }}</li>
+            </ul>
+            
+            <p>If you have any questions, feel free to contact us!</p>
+            <a href="http://127.0.0.1:8000/" class="button">View Booking</a>
+        </div>
 
-    <p>If you have any questions, feel free to contact us. We look forward to your stay!</p>
+        <div class="footer">
+            <p>Thank you for choosing our service.</p>
+            <p>&copy; Laraveil Suit</p>
+        </div>
+    </div>
 </body>
 </html>
