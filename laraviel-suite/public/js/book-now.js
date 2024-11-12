@@ -47,28 +47,26 @@ $(document).ready(function () {
             data.forEach((room) => {
                 const roomHtml = `
                 <div class="col-md-4 book-card">
-                    <div class="suite card">
-                        <img src="" class="card-img-top w-369.33" alt="${
+                    <div class="book-accom card">
+                        <img src="${room.image_path}" class="card-img-top w-369.33" alt="${
                             room.room_type
-                        }">
+                            }">
                         <div class="card-body">
-                            <h3 class="card-title">${room.room_type}</h3>
-                            <p class="card-text book-room-dex">${
+                            <h3 class="card-title text-start">${room.room_type}</h3>
+                            <p class="card-text book-room-dex text-start">${
                                 room.description
-                            }</p>
-                            <h4 class="suite-price">Php ${parseFloat(
+                                }
+                            </p>
+                        </div>
+                        <div class="card-footer">
+                            <h4 class="suite-price text-start">Php ${parseFloat(
                                 room.price
-                            ).toFixed(2)}/per night</h4>
-                            <div class="form-check">
-                                <input class="form-check-input room-checkbox" type="checkbox" id="selectRoom${
-                                    room.id
-                                }" data-price="${room.price}" data-room-type="${
-                    room.room_type
-                }">
-                                <label class="form-check-label" for="selectRoom${
-                                    room.id
-                                }">
-                                    Select Room
+                                ).toFixed(2)}/per night
+                            </h4>
+                            <div class="form-check d-flex align-items-center justify-content-start text-start">
+                                <input class="form-check-input room-checkbox" type="checkbox" id="selectRoom${room.id}" data-price="${room.price}" data-room-type="${room.room_type}">
+                                <label class="form-check-label ms-2" for="selectRoom${room.id}">
+                                Select Room
                                 </label>
                             </div>
                         </div>

@@ -254,7 +254,35 @@ h2.section-title {
     overflow: hidden;
     margin-bottom: 30px;
     transition: transform 0.3s ease;
-    max-height: 300px;
+    
+}
+
+.card-img-top {
+    min-height: 100px;
+    max-height: 189px;
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+}
+
+.book-acomm {
+    background-color: rgba(0, 0, 0, 0.6);
+    border-radius: 10px;
+    overflow: hidden;
+    margin-bottom: 30px;
+    transition: transform 0.3s ease;
+    margin-bottom: 2px;
+}
+.book-accom.card {
+    min-height: 340px;
+}
+
+.book-accom .card-img-top {
+    min-height: 99px;
+    max-height: 99px;
+    width: 100%;
+    height: auto;
+    object-fit: cover;
 }
 
 .card-title {
@@ -266,10 +294,11 @@ h2.section-title {
 
 .card-text {
     color: #FEF3E2;
+    font-size: 12px;
 }
 
 .suite-price {
-    font-size: 1.2em;
+    font-size: 16px;
     color: #FEF3E2;
     margin-bottom: 10px;
 }
@@ -643,11 +672,12 @@ td, th {
 }
 
 .book-room-dex {
-    font-size: 10px;
+    font-size: 9px;
 }
 .book-card {
-    max-height: 300px;
+    max-height: 400px;
     min-height: 300px;
+
 }
 
 .form-check-label {

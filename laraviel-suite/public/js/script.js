@@ -14,24 +14,25 @@ document.addEventListener("DOMContentLoaded", function () {
             const container = document.querySelector(".standard-room"); // Select the container
             data.forEach((room) => {
                 const roomHtml = `
-                <div class="col-md-4">
+                <div class="col-md-6 col-lg-4 col-sm-12">
                     <div class="suite card">
                         <img src="${
                             room.image_path
-                        }" class="card-img-top w-369.33" alt="${
-                    room.room_type
-                }">
+                            }" class="card-img-top w-369.33" alt="${
+                            room.room_type
+                            }">
                         <div class="card-body">
                             <h3 class="card-title">${room.room_type}</h3>
                             <p class="card-text">${room.description}</p>
                             <h4 class="suite-price">Php ${parseFloat(
                                 room.price
-                            ).toFixed(2)}/per night</h4>
+                                ).toFixed(2)}/per night
+                            </h4>
                             <button class="btn btn-outline-light">Book now</button>
                             <button class="btn btn-outline-light" data-toggle="modal" data-target="#amenitiesModal">Check amenities</button>
                         </div>
                     </div>
-                </div>
+                    </div>
             `;
                 container.insertAdjacentHTML("beforeend", roomHtml); // Append to the container
             });
