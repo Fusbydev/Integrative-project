@@ -73,10 +73,7 @@
         <div class="row">
             <div class="col-12 text-center p-4 text">
                 <h1>About us</h1>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Mollitia vitae beatae numquam aperiam, illo odio obcaecati voluptatum nam eligendi cumque molestiae harum quo esse asperiores amet voluptates non ducimus reprehenderit.
-                Corrupti eaque magni minima voluptates beatae vero aut similique repudiandae, accusamus id voluptatem nam laboriosam eligendi sequi dignissimos! Laboriosam exercitationem sunt minus tenetur culpa. Repellat officiis deserunt distinctio eveniet fuga?
-                Blanditiis porro natus ullam minus, distinctio quibusdam nisi nobis aliquid suscipit eius quia eveniet dolor possimus pariatur optio voluptatem reprehenderit adipisci itaque dignissimos eligendi ea iure unde quos quidem. Eaque.
-                In, cupiditate. Nemo nostrum velit sed odio error quasi ipsum maiores nam mollitia ipsa eos, id, quibusdam itaque asperiores accusantium a voluptas illo commodi repellat veritatis! Aliquam omnis quis odit!</p>
+                <p>Welcome to Laraveil Suites, where comfort meets sophistication. Nestled in the heart of the city, Laraveil Suites offers a seamless blend of modern elegance and personalized service. Whether you're traveling for business or leisure, our hotel is designed to provide a memorable and stress-free experience.At Laraveil Suites, we pride ourselves on offering more than just a place to stay. Our state-of-the-art amenities, luxurious rooms, and dedicated staff ensure that every guest enjoys the highest level of comfort and convenience. From our intuitive online reservation system to our warm in-person service, we prioritize your satisfaction at every step.We believe in creating a home away from home, a place where you can relax, recharge, and explore. <br><br> Welcome to Laraveil Suites—your perfect getaway awaits.</p>
                 <a href="" class="connect mt-3">Connect With Us</a>
             </div>
         </div>
@@ -123,5 +120,6 @@
     <!-- Feedbacks container -->
    
 </div>
+
 
 @endsection

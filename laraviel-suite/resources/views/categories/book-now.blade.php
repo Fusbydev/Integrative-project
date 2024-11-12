@@ -87,8 +87,8 @@
     <div class="container-fluid select-accomodation d-none" id="select-accommodation">
     <div class="container accomodation-page">
         <div class="row">
-            <div class="col-12 col-md-9 text-center"> <!-- Adjusted column size for cards -->
-                <div class="row justify-content-center book-room"> <!-- Center the row -->
+        <div class="col-12 col-md-9 text-center"> <!-- Adjusted column size for cards -->
+        <div class="row justify-content-center book-room"> <!-- Center the row -->
                 <input type="hidden" id="totalNightsInput" name="totalNights" value="">
 
                 </div>
