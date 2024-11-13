@@ -87,37 +87,49 @@
     <div class="container-fluid select-accomodation d-none" id="select-accommodation">
     <div class="container accomodation-page">
         <div class="row">
-        <div class="col-12 col-md-9 text-center"> <!-- Adjusted column size for cards -->
-        <div class="row justify-content-center book-room"> <!-- Center the row -->
+            <div class="col-12 col-md-9 text-center">
+                <div class="row justify-content-center book-room">
+                    <!-- Dynamic adding of rooms -->
+                </div>
                 <input type="hidden" id="totalNightsInput" name="totalNights" value="">
-
-                </div>
             </div>
-            <div class="col-12 col-md-3 d-reciept"> <!-- Adjusted column size for receipt -->
-            <div class="container-fluid resibo text-center p-4">
-            <p>Booking Receipt</p>
-            <div class="container-fluid reciept-container">
-                <p><strong>Date</strong> :  <span id="checkIndd"></span> - <span id="checkOutdd"></span></p>
-            </div>
-            <div class="container-fluid text-start mt-2 p-0">
-                <p>Booked Room(s)</p>
-                <div class="container-fluid reciept-container booked-rooms">
-                    <!-- Booked rooms will be dynamically updated here -->
-                </div>
-            </div>
-            <div class="container-fluid text-start mt-2 p-0">
-                <p>Other Charges</p>
-                <div class="container-fluid reciept-container">
-                    <p><strong>Service Charge & Tax</strong> : Php 1,500.00</p>
-                </div>
-                <div class="container-fluid reciept-container mt-2">
-                    <p><strong>Total Bill</strong> : Php <span class="totalPriceDisplay"></span></p>
+            <div class="col-12 col-md-3 d-reciept">
+                <div class="container-fluid resibo text-center p-4">
+                    <p>Booking Receipt</p>
+                    <div class="container-fluid reciept-container">
+                        <p><strong>Date</strong> :  <span id="checkIndd"></span> - <span id="checkOutdd"></span></p>
+                    </div>
+                    <div class="container-fluid text-start mt-2 p-0">
+                        <p>Booked Room(s)</p>
+                        <div class="container-fluid reciept-container booked-rooms">
+                            <!-- Booked rooms will be dynamically updated here -->
+                        </div>
+                    </div>
+                    <div class="container-fluid text-start mt-2 p-0">
+                        <p>Other Charges</p>
+                        <div class="container-fluid reciept-container">
+                            <p><strong>Service Charge & Tax</strong> : Php 1,500.00</p>
+                        </div>
+                        <div class="container-fluid reciept-container mt-2">
+                            <p><strong>Total Bill</strong> : Php <span class="totalPriceDisplay"></span></p>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
+        <!-- Add pagination here at the bottom of accomodation-page -->
+        <div class="row mt-4">
+            <div class="col text-end">
+                <nav aria-label="Page navigation example">
+                    <ul class="pagination justify-content-center">
+                        
+                    </ul>
+                </nav>
             </div>
         </div>
     </div>
+</div>
+
 </div>
 
 

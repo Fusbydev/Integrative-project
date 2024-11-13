@@ -27,7 +27,7 @@ body {
     background-color: transparent!important;
 }
 
-nav {
+.navbar-wrapper {
     position: fixed; /* or absolute */
     top: 0; /* Position at the top */
     left: 0; /* Position at the left */
@@ -279,7 +279,7 @@ h2.section-title {
 
 .book-accom .card-img-top {
     min-height: 99px;
-    max-height: 99px;
+    max-height: 200px;
     width: 100%;
     height: auto;
     object-fit: cover;
