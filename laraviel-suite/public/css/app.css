@@ -766,3 +766,30 @@ hr {
     color: #FEF3E2; /* Change color on hover */
     text-decoration: underline; /* Optional: Add underline on hover */
 }
+
+/* Primary color for pagination links */
+.page-item .page-link {
+    color: #FEF3E2; /* Primary color */
+    background-color: transparent; /* Background color for links */
+    border: 1px solid #FFB000;
+    transition: background-color 0.3s, color 0.3s;
+    cursor: pointer;
+
+}
+
+/* Active page color */
+.page-item.active .page-link {
+    background-color: #FFB000; /* Active background color */
+    color: #1E140C; /* Active text color */
+}
+
+/* Hover effect */
+.page-item .page-link:hover {
+    background-color: #FFB000; /* Light gray on hover */
+    color: #1E140C; /* Keep text primary color */
+}
+
+/* Disabled state color */
+.page-item.disabled .page-link {
+    color: #ccc; /* Gray color for disabled state */
+}
