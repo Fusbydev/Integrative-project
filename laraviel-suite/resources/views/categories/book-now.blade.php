@@ -15,7 +15,7 @@
                     <div class="circle light">
                         <h1>1</h1>
                     </div>
-                    <p class="step-label">Check-in and Check-out</p>
+                    <p class="step-label">Pick a Date</p>
                 </div>
                 <div class="line"></div>
                 <div class="step">

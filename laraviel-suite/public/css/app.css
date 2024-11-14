@@ -869,3 +869,9 @@ select#nextMonthDropdown {
     color: #FFB000;
     background: transparent;
 }
+.carousel-indicators [data-bs-target] {
+    background-color: #FFB000;
+}
+.carousel-indicators {
+    margin-bottom: 0;
+}

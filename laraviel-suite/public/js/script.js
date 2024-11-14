@@ -339,7 +339,7 @@ document.addEventListener("DOMContentLoaded", function () {
             .then((data) =>
                 data.errors
                     ? console.log("Validation errors:", data.errors)
-                    : console.log("Response from server:", data)
+                    : alert("Check your email for a detailed receipt and tracking information for your stay. We're looking forward to hosting you!")
             )
             .catch(console.error);
 
