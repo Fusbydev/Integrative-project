@@ -50,6 +50,16 @@ body {
     color: #FEF3E2;
     font-family: 'karla';
 }
+.nav-link:hover {
+    color: #FFB000;
+}
+
+a.footer-link p:hover {
+    color: #FFB000!important;
+}
+li a.footer-link:hover {
+    text-decoration: none;
+}
 .logo-name {
     color: #FEF3E2;
 }
@@ -113,7 +123,7 @@ body {
 
 /* Style for the .checkInOut div */
 .checkInOut {
-    border: 1px solid #FEF3E2; /* Change the color and width as needed */
+    border: 1px solid #FFB000; /* Change the color and width as needed */
     border-radius: 30px; /* Optional: Rounded corners */
     background-color: #442E1A;
 }
@@ -219,9 +229,29 @@ img {
     background-size: cover;
     background-position: center;
     background-attachment: fixed;
-    position: relative; 
-    overflow: hidden; 
+    position: relative;
+    overflow: hidden;
 }
+
+/* Pseudo-element for opacity overlay */
+.accomodation-bg::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); /* Adjust color and opacity here */
+    z-index: 1;
+    pointer-events: none; /* Allows clicks to pass through if necessary */
+}
+
+/* Ensures other content is above the overlay */
+.accomodation-bg * {
+    position: relative;
+    z-index: 2;
+}
+
 
 body::before {
     content: "";
@@ -792,4 +822,50 @@ hr {
 /* Disabled state color */
 .page-item.disabled .page-link {
     color: #ccc; /* Gray color for disabled state */
+}
+
+.card-book {
+    border:none;
+    text-decoration: none;
+    cursor: pointer;
+    background: transparent;
+    font-size: 16px;
+    font-size: 'aboreto';
+    color: #FEF3E2;
+    transition: 0.5s;
+}
+
+.card-book:hover {
+    color: #FFB000;
+}
+
+.feed1 {
+    display: flex;
+    flex-direction: column; /* Stack content vertically */
+    justify-content: space-between;
+    height: 100%;
+    padding: 20px; /* Adjust as needed */
+    border: 1px solid #ddd; /* Optional for styling */
+}
+
+.feed1 p {
+    flex: 1; /* Takes up available space */
+}
+
+.feed1 i {
+    margin-top: auto; /* Pushes icons to the bottom */
+    color: #FFB000; /* Adjust color as needed */
+    font-size: 1.2em; /* Adjust size as needed */
+}
+
+select#currentMonthDropdown {
+    border-color: #FFB000;
+    color: #FFB000;
+    background: transparent;
+}
+
+select#nextMonthDropdown {
+    border-color:#FFB000;
+    color: #FFB000;
+    background: transparent;
 }

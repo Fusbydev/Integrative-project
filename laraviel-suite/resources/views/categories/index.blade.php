@@ -19,18 +19,7 @@
     <div class="newSction container-fluid">
         <div class="container checkInOut"> <!-- Opening container -->
             <div class="row text-align-center"> <!-- Opening row -->
-            <div class="col-md-5"> <!-- Check-In column -->
-                <label for="checkin" class="form-label checkIn">Check-In</label>
-                <input type="date" id="checkin" class="form-control transparent-input">
-            </div>
 
-            <div class="col-md-5"> <!-- Check-Out column -->
-                <label for="checkout" class="form-label checkIn">Check-Out</label>
-                <input type="date" id="checkout" class="form-control transparent-input">
-            </div>
-                <div class="col-md-2 d-flex align-items-end"> <!-- Button aligned to the bottom -->
-                <a href="/book-now" class="checkBtn w-100">Check Availability</a>
-                </div> <!-- Closing col-md-2 -->
             </div> <!-- Closing row -->
 
             <div class="text-center p-relative logo-name mt-4"> <!-- Gallery title section -->
@@ -83,32 +72,56 @@
         <div class="row h-100">
 
                 <div class="row text-center feedbacks1 mt-3">
-                    <div class="col-md-4 col-lg-3 col-sm-12 feed">
-                        <div class="container feed1">
-                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Debitis culpa quod quia dicta esse, labore recusandae iusto sit placeat consectetur quis aliquam et reiciendis deleniti dolore soluta quo quasi ducimus.
-                            </p>
-                            <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>
+                <div class="col-md-4 col-lg-3 col-sm-12 feed">
+                    <div class="container feed1">
+                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Debitis culpa quod quia dicta esse, labore recusandae iusto sit placeat consectetur quis aliquam et reiciendis deleniti dolore soluta quo quasi ducimus.</p>
+                        <div class="stars">
+                            <i class="bi bi-star-fill"></i>
+                            <i class="bi bi-star-fill"></i>
+                            <i class="bi bi-star-fill"></i>
+                            <i class="bi bi-star-fill"></i>
+                            <i class="bi bi-star-fill"></i>
                         </div>
                     </div>
+                </div>
+
                     <div class="col-md-4 col-lg-3 col-sm-12 feed">
                         <div class="container feed1">
                             <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Debitis culpa quod quia dicta esse, labore recusandae iusto sit placeat consectetur quis aliquam et reiciendis deleniti dolore soluta quo quasi ducimus.
                             </p>
-                            <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star"></i><i class="bi bi-star"></i><i class="bi bi-star"></i>
+                            <div class="stars">
+                            <i class="bi bi-star-fill"></i>
+                            <i class="bi bi-star-fill"></i>
+                            <i class="bi bi-star-fill"></i>
+                            <i class="bi bi-star-fill"></i>
+                            <i class="bi bi-star-fill"></i>
+                        </div>
                         </div>
                     </div>
                     <div class="col-md-4 col-lg-3 col-sm-12 feed">
                         <div class="container feed1">
                             <p>Service is ass asf
                             </p>
-                            <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>
+                            <div class="stars">
+                            <i class="bi bi-star-fill"></i>
+                            <i class="bi bi-star-fill"></i>
+                            <i class="bi bi-star-fill"></i>
+                            <i class="bi bi-star-fill"></i>
+                            <i class="bi bi-star-fill"></i>
+                        </div>
                         </div>
                     </div>
                     <div class="col-md-4 col-lg-3 col-sm-12 feed">
                         <div class="container feed1">
                             <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Debitis culpa quod quia dicta esse, labore recusandae iusto sit placeat consectetur quis aliquam et reiciendis deleniti dolore soluta quo quasi ducimus.
                             </p>
-                            <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star"></i>
+                            <div class="stars">
+                            <i class="bi bi-star-fill"></i>
+                            <i class="bi bi-star-fill"></i>
+                            <i class="bi bi-star-fill"></i>
+                            <i class="bi bi-star-fill"></i>
+                            <i class="bi bi-star-fill"></i>
+                        </div>
                         </div>
                     </div>
                 </div>
