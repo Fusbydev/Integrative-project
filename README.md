@@ -10,6 +10,7 @@ After creating the .env file, change the values for MySQL:
 
 Database Name: laraviel_suite
 The root, password, and port depend on the credentials of your XAMPP.
+
 Remove the comments first (#).
 
 Default values:
@@ -24,7 +25,8 @@ Default values:
 >DB_PASSWORD: none/empty
 
 For the email to work, make sure you have configured your app in Google:
-MAIL_MAILER=smtp
+
+>MAIL_MAILER=smtp
 
 >MAIL_HOST=smtp.gmail.com
 
