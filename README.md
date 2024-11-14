@@ -13,7 +13,7 @@ The root, password, and port depend on the credentials of your XAMPP.
 Remove the comments first (#).
 
 Default values:
-DB_CONNECTION: mysql,
+DB_CONNECTION: mysql
 DB_DATABASE: laraviel_suite (database name)
 DB_HOST: 127.0.0.1
 DB_USERNAME: root
