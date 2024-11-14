@@ -3,7 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Responsive Sidebar with Dashboard and Dynamic Calendar</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <title>admin dashboard</title>
   <style>
     /* Reset and Basic Styles */
     * {
@@ -137,11 +138,6 @@
         text-align: center;
         transition: transform 0.3s ease;
     }
-
-    .card:hover {
-        transform: translateY(-5px);
-    }
-
     .card h3 {
         color: #2c3e50;
         margin-bottom: 10px;
@@ -281,12 +277,6 @@
   border-radius: 4px;
   width: 100%; /* Makes the input field fill the card */
 }
-
-/* Hover effect for Room Card */
-.room:hover {
-  transform: translateY(-5px);
-}
-
 /* Room Header */
 .room h4 {
   margin-bottom: 10px;
@@ -443,10 +433,11 @@
     </section>
 
     <!-- Customer Section -->
-    <section id="customer">
-      <h2>Customer Information</h2>
-      <table border="1" cellpadding="10">
-        <thead>
+    <section id="customer" class="container my-4">
+    <h2 class="mb-3">Customer Information</h2>
+    <div class="table-responsive">
+      <table class="table table-bordered table-hover">
+        <thead class="table-dark">
           <tr>
             <th>First Name</th>
             <th>Last Name</th>
@@ -455,6 +446,7 @@
             <th>Room</th>
             <th>Check-in</th>
             <th>Check-out</th>
+            <th>Action</th>
           </tr>
         </thead>
         <tbody>
@@ -466,6 +458,10 @@
             <td>101</td>
             <td>2024-11-01</td>
             <td>2024-11-10</td>
+            <td>
+              <button class="btn btn-sm btn-primary me-2">Update</button>
+              <button class="btn btn-sm btn-danger">Delete</button>
+            </td>
           </tr>
           <tr>
             <td>Jane</td>
@@ -475,10 +471,15 @@
             <td>102</td>
             <td>2024-11-02</td>
             <td>2024-11-12</td>
+            <td>
+              <button class="btn btn-sm btn-primary me-2">Update</button>
+              <button class="btn btn-sm btn-danger">Delete</button>
+            </td>
           </tr>
         </tbody>
       </table>
-    </section>
+    </div>
+  </section>
 
     <!-- Calendar Section -->
     <section id="calendar">
@@ -510,6 +511,7 @@
 
     <!-- Room Management Section -->
     <!-- Room Management Section -->
+    <section id="room-management">
     <div class="card">
       <h3>Room Management</h3>
 
@@ -520,6 +522,7 @@
 
       <button class="add-room-btn" onclick="addRoom()">Add New Room</button>
     </div>
+    </section>
 
 
   <div class="income-tracker">
@@ -538,7 +541,7 @@
         </tbody>
     </table>
 </div>
-
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 
   <script>
     let currentDate = new Date();
