@@ -796,6 +796,161 @@ hr {
     color: #FEF3E2; /* Change color on hover */
     text-decoration: underline; /* Optional: Add underline on hover */
 }
+<<<<<<< HEAD
+/* Sidebar Styling */
+.sidebar {
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 250px;
+    background-color: #343a40;
+    padding-top: 20px;
+    z-index: 999;
+    transition: 0.3s;
+}
+
+.sidebar .nav-link {
+    color: white;
+    padding: 10px 15px;
+}
+
+.sidebar .nav-link.active {
+    background-color: #007bff;
+}
+
+.sidebar .nav-link:hover {
+    background-color: #495057;
+}
+
+.sidebar .nav-item {
+    border-bottom: 1px solid #6c757d;
+}
+
+.sidebar .nav-item:last-child {
+    border-bottom: none;
+}
+
+.sidebar .nav-link i {
+    margin-right: 10px;
+}
+
+/* Main content area */
+.main-content {
+    margin-left: 250px;
+    padding-top: 50px;
+    padding-right: 20px;
+}
+
+/* Dashboard Stats Styling */
+.dashboard-stats {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    margin-top: 30px;
+}
+
+.stat-card {
+    background-color: #007bff;
+    color: white;
+    padding: 20px;
+    border-radius: 5px;
+    text-align: center;
+    width: 100%;
+    margin: 10px 0;
+    flex-basis: 30%;
+    transition: transform 0.3s;
+}
+
+.stat-card h5 {
+    font-size: 1.5em;
+}
+
+.stat-card p {
+    font-size: 1.2em;
+}
+
+/* Responsive Sidebar */
+@media (max-width: 992px) {
+    .sidebar {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        z-index: 999;
+        display: none;
+    }
+    .sidebar.active {
+        display: block;
+    }
+    .main-content {
+        margin-left: 0;
+    }
+}
+
+/* Calendar Styling */
+#calendar {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    grid-gap: 5px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.calendar-header {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    background-color: #f8f9fa;
+    text-align: center;
+    padding: 5px;
+    font-weight: bold;
+}
+
+.day {
+    padding: 20px;
+    text-align: center;
+    cursor: pointer;
+    background-color: #f8f9fa;
+    border-radius: 5px;
+}
+
+.day:hover {
+    background-color: #007bff;
+    color: white;
+}
+
+.booked {
+    background-color: #dc3545;
+    color: white;
+}
+
+/* Booking Information */
+.booking-info {
+    background-color: #007bff;
+    color: white;
+    padding: 10px;
+    margin-top: 20px;
+    border-radius: 5px;
+}
+
+/* Room Management */
+.room-management {
+    margin-top: 20px;
+}
+
+.room-management table {
+    width: 100%;
+    margin-top: 20px;
+}
+
+.room-management table th, .room-management table td {
+    padding: 10px;
+    text-align: center;
+}
+
+.room-management .btn {
+    margin-top: 10px;
+=======
 
 /* Primary color for pagination links */
 .page-item .page-link {
@@ -874,4 +1029,5 @@ select#nextMonthDropdown {
 }
 .carousel-indicators {
     margin-bottom: 0;
+>>>>>>> 9954857e9111b1ae880c04b88b5668688f4c5c2d
 }
