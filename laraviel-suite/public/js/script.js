@@ -1,6 +1,6 @@
 document.addEventListener("DOMContentLoaded", function () {
-    console.log(localStorage.getItem("bookingId"));
 
+    console.log(localStorage.getItem("bookingId"));
     fetch("/rooms")
         .then((response) => {
             if (!response.ok) {
@@ -24,12 +24,15 @@ document.addEventListener("DOMContentLoaded", function () {
                         <div class="card-body">
                             <h3 class="card-title">${room.room_type}</h3>
                             <p class="card-text">${room.description}</p>
-                            <h4 class="suite-price">Php ${parseFloat(
+                            <h4 class="suite-price mt-2">Php ${parseFloat(
                                 room.price
                                 ).toFixed(2)}/per night
                             </h4>
-                            <button class="btn btn-outline-light">Book now</button>
-                            <button class="btn btn-outline-light" data-toggle="modal" data-target="#amenitiesModal">Check amenities</button>
+                            <div class="row text-center">
+                                <div class="col">
+                                    <a href="/book-now" class="card-book">BOOK NOW</a>
+                                </div>
+                            </div>
                         </div>
                     </div>
                     </div>
@@ -94,8 +97,7 @@ document.addEventListener("DOMContentLoaded", function () {
     nextMonthDropdown.value =
         (currentMonth + 1) % 12 === 0 ? 1 : currentMonth + 2; // Set next month or wrap around to January
 
-    let currentStep = 1,
-        dateSelectionStep = 0,
+    let dateSelectionStep = 0,
         checkInDate = null,
         checkOutDate = null,
         checkInCell = null,
@@ -226,6 +228,9 @@ document.addEventListener("DOMContentLoaded", function () {
         );
     });
 
+
+
+    let currentStep = 1;
     document.querySelector(".nextBtn").addEventListener("click", function () {
         if (isValidDateSelection()) {
             const checkIndate1 = $("#checkIndd").text(),
@@ -334,7 +339,7 @@ document.addEventListener("DOMContentLoaded", function () {
             .then((data) =>
                 data.errors
                     ? console.log("Validation errors:", data.errors)
-                    : console.log("Response from server:", data)
+                    : alert("Check your email for a detailed receipt and tracking information for your stay. We're looking forward to hosting you!")
             )
             .catch(console.error);
 
@@ -354,4 +359,5 @@ document.addEventListener("DOMContentLoaded", function () {
         "nextMonthCalendar",
         "nextMonthTitle"
     );
+
 });

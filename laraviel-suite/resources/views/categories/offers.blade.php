@@ -70,7 +70,7 @@
     </div>
 
     <!-- Indulgence Card Section -->
-    <div class="row mt-5 mb-5">
+    <div class="row mt-1 mb-5">
         <div class="col-12">
             <div class="indulgence-wrapper">
                 <div class="row">

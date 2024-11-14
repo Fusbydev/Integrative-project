@@ -43,7 +43,7 @@
                         </ul>
                         <!-- Move the button inside the collapsible navbar -->
                         <div class="d-lg-none mt-2"> <!-- d-lg-none hides the button on larger screens -->
-                            <button class="bookBtn">Book Now</button>
+                        <a class="bookBtn py-2" href="/book-now" style="text-decoration: none;">Book Now</a>
                         </div>
                     </div>
                     <div class="text-center p-relative logo-name"> <!-- d-none d-lg-block shows logo only on larger screens -->
@@ -51,7 +51,7 @@
                         <p class="suites">SUITES</p>
                     </div>
                     <div class="d-none d-lg-block"> <!-- d-none d-lg-block hides the button on smaller screens -->
-                        <button class="bookBtn">Book Now</button>
+                    <a class="bookBtn py-2" href="/book-now" style="text-decoration: none;">Book Now</a>
                     </div>
                 </div>
             </nav>
