@@ -14,7 +14,9 @@ Remove the comments first (#).
 
 Default values:
 DB_CONNECTION: mysql
+
 DB_DATABASE: laraviel_suite (database name)
+
 DB_HOST: 127.0.0.1
 DB_USERNAME: root
 DB_PASSWORD: none/empty
