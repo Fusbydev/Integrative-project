@@ -27,7 +27,7 @@ body {
     background-color: transparent!important;
 }
 
-nav {
+.navbar-wrapper {
     position: fixed; /* or absolute */
     top: 0; /* Position at the top */
     left: 0; /* Position at the left */
@@ -49,6 +49,16 @@ nav {
 .nav-link {
     color: #FEF3E2;
     font-family: 'karla';
+}
+.nav-link:hover {
+    color: #FFB000;
+}
+
+a.footer-link p:hover {
+    color: #FFB000!important;
+}
+li a.footer-link:hover {
+    text-decoration: none;
 }
 .logo-name {
     color: #FEF3E2;
@@ -219,9 +229,29 @@ img {
     background-size: cover;
     background-position: center;
     background-attachment: fixed;
-    position: relative; 
-    overflow: hidden; 
+    position: relative;
+    overflow: hidden;
 }
+
+/* Pseudo-element for opacity overlay */
+.accomodation-bg::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); /* Adjust color and opacity here */
+    z-index: 1;
+    pointer-events: none; /* Allows clicks to pass through if necessary */
+}
+
+/* Ensures other content is above the overlay */
+.accomodation-bg * {
+    position: relative;
+    z-index: 2;
+}
+
 
 body::before {
     content: "";
@@ -254,7 +284,35 @@ h2.section-title {
     overflow: hidden;
     margin-bottom: 30px;
     transition: transform 0.3s ease;
-    max-height: 300px;
+    
+}
+
+.card-img-top {
+    min-height: 100px;
+    max-height: 189px;
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+}
+
+.book-acomm {
+    background-color: rgba(0, 0, 0, 0.6);
+    border-radius: 10px;
+    overflow: hidden;
+    margin-bottom: 30px;
+    transition: transform 0.3s ease;
+    margin-bottom: 2px;
+}
+.book-accom.card {
+    min-height: 340px;
+}
+
+.book-accom .card-img-top {
+    min-height: 99px;
+    max-height: 200px;
+    width: 100%;
+    height: auto;
+    object-fit: cover;
 }
 
 .card-title {
@@ -266,10 +324,11 @@ h2.section-title {
 
 .card-text {
     color: #FEF3E2;
+    font-size: 12px;
 }
 
 .suite-price {
-    font-size: 1.2em;
+    font-size: 16px;
     color: #FEF3E2;
     margin-bottom: 10px;
 }
@@ -643,11 +702,12 @@ td, th {
 }
 
 .book-room-dex {
-    font-size: 10px;
+    font-size: 9px;
 }
 .book-card {
-    max-height: 300px;
+    max-height: 400px;
     min-height: 300px;
+
 }
 
 .form-check-label {
@@ -735,4 +795,83 @@ hr {
 .footer a:hover {
     color: #FEF3E2; /* Change color on hover */
     text-decoration: underline; /* Optional: Add underline on hover */
+}
+
+/* Primary color for pagination links */
+.page-item .page-link {
+    color: #FEF3E2; /* Primary color */
+    background-color: transparent; /* Background color for links */
+    border: 1px solid #FFB000;
+    transition: background-color 0.3s, color 0.3s;
+    cursor: pointer;
+
+}
+
+/* Active page color */
+.page-item.active .page-link {
+    background-color: #FFB000; /* Active background color */
+    color: #1E140C; /* Active text color */
+}
+
+/* Hover effect */
+.page-item .page-link:hover {
+    background-color: #FFB000; /* Light gray on hover */
+    color: #1E140C; /* Keep text primary color */
+}
+
+/* Disabled state color */
+.page-item.disabled .page-link {
+    color: #ccc; /* Gray color for disabled state */
+}
+
+.card-book {
+    border:none;
+    text-decoration: none;
+    cursor: pointer;
+    background: transparent;
+    font-size: 16px;
+    font-size: 'aboreto';
+    color: #FEF3E2;
+    transition: 0.5s;
+}
+
+.card-book:hover {
+    color: #FFB000;
+}
+
+.feed1 {
+    display: flex;
+    flex-direction: column; /* Stack content vertically */
+    justify-content: space-between;
+    height: 100%;
+    padding: 20px; /* Adjust as needed */
+    border: 1px solid #ddd; /* Optional for styling */
+}
+
+.feed1 p {
+    flex: 1; /* Takes up available space */
+}
+
+.feed1 i {
+    margin-top: auto; /* Pushes icons to the bottom */
+    color: #FFB000; /* Adjust color as needed */
+    font-size: 1.2em; /* Adjust size as needed */
+}
+
+select#currentMonthDropdown {
+    border-color: #FFB000;
+    color: #FFB000;
+    background: transparent;
+}
+
+select#nextMonthDropdown {
+    border-color:#FFB000;
+    color: #FFB000;
+    background: transparent;
+}
+.carousel-indicators [data-bs-target] {
+    background-color: #FEF3E2;
+}
+.carousel-indicators {
+    margin-bottom: 0;
 }

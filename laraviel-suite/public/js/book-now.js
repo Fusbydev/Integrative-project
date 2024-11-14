@@ -34,53 +34,118 @@ $(document).ready(function () {
 
     // Fetch and render room data
     fetch("/rooms")
-        .then((response) => {
-            if (!response.ok) {
-                throw new Error(
-                    "Network response was not ok " + response.statusText
-                );
-            }
-            return response.json();
-        })
-        .then((data) => {
-            const container = document.querySelector(".book-room");
-            data.forEach((room) => {
+    .then((response) => {
+        if (!response.ok) {
+            throw new Error(
+                "Network response was not ok " + response.statusText
+            );
+        }
+        return response.json();
+    })
+    .then((data) => {
+        const container = document.querySelector(".book-room");
+        const paginationContainer = document.querySelector(".pagination");
+        const itemsPerPage = 2;
+        let currentPage = 1;
+
+        // Calculate the total number of pages
+        const totalPages = Math.ceil(data.length / itemsPerPage);
+
+        // Function to display rooms based on the current page
+        function displayRooms(page) {
+            container.innerHTML = ""; // Clear previous rooms
+            const startIndex = (page - 1) * itemsPerPage;
+            const endIndex = startIndex + itemsPerPage;
+            const roomsToDisplay = data.slice(startIndex, endIndex);
+
+            roomsToDisplay.forEach((room) => {
                 const roomHtml = `
-                <div class="col-md-4 book-card">
-                    <div class="suite card">
-                        <img src="" class="card-img-top w-369.33" alt="${
-                            room.room_type
-                        }">
-                        <div class="card-body">
-                            <h3 class="card-title">${room.room_type}</h3>
-                            <p class="card-text book-room-dex">${
-                                room.description
-                            }</p>
-                            <h4 class="suite-price">Php ${parseFloat(
-                                room.price
-                            ).toFixed(2)}/per night</h4>
-                            <div class="form-check">
-                                <input class="form-check-input room-checkbox" type="checkbox" id="selectRoom${
-                                    room.id
-                                }" data-price="${room.price}" data-room-type="${
-                    room.room_type
-                }">
-                                <label class="form-check-label" for="selectRoom${
-                                    room.id
-                                }">
-                                    Select Room
-                                </label>
+                    <div class="col-md-12 col-lg-6 col-sm-12 book-card">
+                        <div class="book-accom card">
+                            <img src="${room.image_path}" class="card-img-top w-369.33" alt="${room.room_type}">
+                            <div class="card-body">
+                                <h3 class="card-title text-start">${room.room_type}</h3>
+                                <p class="card-text book-room-dex text-start">${room.description}</p>
+                            </div>
+                            <div class="card-footer">
+                                <h4 class="suite-price text-start">Php ${parseFloat(room.price).toFixed(2)}/per night</h4>
+                                <div class="form-check d-flex align-items-center justify-content-start text-start">
+                                    <input class="form-check-input room-checkbox" type="checkbox" id="selectRoom${room.id}" data-price="${room.price}" data-room-type="${room.room_type}">
+                                    <label class="form-check-label ms-2" for="selectRoom${room.id}">Select Room</label>
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
-            `;
+                `;
                 container.insertAdjacentHTML("beforeend", roomHtml);
             });
-        })
-        .catch((error) => {
-            console.error("Error fetching rooms:", error);
-        });
+        }
+
+        // Function to set up pagination
+        function setupPagination() {
+            paginationContainer.innerHTML = ""; // Clear existing pagination
+        
+            // Calculate the range of pages to display (1 to totalPages or limited around currentPage)
+            const maxVisiblePages = 3; // Limit the visible page links to 3
+            let startPage = Math.max(1, currentPage - 1);
+            let endPage = Math.min(totalPages, startPage + maxVisiblePages - 1);
+        
+            if (endPage - startPage < maxVisiblePages - 1) {
+                startPage = Math.max(1, endPage - maxVisiblePages + 1);
+            }
+        
+            // Previous button
+            const prevLi = document.createElement("li");
+            prevLi.classList.add("page-item");
+            prevLi.classList.toggle("disabled", currentPage === 1);
+            prevLi.innerHTML = `<a class="page-link">Previous</a>`;
+            prevLi.addEventListener("click", () => {
+                if (currentPage > 1) {
+                    currentPage--;
+                    displayRooms(currentPage);
+                    setupPagination();
+                }
+            });
+            paginationContainer.appendChild(prevLi);
+        
+            // Page numbers (only showing a limited number around the current page)
+            for (let i = startPage; i <= endPage; i++) {
+                const pageLi = document.createElement("li");
+                pageLi.classList.add("page-item");
+                pageLi.classList.toggle("active", i === currentPage);
+                pageLi.innerHTML = `<a class="page-link">${i}</a>`;
+                pageLi.addEventListener("click", () => {
+                    currentPage = i;
+                    displayRooms(currentPage);
+                    setupPagination();
+                });
+                paginationContainer.appendChild(pageLi);
+            }
+        
+            // Next button
+            const nextLi = document.createElement("li");
+            nextLi.classList.add("page-item");
+            nextLi.classList.toggle("disabled", currentPage === totalPages);
+            nextLi.innerHTML = `<a class="page-link">Next</a>`;
+            nextLi.addEventListener("click", () => {
+                if (currentPage < totalPages) {
+                    currentPage++;
+                    displayRooms(currentPage);
+                    setupPagination();
+                }
+            });
+            paginationContainer.appendChild(nextLi);
+        }
+        
+
+        // Initial display
+        displayRooms(currentPage);
+        setupPagination();
+    })
+    .catch((error) => {
+        console.error("Error fetching rooms:", error);
+    });
+
 
     // Update total price and room details on checkbox change
     $(document).on(
