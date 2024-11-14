@@ -71,7 +71,7 @@
     <h1 class="feed-text">Client Feedbacks</h1>
     <div class="row justify-content-center">
 
-    <div id="feedbackCarousel" class="carousel slide" data-bs-ride="carousel">
+    <div id="feedbackCarousel" class="carousel slide" data-bs-ride="true">
     <!-- Carousel Inner -->
     <div class="carousel-inner p-2">
         <div class="carousel-item active">
