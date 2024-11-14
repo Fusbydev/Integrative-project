@@ -23,7 +23,6 @@
                 </div>
 
                 <h5 class="text-left" style="color: white; text-align: center; padding-bottom: 10px; border-bottom: 1px solid #FEF3E2;">ROOM FEATURES</h5>
-
                 <div class="row mt-3">
                     <div class="col-6">
                         <ul style="list-style-type: disc; padding-left: 20px;">
