@@ -4,6 +4,9 @@ use App\Http\Controllers\RoomController;
 use App\Http\Controllers\GuestController;
 use App\Http\Controllers\BookingController;
 use Illuminate\Support\Facades\Route;
+use App\Models\Room;
+use App\Models\Guest;
+
 
 Route::get('/', function () {
     return view('categories.index');
@@ -15,7 +18,7 @@ Route::view('/home', 'categories.index');
 Route::view('/offers', 'categories.offers');
 Route::view('/about', 'categories.about');
 Route::view('/book-now', 'categories.book-now');
-Route::view('/admincit301_laraviel_suite', 'categories.admincit301_laraviel_suite');
+
 Route::view('/privacy-policy', 'categories.privacy-policy');
 Route::get('/view-booking', [BookingController::class, 'showBooking']);
 
@@ -23,23 +26,15 @@ Route::get('/view-booking', [BookingController::class, 'showBooking']);
 Route::get('/rooms', [RoomController::class, 'index']);
 Route::post('/submit-guest-info', [GuestController::class, 'store']);
 
-// Add routes for your sidebar sections
-Route::get('/dashboard', function () {
-    return view('dashboard.index'); // Adjust view as necessary
+Route::delete('/guest/{id}', [GuestController::class, 'destroy'])->name('guest.destroy');
+Route::delete('/room/{id}', [RoomController::class, 'destroy'])->name('room.destroy');
+
+Route::get('/admincit301_laraviel_suite', function() {
+    $rooms = Room::all();
+    $guests = Guest::all(); // If you also need guest data
+    $totalRooms = Room::count(); // Get total number of rooms
+    $totalGuests = Guest::count(); // Get total number of guests
+    $totalGuestPayments = Guest::sum('price_total');
+    return view('categories.admincit301_laraviel_suite', compact('rooms', 'guests', 'totalRooms', 'totalGuests', 'totalGuestPayments'));
 });
 
-Route::get('/customers', function () {
-    return view('customers.index'); // Adjust view as necessary
-});
-
-Route::get('/rooms/calendar', function () {
-    return view('rooms.calendar'); // Adjust view as necessary
-});
-
-Route::get('/rooms/management', function () {
-    return view('rooms.management'); // Adjust view as necessary
-});
-
-Route::get('/income-tracker', function () {
-    return view('income-tracker.index'); // Adjust view as necessary
-});
