@@ -68,252 +68,23 @@
         </div>
     </div>
     <div class="container-fluid feedbacks text-center">
-    <h1 class="feed-text">Client Feedbacks</h1>
-    <div class="row justify-content-center">
-
-    <div id="feedbackCarousel" class="carousel slide" data-bs-ride="true">
-    <!-- Carousel Inner -->
-    <div class="carousel-inner p-2">
-        <div class="carousel-item active">
-            <div class="row justify-content-center">
-                <!-- Feedback 1 -->
-                <div class="col-md-6 col-lg-3 col-sm-12 feed d-flex align-items-center">
-                    <div class="container feed1">
-                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Debitis culpa quod quia dicta esse, labore recusandae iusto sit placeat consectetur quis aliquam et reiciendis deleniti dolore soluta quo quasi ducimus.</p>
-                        <div class="stars">
+        <h1 class="feed-text">Client Feedbacks</h1>
+        <div class="row justify-content-center">
+            @foreach ($feedbacks as $feedback)
+                <div class="feedback-card">
+                    <p>{{ $feedback->feedback }}</p>
+                    <div class="stars">
+                        @for ($i = 0; $i < $feedback->rating; $i++)
                             <i class="bi bi-star-fill"></i>
-                            <i class="bi bi-star-fill"></i>
-                            <i class="bi bi-star-fill"></i>
-                            <i class="bi bi-star-fill"></i>
-                            <i class="bi bi-star-fill"></i>
-                        </div>
+                        @endfor
+                        @for ($i = $feedback->rating; $i < 5; $i++)
+                            <i class="bi bi-star"></i>
+                        @endfor
                     </div>
+                    <p><strong>Submitted by:</strong> {{ $feedback->anonymous ? 'Anonymous' : $feedback->guest_id }}</p>
                 </div>
-                <!-- Feedback 2 -->
-                <div class="col-md-6 col-lg-3 col-sm-12 feed d-flex align-items-center">
-                    <div class="container feed1">
-                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Debitis culpa quod quia dicta esse, labore recusandae iusto sit placeat consectetur quis aliquam et reiciendis deleniti dolore soluta quo quasi ducimus.</p>
-                        <div class="stars">
-                            <i class="bi bi-star-fill"></i>
-                            <i class="bi bi-star-fill"></i>
-                            <i class="bi bi-star-fill"></i>
-                            <i class="bi bi-star-fill"></i>
-                            <i class="bi bi-star-fill"></i>
-                        </div>
-                    </div>
-                </div>
-                <!-- Feedback 3 -->
-                <div class="col-md-6 col-lg-3 col-sm-12 feed d-flex align-items-center">
-                    <div class="container feed1">
-                        <p>Service is ass asf</p>
-                        <div class="stars">
-                            <i class="bi bi-star-fill"></i>
-                            <i class="bi bi-star-fill"></i>
-                            <i class="bi bi-star-fill"></i>
-                            <i class="bi bi-star-fill"></i>
-                            <i class="bi bi-star-fill"></i>
-                        </div>
-                    </div>
-                </div>
-                <!-- Feedback 4 -->
-                <div class="col-md-6 col-lg-3 col-sm-12 feed d-flex align-items-center">
-                    <div class="container feed1">
-                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Debitis culpa quod quia dicta esse, labore recusandae iusto sit placeat consectetur quis aliquam et reiciendis deleniti dolore soluta quo quasi ducimus.</p>
-                        <div class="stars">
-                            <i class="bi bi-star-fill"></i>
-                            <i class="bi bi-star-fill"></i>
-                            <i class="bi bi-star-fill"></i>
-                            <i class="bi bi-star-fill"></i>
-                            <i class="bi bi-star-fill"></i>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            @endforeach
         </div>
-
-        <!-- Second Carousel Item -->
-        <div class="carousel-item">
-            <div class="row justify-content-center">
-                <!-- Feedback 5 -->
-                <div class="col-md-6 col-lg-3 col-sm-12 feed d-flex align-items-center">
-                    <div class="container feed1">
-                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Debitis culpa quod quia dicta esse, labore recusandae iusto sit placeat consectetur quis aliquam et reiciendis deleniti dolore soluta quo quasi ducimus.</p>
-                        <div class="stars">
-                            <i class="bi bi-star-fill"></i>
-                            <i class="bi bi-star-fill"></i>
-                            <i class="bi bi-star-fill"></i>
-                            <i class="bi bi-star-fill"></i>
-                            <i class="bi bi-star-fill"></i>
-                        </div>
-                    </div>
-                </div>
-                <!-- Feedback 6 -->
-                <div class="col-md-6 col-lg-3 col-sm-12 feed d-flex align-items-center">
-                    <div class="container feed1">
-                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Debitis culpa quod quia dicta esse, labore recusandae iusto sit placeat consectetur quis aliquam et reiciendis deleniti dolore soluta quo quasi ducimus.</p>
-                        <div class="stars">
-                            <i class="bi bi-star-fill"></i>
-                            <i class="bi bi-star-fill"></i>
-                            <i class="bi bi-star-fill"></i>
-                            <i class="bi bi-star-fill"></i>
-                            <i class="bi bi-star-fill"></i>
-                        </div>
-                    </div>
-                </div>
-                <!-- Feedback 7 -->
-                <div class="col-md-6 col-lg-3 col-sm-12 feed d-flex align-items-center">
-                    <div class="container feed1">
-                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Debitis culpa quod quia dicta esse, labore recusandae iusto sit placeat consectetur quis aliquam et reiciendis deleniti dolore soluta quo quasi ducimus.</p>
-                        <div class="stars">
-                            <i class="bi bi-star-fill"></i>
-                            <i class="bi bi-star-fill"></i>
-                            <i class="bi bi-star-fill"></i>
-                            <i class="bi bi-star-fill"></i>
-                            <i class="bi bi-star-fill"></i>
-                        </div>
-                    </div>
-                </div>
-                <!-- Feedback 8 -->
-                <div class="col-md-6 col-lg-3 col-sm-12 feed d-flex align-items-center">
-                    <div class="container feed1">
-                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Debitis culpa quod quia dicta esse, labore recusandae iusto sit placeat consectetur quis aliquam et reiciendis deleniti dolore soluta quo quasi ducimus.</p>
-                        <div class="stars">
-                            <i class="bi bi-star-fill"></i>
-                            <i class="bi bi-star-fill"></i>
-                            <i class="bi bi-star-fill"></i>
-                            <i class="bi bi-star-fill"></i>
-                            <i class="bi bi-star-fill"></i>
-                        </div>
-                    </div>
-                </div>
-                
-            </div>
-        </div>
-        <div class="carousel-item">
-            <div class="row justify-content-center">
-                <!-- Feedback 5 -->
-                <div class="col-md-6 col-lg-3 col-sm-12 feed d-flex align-items-center">
-                    <div class="container feed1">
-                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Debitis culpa quod quia dicta esse, labore recusandae iusto sit placeat consectetur quis aliquam et reiciendis deleniti dolore soluta quo quasi ducimus.</p>
-                        <div class="stars">
-                            <i class="bi bi-star-fill"></i>
-                            <i class="bi bi-star-fill"></i>
-                            <i class="bi bi-star-fill"></i>
-                            <i class="bi bi-star-fill"></i>
-                            <i class="bi bi-star-fill"></i>
-                        </div>
-                    </div>
-                </div>
-                <!-- Feedback 6 -->
-                <div class="col-md-6 col-lg-3 col-sm-12 feed d-flex align-items-center">
-                    <div class="container feed1">
-                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Debitis culpa quod quia dicta esse, labore recusandae iusto sit placeat consectetur quis aliquam et reiciendis deleniti dolore soluta quo quasi ducimus.</p>
-                        <div class="stars">
-                            <i class="bi bi-star-fill"></i>
-                            <i class="bi bi-star-fill"></i>
-                            <i class="bi bi-star-fill"></i>
-                            <i class="bi bi-star-fill"></i>
-                            <i class="bi bi-star-fill"></i>
-                        </div>
-                    </div>
-                </div>
-                <!-- Feedback 7 -->
-                <div class="col-md-6 col-lg-3 col-sm-12 feed d-flex align-items-center">
-                    <div class="container feed1">
-                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Debitis culpa quod quia dicta esse, labore recusandae iusto sit placeat consectetur quis aliquam et reiciendis deleniti dolore soluta quo quasi ducimus.</p>
-                        <div class="stars">
-                            <i class="bi bi-star-fill"></i>
-                            <i class="bi bi-star-fill"></i>
-                            <i class="bi bi-star-fill"></i>
-                            <i class="bi bi-star-fill"></i>
-                            <i class="bi bi-star-fill"></i>
-                        </div>
-                    </div>
-                </div>
-                <!-- Feedback 8 -->
-                <div class="col-md-6 col-lg-3 col-sm-12 feed d-flex align-items-center">
-                    <div class="container feed1">
-                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Debitis culpa quod quia dicta esse, labore recusandae iusto sit placeat consectetur quis aliquam et reiciendis deleniti dolore soluta quo quasi ducimus.</p>
-                        <div class="stars">
-                            <i class="bi bi-star-fill"></i>
-                            <i class="bi bi-star-fill"></i>
-                            <i class="bi bi-star-fill"></i>
-                            <i class="bi bi-star-fill"></i>
-                            <i class="bi bi-star-fill"></i>
-                        </div>
-                    </div>
-                </div>
-                
-            </div>
-        </div>
-        <div class="carousel-item">
-            <div class="row justify-content-center">
-                <!-- Feedback 5 -->
-                <div class="col-md-6 col-lg-3 col-sm-12 feed d-flex align-items-center">
-                    <div class="container feed1">
-                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Debitis culpa quod quia dicta esse, labore recusandae iusto sit placeat consectetur quis aliquam et reiciendis deleniti dolore soluta quo quasi ducimus.</p>
-                        <div class="stars">
-                            <i class="bi bi-star-fill"></i>
-                            <i class="bi bi-star-fill"></i>
-                            <i class="bi bi-star-fill"></i>
-                            <i class="bi bi-star-fill"></i>
-                            <i class="bi bi-star-fill"></i>
-                        </div>
-                    </div>
-                </div>
-                <!-- Feedback 6 -->
-                <div class="col-md-6 col-lg-3 col-sm-12 feed d-flex align-items-center">
-                    <div class="container feed1">
-                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Debitis culpa quod quia dicta esse, labore recusandae iusto sit placeat consectetur quis aliquam et reiciendis deleniti dolore soluta quo quasi ducimus.</p>
-                        <div class="stars">
-                            <i class="bi bi-star-fill"></i>
-                            <i class="bi bi-star-fill"></i>
-                            <i class="bi bi-star-fill"></i>
-                            <i class="bi bi-star-fill"></i>
-                            <i class="bi bi-star-fill"></i>
-                        </div>
-                    </div>
-                </div>
-                <!-- Feedback 7 -->
-                <div class="col-md-6 col-lg-3 col-sm-12 feed d-flex align-items-center">
-                    <div class="container feed1">
-                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Debitis culpa quod quia dicta esse, labore recusandae iusto sit placeat consectetur quis aliquam et reiciendis deleniti dolore soluta quo quasi ducimus.</p>
-                        <div class="stars">
-                            <i class="bi bi-star-fill"></i>
-                            <i class="bi bi-star-fill"></i>
-                            <i class="bi bi-star-fill"></i>
-                            <i class="bi bi-star-fill"></i>
-                            <i class="bi bi-star-fill"></i>
-                        </div>
-                    </div>
-                </div>
-                <!-- Feedback 8 -->
-                <div class="col-md-6 col-lg-3 col-sm-12 feed d-flex align-items-center">
-                    <div class="container feed1">
-                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Debitis culpa quod quia dicta esse, labore recusandae iusto sit placeat consectetur quis aliquam et reiciendis deleniti dolore soluta quo quasi ducimus.</p>
-                        <div class="stars">
-                            <i class="bi bi-star-fill"></i>
-                            <i class="bi bi-star-fill"></i>
-                            <i class="bi bi-star-fill"></i>
-                            <i class="bi bi-star-fill"></i>
-                            <i class="bi bi-star-fill"></i>
-                        </div>
-                    </div>
-                </div>
-                
-            </div>
-        </div>
-    </div>
-
-    <!-- Carousel Indicators -->
-    <div class="carousel-indicators position-relative">
-        <button type="button" data-bs-target="#feedbackCarousel" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-        <button type="button" data-bs-target="#feedbackCarousel" data-bs-slide-to="1" aria-label="Slide 2"></button>
-        <button type="button" data-bs-target="#feedbackCarousel" data-bs-slide-to="2" aria-label="Slide 3"></button>
-        <button type="button" data-bs-target="#feedbackCarousel" data-bs-slide-to="3" aria-label="Slide 4"></button>
-    </div>
-</div>
-
     </div>
 </div>
 
@@ -323,6 +94,5 @@
     <!-- Feedbacks container -->
    
 </div>
-
 
 @endsection

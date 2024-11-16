@@ -437,9 +437,39 @@ h2.section-title {
 }
 
 .feedbacks {
-    flex: 1 1 auto; /* Makes feedback section stretch to fill the remaining space */
-    background-color: rgba(68, 46, 26, 0.66); /* Reduced opacity for more transparency */
-    padding: 20px;
+    background-color: rgba(30, 20, 12, 0.8); /* Dark background for the feedback section */
+    padding: 40px; /* Increased padding for better spacing */
+}
+
+.feedback-card {
+    background-color:rgba(172, 108, 17, 0.229); /* Semi-transparent white background for cards */
+    border: 2px solid rgba(255, 255, 255, 0.8); /* Gold border color with transparency */
+    border-radius: 15px; /* Rounded corners */
+    padding: 20px; /* Padding inside the card */
+    color: #333; /* Dark text color */
+    text-align: center; /* Center text */
+    min-height: 200px; /* Minimum height for uniformity */
+    margin: 10px; /* Margin around cards */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Subtle shadow for depth */
+    transition: transform 0.3s; /* Smooth hover effect */
+    flex: 1; /* Ensures all cards are the same size */
+}
+
+.feedback-card:hover {
+    transform: scale(1.05); /* Slightly enlarge on hover */
+}
+
+.feedback-card p {
+    font-size: 14px; /* Adjust font size */
+    margin-bottom: 10px; /* Space below the paragraph */
+}
+
+.stars {
+    color: #FFB000; /* Color for filled stars */
+}
+
+.stars i {
+    margin-right: 2px; /* Space between stars */
 }
 
 .feed-text {
@@ -463,11 +493,26 @@ h1, p {
     font-size: 12px;
 }
 .feed1 {
-    border: 2px solid #FEF3E2; /* Set the border color and transparency */
+    border: 2px solid #FEF3E2; /* Set the border color */
     border-radius: 10px; /* Add rounded corners */
     padding: 20px; /* Add padding inside the container */
-    margin: 20px 0; /* Optional: add margin for spacing between other elements */
-    min-height: 200px;
+    margin: 20px; /* Margin for spacing between other elements */
+    min-height: 200px; /* Minimum height for uniformity */
+    background-color: rgba(255, 255, 255, 0.9); /* White background for cards */
+    color: #333; /* Dark text color */
+}
+
+.feed1 p {
+    font-size: 14px; /* Adjust font size */
+    margin-bottom: 10px; /* Space below the paragraph */
+}
+
+.stars {
+    color: #FFB000; /* Color for stars */
+}
+
+.stars i {
+    margin-right: 2px; /* Space between stars */
 }
 
 .footerData p{
@@ -1075,4 +1120,13 @@ select#nextMonthDropdown {
 .carousel-indicators {
     margin-bottom: 0;
 }
+}
+
+.feedback-item {
+    background-color: rgba(30, 20, 12, 0.95); /* Background color for feedback cards */
+    border: 1px solid #BFA75D; /* Border color */
+    border-radius: 10px; /* Rounded corners */
+    padding: 20px; /* Padding inside the card */
+    color: #FEF3E2; /* Text color */
+    margin: 10px; /* Margin around the card */
 }

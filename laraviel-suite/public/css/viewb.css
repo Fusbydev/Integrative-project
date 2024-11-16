@@ -1,0 +1,267 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #1E140C;
+    margin: 0;
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.container {
+    max-width: 800px;
+    margin: auto;
+    background: #382614;
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+h2 {
+    color: #ffffff;
+    padding-bottom: 10px;
+    text-align: center;
+}
+
+ul {
+    list-style-type: none;
+    padding: 0;
+    text-align: left !important;
+    padding-left: 20px;
+}
+
+li {
+    margin: 10px 0;
+}
+
+strong {
+    color: #ffffff;
+}
+
+.stay-experience {
+    margin-top: 20px;
+}
+
+textarea {
+    width: 90%;
+    height: 60px;
+    margin: 10px auto;
+    padding: 10px;
+    border-radius: 4px;
+    background-color: #BFA75D;
+    color: #1E140C;
+    display: block;
+}
+
+.rating {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 10px;
+    margin-bottom: 20px;
+}
+
+.rating-title {
+    color: #ffffff;
+    padding-bottom: 10px;
+    text-align: center;
+}
+
+.stars {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-bottom: 20px;
+}
+
+.rating input {
+    display: none;
+}
+
+.rating label {
+    font-size: 3.5rem;
+    color: #ccc;
+    cursor: pointer;
+    transition: color 0.2s;
+}
+
+.rating input:checked ~ label {
+    color: #f5b301;
+}
+
+.rating label:hover,
+.rating label:hover ~ label {
+    color: #f5b301;
+}
+
+.rating input:checked + label:hover,
+.rating input:checked + label:hover ~ label {
+    color: #f5b301;
+}
+
+.rating label:hover ~ label {
+    color: #ccc;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0;
+    height: 100vh;
+    background-color: #1E140C;
+}
+.container{
+    background-color: #382614;
+    border-radius: 5px;
+    padding: 30px;
+}
+span{
+    color: white;
+    font-size: 20px;
+    font-weight: bold;
+}
+p{
+    text-align: center;
+    color: rgb(255, 255, 255);
+}
+
+.Submit {
+    background-color: #f2d98689;
+    color: rgb(255, 255, 255);
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 20px;
+    transition: background-color 0.3s;
+    display: block;
+    margin: 0 auto;
+    text-align: center;
+    outline: 2px solid rgb(255, 255, 255);
+    width: 30%;
+    border-radius: 20px;
+}
+
+.Submit:hover {
+    background-color: #e0a300;
+}
+
+hr{
+    background-color: #f5b301;
+}
+
+.right {
+    text-align: right;
+    list-style-type: none;
+    padding-right: 250px;
+    margin-top:-50px ;
+    padding-bottom: 50px;
+   
+}
+
+@media (max-width: 768px) {
+    body {
+        flex-direction: column;
+        padding: 10px;
+    }
+
+    .container {
+        width: 90%;
+        padding: 15px;
+    }
+
+
+
+    .Submit {
+        width: 100%;
+        padding: 15px;
+    }
+
+    textarea {
+        width: 100%;
+    }
+
+    h2 {
+        font-size: 1.5rem;
+    }
+
+    span {
+        font-size: 18px;
+    }
+
+    p {
+        font-size: 16px;
+    }
+}
+
+.radio-label {
+    background-color: #BFA75D;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.2s;
+    margin-right: 10px;
+    display: inline-block;
+    font-size: 1.1rem;
+}
+
+.radio-label:hover {
+    background-color: #e0a300;
+    transform: scale(1.05);
+}
+
+input[type="radio"] {
+    display: none;
+}
+
+input[type="radio"]:checked + .radio-label {
+    background-color: #f5b301;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+}
+
+.highlight-text {
+    color: #f5b301;
+}
+
+.rating input:checked + .star-label:hover,
+.rating input:checked + .star-label:hover ~ .star-label {
+    color: #f5b301;
+}
+
+.rating {
+    display: flex;
+    justify-content: flex-start;
+}
+
+.rating input {
+    display: none;
+}
+
+.star-label {
+    font-size: 3.5rem;
+    color: #ccc;
+    cursor: pointer;
+    transition: color 0.2s;
+}
+
+.rating:hover .star-label {
+    color: #f5b301;
+}
+
+.star-label:hover,
+.star-label:hover ~ .star-label {
+    color: #f5b301;
+}
+
+.rating input:checked ~ .star-label {
+    color: #f5b301;
+}
+
+.rating input:checked + .star-label:hover,
+.rating input:checked + .star-label:hover ~ .star-label {
+    color: #f5b301;
+}
