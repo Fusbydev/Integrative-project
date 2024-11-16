@@ -4,6 +4,7 @@ use App\Http\Controllers\RoomController;
 use App\Http\Controllers\GuestController;
 use App\Http\Controllers\BookingController;
 use App\Http\Controllers\IncomeTrackerController;
+use App\Http\Controllers\FeedbackController;
 use Illuminate\Support\Facades\Route;
 use App\Models\Room;
 use App\Models\Guest;
@@ -23,6 +24,7 @@ Route::view('/book-now', 'categories.book-now');
 Route::view('/privacy-policy', 'categories.privacy-policy');
 Route::get('/view-booking', [BookingController::class, 'showBooking']);
 Route::post('/add-income', [IncomeTrackerController::class, 'addincome']);
+Route::post('/feedback', [FeedbackController::class, 'store'])->name('feedback.store');
 // Route for rooms
 Route::get('/rooms', [RoomController::class, 'index']);
 Route::post('/submit-guest-info', [GuestController::class, 'store']);
@@ -40,4 +42,8 @@ Route::get('/admincit301_laraviel_suite', function() {
     $incomeTracker = IncomeTracker::all();
     return view('categories.admincit301_laraviel_suite', compact('rooms', 'guests', 'totalRooms', 'totalGuests', 'totalGuestPayments', 'incomeTracker'));
 });
+
+Route::get('/index', [GuestController::class, 'index'])->name('index');
+
+Route::get('/', [GuestController::class, 'index']);
 
