@@ -14,9 +14,15 @@ class GuestController extends Controller
      */
     public function index()
     {
-        //
+        $guests = Guest::all(); // Fetch all guest records
+        return view('categories.admincit301_laraviel_suite', compact('guests')); // Pass the guests to the view
     }
 
+    public function totalCustomer() {
+        $totalGuest = Guest::count(); // Count total number of guests
+        return view('categories.admincit301_laraviel_suite', compact('totalGuest')); // Pass the totalGuest to the view
+    }
+    
     /**
      * Show the form for creating a new resource.
      */
@@ -102,6 +108,13 @@ class GuestController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $guest = Guest::find($id);
+
+        if ($guest) {
+            $guest->delete();
+            return redirect()->back()->with('success', 'Guest deleted successfully');
+        }
+
+        return redirect()->back()->with('error', 'Guest not found');
     }
 }

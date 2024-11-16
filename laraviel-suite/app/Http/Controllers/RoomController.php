@@ -19,6 +19,12 @@ class RoomController extends Controller
         }
     }
 
+    public function adminRoom() {
+            $rooms = Room::all(); // Fetch all room records
+            return view('categories.admincit301_laraviel_suite', ['rooms' => $rooms]);
+        
+    }
+
     /**
      * Show the form for creating a new resource.
      */
@@ -64,6 +70,13 @@ class RoomController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $room = Room::find($id);
+
+        if ($room) {
+            $room->delete();
+            return redirect()->back()->with('success', 'room deleted successfully');
+        }
+
+        return redirect()->back()->with('error', 'room not found');
     }
 }

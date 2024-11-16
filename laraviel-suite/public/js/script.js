@@ -340,12 +340,39 @@ document.addEventListener("DOMContentLoaded", function () {
                 data.errors
                     ? console.log("Validation errors:", data.errors)
                     : alert("Check your email for a detailed receipt and tracking information for your stay. We're looking forward to hosting you!")
-            )
+                )
             .catch(console.error);
-
         console.log(guestData);
+
+        const incomeData = {
+            customer_name: guestData.lastname,
+            availed_service: "booking reservation",
+            price: guestData.priceTotal,
+        };
+    
+        fetch("/add-income", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+                Accept: "application/json",
+                "X-CSRF-TOKEN": document
+                    .querySelector('meta[name="csrf-token"]')
+                    .getAttribute("content"),
+            },
+            body: JSON.stringify(incomeData),
+        })
+            .then((response) => response.json())
+            .then((data) => {
+                if (data.success) {
+                    
+                } else {
+                    console.error("Error:", data.message);
+                }
+            })
+            .catch(console.error);
     }
 
+    
     // Initialize calendars
     generateCalendar(
         currentYear,
