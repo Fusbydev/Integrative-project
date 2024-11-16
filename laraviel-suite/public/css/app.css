@@ -50,6 +50,16 @@ body {
     color: #FEF3E2;
     font-family: 'karla';
 }
+.nav-link:hover {
+    color: #FFB000;
+}
+
+a.footer-link p:hover {
+    color: #FFB000!important;
+}
+li a.footer-link:hover {
+    text-decoration: none;
+}
 .logo-name {
     color: #FEF3E2;
 }
@@ -219,9 +229,29 @@ img {
     background-size: cover;
     background-position: center;
     background-attachment: fixed;
-    position: relative; 
-    overflow: hidden; 
+    position: relative;
+    overflow: hidden;
 }
+
+/* Pseudo-element for opacity overlay */
+.accomodation-bg::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); /* Adjust color and opacity here */
+    z-index: 1;
+    pointer-events: none; /* Allows clicks to pass through if necessary */
+}
+
+/* Ensures other content is above the overlay */
+.accomodation-bg * {
+    position: relative;
+    z-index: 2;
+}
+
 
 body::before {
     content: "";
@@ -765,4 +795,284 @@ hr {
 .footer a:hover {
     color: #FEF3E2; /* Change color on hover */
     text-decoration: underline; /* Optional: Add underline on hover */
+}
+
+.page-item .page-link {
+    color: #FEF3E2; /* Primary color */
+    background-color: transparent; /* Background color for links */
+    border: 1px solid #FFB000;
+    transition: background-color 0.3s, color 0.3s;
+    cursor: pointer;
+}
+/* Active page color */
+.page-item.active .page-link {
+    background-color: #FFB000; /* Active background color */
+    color: #1E140C; /* Active text color */
+}
+/* Hover effect */
+.page-item .page-link:hover {
+    background-color: #FFB000; /* Light gray on hover */
+    color: #1E140C; /* Keep text primary color */
+}
+/* Disabled state color */
+.page-item.disabled .page-link {
+    color: #ccc; /* Gray color for disabled state */
+}
+
+select#currentMonthDropdown {
+    border-color: #FFB000;
+    color: #FFB000;
+    background: transparent;
+}
+select#nextMonthDropdown {
+    border-color:#FFB000;
+    color: #FFB000;
+    background: transparent;
+}
+.card-book {
+    border:none;
+    text-decoration: none;
+    cursor: pointer;
+    background: transparent;
+    font-size: 16px;
+    font-size: 'aboreto';
+    color: #FEF3E2;
+    transition: 0.5s;
+}
+.card-book:hover {
+    color: #FFB000;
+}
+/* Sidebar Styling */
+.sidebar {
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 250px;
+    background-color: #343a40;
+    padding-top: 20px;
+    z-index: 999;
+    transition: 0.3s;
+}
+
+.sidebar .nav-link {
+    color: white;
+    padding: 10px 15px;
+}
+
+.sidebar .nav-link.active {
+    background-color: #007bff;
+}
+
+.sidebar .nav-link:hover {
+    background-color: #495057;
+}
+
+.sidebar .nav-item {
+    border-bottom: 1px solid #6c757d;
+}
+
+.sidebar .nav-item:last-child {
+    border-bottom: none;
+}
+
+.sidebar .nav-link i {
+    margin-right: 10px;
+}
+
+/* Main content area */
+.main-content {
+    margin-left: 250px;
+    padding-top: 50px;
+    padding-right: 20px;
+}
+
+/* Dashboard Stats Styling */
+.dashboard-stats {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    margin-top: 30px;
+}
+
+.stat-card {
+    background-color: #007bff;
+    color: white;
+    padding: 20px;
+    border-radius: 5px;
+    text-align: center;
+    width: 100%;
+    margin: 10px 0;
+    flex-basis: 30%;
+    transition: transform 0.3s;
+}
+
+.stat-card h5 {
+    font-size: 1.5em;
+}
+
+.stat-card p {
+    font-size: 1.2em;
+}
+
+/* Responsive Sidebar */
+@media (max-width: 992px) {
+    .sidebar {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        z-index: 999;
+        display: none;
+    }
+    .sidebar.active {
+        display: block;
+    }
+    .main-content {
+        margin-left: 0;
+    }
+}
+
+/* Calendar Styling */
+#calendar {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    grid-gap: 5px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.calendar-header {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    background-color: #f8f9fa;
+    text-align: center;
+    padding: 5px;
+    font-weight: bold;
+}
+
+.day {
+    padding: 20px;
+    text-align: center;
+    cursor: pointer;
+    background-color: #f8f9fa;
+    border-radius: 5px;
+}
+
+.day:hover {
+    background-color: #007bff;
+    color: white;
+}
+
+.booked {
+    background-color: #dc3545;
+    color: white;
+}
+
+/* Booking Information */
+.booking-info {
+    background-color: #007bff;
+    color: white;
+    padding: 10px;
+    margin-top: 20px;
+    border-radius: 5px;
+}
+
+/* Room Management */
+.room-management {
+    margin-top: 20px;
+}
+
+.room-management table {
+    width: 100%;
+    margin-top: 20px;
+}
+
+.room-management table th, .room-management table td {
+    padding: 10px;
+    text-align: center;
+}
+
+.room-management .btn {
+    margin-top: 10px;
+
+
+/* Primary color for pagination links */
+.page-item .page-link {
+    color: #FEF3E2; /* Primary color */
+    background-color: transparent; /* Background color for links */
+    border: 1px solid #FFB000;
+    transition: background-color 0.3s, color 0.3s;
+    cursor: pointer;
+
+}
+
+/* Active page color */
+.page-item.active .page-link {
+    background-color: #FFB000; /* Active background color */
+    color: #1E140C; /* Active text color */
+}
+
+/* Hover effect */
+.page-item .page-link:hover {
+    background-color: #FFB000; /* Light gray on hover */
+    color: #1E140C; /* Keep text primary color */
+}
+
+/* Disabled state color */
+.page-item.disabled .page-link {
+    color: #ccc; /* Gray color for disabled state */
+}
+
+.card-book {
+    border:none;
+    text-decoration: none;
+    cursor: pointer;
+    background: transparent;
+    font-size: 16px;
+    font-size: 'aboreto';
+    color: #FEF3E2;
+    transition: 0.5s;
+}
+
+.card-book:hover {
+    color: #FFB000;
+}
+
+.feed1 {
+    display: flex;
+    flex-direction: column; /* Stack content vertically */
+    justify-content: space-between;
+    height: 100%;
+    padding: 20px; /* Adjust as needed */
+    border: 1px solid #ddd; /* Optional for styling */
+}
+
+.feed1 p {
+    flex: 1; /* Takes up available space */
+}
+
+.feed1 i {
+    margin-top: auto; /* Pushes icons to the bottom */
+    color: #FFB000; /* Adjust color as needed */
+    font-size: 1.2em; /* Adjust size as needed */
+}
+
+select#currentMonthDropdown {
+    border-color: #FFB000;
+    color: #FFB000;
+    background: transparent;
+}
+
+select#nextMonthDropdown {
+    border-color:#FFB000;
+    color: #FFB000;
+    background: transparent;
+}
+.carousel-indicators [data-bs-target] {
+    background-color: #FEF3E2;
+}
+.carousel-indicators {
+    margin-bottom: 0;
+}
 }

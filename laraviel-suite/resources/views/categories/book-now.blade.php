@@ -15,7 +15,7 @@
                     <div class="circle light">
                         <h1>1</h1>
                     </div>
-                    <p class="step-label">Check-in and Check-out</p>
+                    <p class="step-label">Pick a Date</p>
                 </div>
                 <div class="line"></div>
                 <div class="step">
@@ -80,7 +80,7 @@
         </div>
         <table id="nextMonthCalendar" class="table table-borderless table-custom"></table>
     </div>
-</div>
+
 
         </div>
     </div>
@@ -90,6 +90,16 @@
             <div class="col-12 col-md-9 text-center">
                 <div class="row justify-content-center book-room">
                     <!-- Dynamic adding of rooms -->
+
+                </div>
+                <div class="row mt-4">
+                    <div class="col text-end">
+                        <nav aria-label="Page navigation example">
+                            <ul class="pagination justify-content-center">
+                                
+                            </ul>
+                        </nav>
+                    </div>
                 </div>
                 <input type="hidden" id="totalNightsInput" name="totalNights" value="">
             </div>
@@ -118,15 +128,7 @@
             </div>
         </div>
         <!-- Add pagination here at the bottom of accomodation-page -->
-        <div class="row mt-4">
-            <div class="col text-end">
-                <nav aria-label="Page navigation example">
-                    <ul class="pagination justify-content-center">
-                        
-                    </ul>
-                </nav>
-            </div>
-        </div>
+        
     </div>
 </div>
 

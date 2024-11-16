@@ -469,3 +469,11 @@ body {
 .information span {
     color: white;
 }
+
+.card img {
+    transition: 0.5s;
+}
+
+.card img:hover {
+    scale: 105%;
+}
