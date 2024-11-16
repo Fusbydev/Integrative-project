@@ -42,7 +42,7 @@
         </div>
         <div class="card">
           <h3>Total Income</h3>
-          <p>Php {{ $totalGuestPayments }}</p>
+          <p>Php {{ number_format($totalGuestPayments, 2) }}</p>
         </div>
       </div>
     </section>
@@ -162,20 +162,29 @@
     </section>
 
 
-    <div class="income-tracker">
-      <h2>Income Tracker</h2>
-      <table>
+    <div class="income-tracker container-fluid" id="income-tracker">
+    <h2>Income Tracker</h2>
+    <table>
         <thead>
-          <tr>
-            <th>Customer Name</th>
-            <th>Availed Services</th> <!--booking price, and room service, foods n shits-->
-            <th>Price</th>
-          </tr>
+            <tr>
+                <th  class="text-center">Customer Name</th>
+                <th  class="text-center">Availed Services</th>
+                <th  class="text-center">Price</th>
+            </tr>
         </thead>
         <tbody id="incomeList">
-          <!-- Dynamic rows will be inserted here -->
+            <!-- Loop through the incomeTracker data -->
+            @foreach($incomeTracker as $income)
+                <tr>
+                    <td  class="text-center">{{ $income->customer_name }}</td>
+                    <td  class="text-center">{{ $income->availed_service }}</td>
+                    <td  class="text-center">Php {{ number_format($income->price, 2) }}</td>
+                </tr>
+            @endforeach
         </tbody>
-      </table>
+    </table>
+</div>
+
     </div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 
