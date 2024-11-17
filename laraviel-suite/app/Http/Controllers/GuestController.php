@@ -6,7 +6,6 @@ use App\Models\Guest;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\SendReceipt;  // Use your SendReceipt Mailable
-use App\Models\Feedback;
 
 class GuestController extends Controller
 {
@@ -16,8 +15,8 @@ class GuestController extends Controller
     public function index()
     {
         $guests = Guest::all(); // Fetch all guest records
-        $feedbacks = Feedback::latest()->take(10)->get();
-        return view('categories.index', compact('guests', 'feedbacks')); // Pass both guests and feedbacks to the view
+        
+        return view('categories.index', compact('guests')); // Pass both guests and feedbacks to the view
     }
 
     public function totalCustomer() {

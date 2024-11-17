@@ -71,37 +71,38 @@
     <h1 class="feed-text">Client Feedbacks</h1>
     <!-- Carousel Container -->
     <div id="feedbackCarousel" class="carousel slide" data-bs-ride="carousel">
-        <div class="carousel-inner p-2">
-            <!-- Loop over feedbacks and group them into slides -->
-            @php
-                $chunkedFeedbacks = array_chunk($feedbacks->toArray(), 4); // Split feedbacks into chunks of 4
-            @endphp
-            
-            @foreach ($chunkedFeedbacks as $index => $feedbackChunk)
-                <div class="carousel-item {{ $index === 0 ? 'active' : '' }}">
-                    <div class="row justify-content-center">
-                        @foreach ($feedbackChunk as $feedback)
-                            <div class="col-md-3 feedback-card d-flex flex-column p-3">
-                                <p>{{ $feedback['feedback'] }}</p>
-                                
-                                <!-- Stars Section with Bootstrap classes to position it at the bottom -->
-                                <div class="stars mt-auto">
-                                    @for ($i = 0; $i < $feedback['rating']; $i++)
-                                        <i class="bi bi-star-fill"></i>
-                                    @endfor
-                                    @for ($i = $feedback['rating']; $i < 5; $i++)
-                                        <i class="bi bi-star"></i>
-                                    @endfor
-                                </div>
-                                
-                                <!-- Submitted by Section -->
-                                <p class="mt-2"><strong>Submitted by:</strong> {{ $feedback['anonymous'] ? 'Anonymous' : $feedback['guest_id'] }}</p>
+    <div class="carousel-inner p-2">
+        <!-- Loop over feedbacks and group them into slides -->
+        @php
+            $chunkedFeedbacks = array_chunk($feedbacks->toArray(), 4); // Split feedbacks into chunks of 4
+        @endphp
+        
+        @foreach ($chunkedFeedbacks as $index => $feedbackChunk)
+            <div class="carousel-item {{ $index === 0 ? 'active' : '' }}">
+                <div class="row justify-content-center">
+                    @foreach ($feedbackChunk as $feedback)
+                        <div class="col-md-3 feedback-card d-flex flex-column p-3">
+                            <p>{{ $feedback['feedback'] }}</p>
+                            
+                            <!-- Stars Section with Bootstrap classes to position it at the bottom -->
+                            <div class="stars mt-auto">
+                                @for ($i = 0; $i < $feedback['rating']; $i++)
+                                    <i class="bi bi-star-fill"></i>
+                                @endfor
+                                @for ($i = $feedback['rating']; $i < 5; $i++)
+                                    <i class="bi bi-star"></i>
+                                @endfor
                             </div>
-                        @endforeach
-                    </div>
+                            
+                            <!-- Submitted by Section -->
+                            <p class="mt-2"><strong>Submitted by:</strong> {{ $feedback['anonymous'] ? 'Anonymous' : $feedback['guest_id'] }}</p>
+                        </div>
+                    @endforeach
                 </div>
-            @endforeach
-        </div>
+            </div>
+        @endforeach
+    </div>
+</div>
 
         <!-- Carousel Indicators (dots) -->
         

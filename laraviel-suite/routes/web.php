@@ -8,15 +8,16 @@ use App\Http\Controllers\FeedbackController;
 use Illuminate\Support\Facades\Route;
 use App\Models\Room;
 use App\Models\Guest;
+use App\Models\Feedback;
 use App\Models\IncomeTracker;
 
 Route::get('/', function () {
-    return view('categories.index');
+    $feedbacks = Feedback::latest()->take(10)->get();
+    return view('categories.index', compact('feedbacks'));
 });
 
 // Define routes for your views
 Route::view('/accommodation', 'categories.accommodation');
-Route::view('/', 'categories.index');
 Route::view('/offers', 'categories.offers');
 Route::view('/about', 'categories.about');
 Route::view('/book-now', 'categories.book-now');
@@ -43,7 +44,4 @@ Route::get('/admincit301_laraviel_suite', function() {
     return view('categories.admincit301_laraviel_suite', compact('rooms', 'guests', 'totalRooms', 'totalGuests', 'totalGuestPayments', 'incomeTracker'));
 });
 
-Route::get('/index', [GuestController::class, 'index'])->name('index');
-
-Route::get('/', [GuestController::class, 'index']);
 

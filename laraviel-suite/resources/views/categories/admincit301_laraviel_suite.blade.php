@@ -20,6 +20,7 @@
     <div>
       <a href="#dashboard" onclick="setActive(this)">Dashboard</a>
       <a href="#customer" onclick="setActive(this)">Customer</a>
+      <a href="#room-service" onclick="setActive(this)">Room Service</a>
       <a href="#calendar" onclick="setActive(this)">Calendar</a>
       <a href="#room-management" onclick="setActive(this)">Room Management</a>
       <a href="#income-tracker" onclick="setActive(this)">Income Tracker</a>
@@ -96,6 +97,12 @@
           </tbody>
         </table>
       </div>
+    </section>
+
+    <section id="room-service"
+      <p>
+        this container is for adding room services availed by the guests, add a checkbox for thre services and an input for booking id and a add button to add the services in inbcome tracker
+      </p>
     </section>
 
     <!-- Calendar Section -->
@@ -254,41 +261,6 @@
         }
       }
 
-      function showCustomerBookings(day) {
-        const bookingsSection = document.getElementById("customerBookings");
-        bookingsSection.style.display = "block";
-
-        const tableBody = document.getElementById("customerBookingsTable");
-        tableBody.innerHTML = ""; // Clear previous data
-
-        // Fetch customer bookings for the selected day
-        const sampleBookings = [{
-            firstName: "John",
-            lastName: "Doe",
-            roomNumber: 101,
-            checkOutDate: "2024-11-10"
-          },
-          {
-            firstName: "Jane",
-            lastName: "Smith",
-            roomNumber: 102,
-            checkOutDate: "2024-11-12"
-          }
-        ];
-
-        sampleBookings.forEach(booking => {
-          const row = document.createElement("tr");
-          row.innerHTML = `<td>${booking.firstName}</td><td>${booking.lastName}</td><td>${booking.roomNumber}</td><td>${booking.checkOutDate}</td>`;
-          tableBody.appendChild(row);
-        });
-      }
-
-      function hideBookings() {
-        const bookingsSection = document.getElementById("customerBookings");
-        bookingsSection.style.display = "none";
-      }
-
-      // Initial render
       renderCalendar();
 
     </script>
