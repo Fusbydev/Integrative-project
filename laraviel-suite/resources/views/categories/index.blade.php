@@ -68,24 +68,52 @@
         </div>
     </div>
     <div class="container-fluid feedbacks text-center">
-        <h1 class="feed-text">Client Feedbacks</h1>
-        <div class="row justify-content-center">
-            @foreach ($feedbacks as $feedback)
-                <div class="feedback-card">
-                    <p>{{ $feedback->feedback }}</p>
-                    <div class="stars">
-                        @for ($i = 0; $i < $feedback->rating; $i++)
-                            <i class="bi bi-star-fill"></i>
-                        @endfor
-                        @for ($i = $feedback->rating; $i < 5; $i++)
-                            <i class="bi bi-star"></i>
-                        @endfor
+    <h1 class="feed-text">Client Feedbacks</h1>
+    <!-- Carousel Container -->
+    <div id="feedbackCarousel" class="carousel slide" data-bs-ride="carousel">
+        <div class="carousel-inner p-2">
+            <!-- Loop over feedbacks and group them into slides -->
+            @php
+                $chunkedFeedbacks = array_chunk($feedbacks->toArray(), 4); // Split feedbacks into chunks of 4
+            @endphp
+            
+            @foreach ($chunkedFeedbacks as $index => $feedbackChunk)
+                <div class="carousel-item {{ $index === 0 ? 'active' : '' }}">
+                    <div class="row justify-content-center">
+                        @foreach ($feedbackChunk as $feedback)
+                            <div class="col-md-3 feedback-card d-flex flex-column p-3">
+                                <p>{{ $feedback['feedback'] }}</p>
+                                
+                                <!-- Stars Section with Bootstrap classes to position it at the bottom -->
+                                <div class="stars mt-auto">
+                                    @for ($i = 0; $i < $feedback['rating']; $i++)
+                                        <i class="bi bi-star-fill"></i>
+                                    @endfor
+                                    @for ($i = $feedback['rating']; $i < 5; $i++)
+                                        <i class="bi bi-star"></i>
+                                    @endfor
+                                </div>
+                                
+                                <!-- Submitted by Section -->
+                                <p class="mt-2"><strong>Submitted by:</strong> {{ $feedback['anonymous'] ? 'Anonymous' : $feedback['guest_id'] }}</p>
+                            </div>
+                        @endforeach
                     </div>
-                    <p><strong>Submitted by:</strong> {{ $feedback->anonymous ? 'Anonymous' : $feedback->guest_id }}</p>
                 </div>
             @endforeach
         </div>
+
+        <!-- Carousel Indicators (dots) -->
+        
     </div>
+    <div class="carousel-indicators">
+            @foreach ($chunkedFeedbacks as $index => $feedbackChunk)
+                <button type="button" data-bs-target="#feedbackCarousel" data-bs-slide-to="{{ $index }}" class="{{ $index === 0 ? 'active' : '' }}" aria-current="true" aria-label="Slide {{ $index + 1 }}"></button>
+            @endforeach
+        </div>
+</div>
+
+
 </div>
 
 </div>

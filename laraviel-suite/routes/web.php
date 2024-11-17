@@ -16,7 +16,7 @@ Route::get('/', function () {
 
 // Define routes for your views
 Route::view('/accommodation', 'categories.accommodation');
-Route::view('/home', 'categories.index');
+Route::view('/', 'categories.index');
 Route::view('/offers', 'categories.offers');
 Route::view('/about', 'categories.about');
 Route::view('/book-now', 'categories.book-now');

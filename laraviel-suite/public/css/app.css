@@ -455,21 +455,16 @@ h2.section-title {
     flex: 1; /* Ensures all cards are the same size */
 }
 
-.feedback-card:hover {
-    transform: scale(1.05); /* Slightly enlarge on hover */
-}
 
 .feedback-card p {
     font-size: 14px; /* Adjust font size */
     margin-bottom: 10px; /* Space below the paragraph */
 }
 
-.stars {
-    color: #FFB000; /* Color for filled stars */
-}
 
 .stars i {
     margin-right: 2px; /* Space between stars */
+    color: #FFB000;
 }
 
 .feed-text {
