@@ -99,7 +99,7 @@
       </div>
     </section>
 
-    <section id="room-service"
+    <section id="room-service" class="bg-warning p-4 rounded-4 shadow my-2">
       <p>
         this container is for adding room services availed by the guests, add a checkbox for thre services and an input for booking id and a add button to add the services in inbcome tracker
       </p>
