@@ -23,6 +23,6 @@ class FeedbackController extends Controller
             'guest_id' => $validated['guest_id'],
         ]);
 
-        return redirect()->back()->with('success', 'Thank you for your feedback!');
+        return redirect('/');
     }
 } 
