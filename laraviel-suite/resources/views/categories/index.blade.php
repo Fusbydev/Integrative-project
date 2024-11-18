@@ -95,7 +95,16 @@
                             </div>
                             
                             <!-- Submitted by Section -->
-                            <p class="mt-2"><strong>Submitted by:</strong> {{ $feedback['anonymous'] ? 'Anonymous' : $feedback['guest_id'] }}</p>
+                            <p class="mt-2"><strong>Submitted by:</strong> 
+                                @if($feedback['anonymous'])
+                                    Anonymous
+                                @else
+                                    @php
+                                        $guest = \App\Models\Guest::find($feedback['guest_id']);
+                                    @endphp
+                                    {{ $guest ? $guest->lastname : 'Unknown' }}
+                                @endif
+                            </p>
                         </div>
                     @endforeach
                 </div>

@@ -1,3 +1,4 @@
+/* General styles */
 body {
     font-family: Arial, sans-serif;
     background-color: #1E140C;
@@ -5,15 +6,15 @@ body {
     padding: 20px;
     display: flex;
     justify-content: center;
-    align-items: center;
-    height: 100vh;
+    align-items: flex-start;
 }
 
 .container {
     max-width: 800px;
+    width: 100%;
     margin: auto;
     background: #382614;
-    padding: 30px;
+    padding: 20px;
     border-radius: 8px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
@@ -27,8 +28,7 @@ h2 {
 ul {
     list-style-type: none;
     padding: 0;
-    text-align: left !important;
-    padding-left: 20px;
+    text-align: left;
 }
 
 li {
@@ -39,94 +39,62 @@ strong {
     color: #ffffff;
 }
 
+/* Stay experience styles */
 .stay-experience {
     margin-top: 20px;
+    text-align: center;
+}
+
+.stay-experience p {
+    color: white;
+    font-size: 1.5rem;
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 0 15px;
 }
 
 textarea {
     width: 90%;
-    height: 60px;
-    margin: 10px auto;
-    border-radius: 4px;
+    min-height: 150px;
+    margin: 20px auto;
+    border-radius: 8px;
     background-color: #BFA75D;
     color: #1E140C;
     display: block;
+    padding: 15px;
+    font-size: 1.1rem;
+    resize: vertical;
 }
 
-.rating {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin-top: 10px;
-    margin-bottom: 20px;
-}
-
-.rating-title {
-    color: #ffffff;
-    padding-bottom: 10px;
-    text-align: center;
-}
-
+/* Rating styles */
 .stars {
     display: flex;
+    flex-direction: row-reverse; /* Visual reverse */
     justify-content: center;
-    gap: 15px;
-    margin-bottom: 20px;
+    gap: 5px;
 }
 
 .rating input {
     display: none;
 }
 
-.rating label {
-    font-size: 3.5rem;
+.star-label {
+    font-size: 3rem;
     color: #ccc;
     cursor: pointer;
-    transition: color 0.2s;
+    transition: color 0.2s ease-in-out;
 }
 
-.rating input:checked ~ label {
+.stars label:hover,
+.stars label:hover ~ .star-label {
     color: #f5b301;
 }
 
-.rating label:hover,
-.rating label:hover ~ label {
+.rating input:checked ~ .star-label {
     color: #f5b301;
 }
 
-.rating input:checked + label:hover,
-.rating input:checked + label:hover ~ label {
-    color: #f5b301;
-}
-
-.rating label:hover ~ label {
-    color: #ccc;
-}
-
-body {
-    font-family: Arial, sans-serif;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin: 0;
-    height: 100vh;
-    background-color: #1E140C;
-}
-.container{
-    background-color: #382614;
-    border-radius: 5px;
-    padding: 30px;
-}
-span{
-    color: white;
-    font-size: 20px;
-    font-weight: bold;
-}
-p{
-    text-align: center;
-    color: rgb(255, 255, 255);
-}
-
+/* Submit button styles */
 .Submit {
     background-color: #f2d98689;
     color: rgb(255, 255, 255);
@@ -137,42 +105,30 @@ p{
     font-size: 20px;
     transition: background-color 0.3s;
     display: block;
-    margin: 0 auto;
+    margin: 20px auto;
     text-align: center;
-    outline: 2px solid rgb(255, 255, 255);
-    width: 30%;
-    border-radius: 20px;
+    width: auto;
 }
 
 .Submit:hover {
     background-color: #e0a300;
 }
 
-hr{
-    background-color: #f5b301;
-}
-
-.right {
-    text-align: right;
-    list-style-type: none;
-    padding-right: 250px;
-    margin-top:-50px ;
-    padding-bottom: 50px;
-   
-}
-
+/* Responsive styles */
 @media (max-width: 768px) {
     body {
-        flex-direction: column;
         padding: 10px;
+        align-items: flex-start;
     }
 
     .container {
-        width: 90%;
+        width: 100%;
         padding: 15px;
     }
 
-
+    h2 {
+        font-size: 1.5rem;
+    }
 
     .Submit {
         width: 100%;
@@ -183,84 +139,124 @@ hr{
         width: 100%;
     }
 
-    h2 {
-        font-size: 1.5rem;
+    .stay-experience p {
+        font-size: 1.2rem;
+        padding: 0 10px;
     }
 
-    span {
-        font-size: 18px;
+    textarea {
+        width: 95%;
+        min-height: 120px;
+        font-size: 1rem;
     }
 
-    p {
-        font-size: 16px;
+    .container {
+        width: 95%;
+        margin: 10px auto;
+        padding: 15px;
     }
+}
+
+@media (max-width: 480px) {
+    .stay-experience p {
+        font-size: 1.1rem;
+    }
+
+    textarea {
+        width: 100%;
+        min-height: 100px;
+    }
+
+    .container {
+        width: 100%;
+        margin: 5px auto;
+        padding: 10px;
+    }
+}
+
+/* Modify these sections to change color and font size */
+.stay-experience p {
+    color: white;
+    font-size: 1.5rem;;
 }
 
 .radio-label {
-    background-color: #BFA75D;
     color: white;
-    padding: 10px 20px;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s, transform 0.2s;
-    margin-right: 10px;
-    display: inline-block;
-    font-size: 1.1rem;
+    font-size: 1.2rem;
 }
 
-.radio-label:hover {
-    background-color: #e0a300;
-    transform: scale(1.05);
+.rating-title {
+    color: white;
+    font-size: 1.5rem;
 }
 
-input[type="radio"] {
-    display: none;
-}
-
-input[type="radio"]:checked + .radio-label {
-    background-color: #f5b301;
-    box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
-}
-
+/* Make the booking details and billing/payment details in color #FFB000 */
 .highlight-text {
-    color: #f5b301;
+    color: #FFB000;
+    font-size: 1.1rem; /* Adjust size as needed */
 }
 
-.rating input:checked + .star-label:hover,
-.rating input:checked + .star-label:hover ~ .star-label {
-    color: #f5b301;
+/* Add responsive font-size adjustment */
+@media (max-width: 768px) {
+    .stay-experience p, .radio-label, .rating-title {
+        font-size: 1.2rem;
+    }
+
+    .highlight-text {
+        font-size: 1rem;
+    }
 }
 
-.rating {
-    display: flex;
-    justify-content: flex-start;
+/* Additional responsive styles */
+.booking-details,
+.stay-progress,
+.billing-payment {
+    padding: 15px;
+    margin-bottom: 20px;
 }
 
-.rating input {
-    display: none;
+.stars {
+    flex-wrap: wrap; /* Allow stars to wrap on very small screens */
+    gap: 10px;
 }
 
 .star-label {
-    font-size: 3.5rem;
-    color: #ccc;
-    cursor: pointer;
-    transition: color 0.2s;
+    font-size: 2.5rem; /* Slightly smaller stars */
 }
 
-.rating:hover .star-label {
-    color: #f5b301;
+@media (max-width: 768px) {
+    .star-label {
+        font-size: 2rem;
+    }
+
+    h2 {
+        font-size: 1.3rem;
+        margin-bottom: 15px;
+    }
+
+    .highlight-text {
+        font-size: 0.9rem;
+    }
+
+    /* Adjust radio button layout */
+    div[style*="display: flex; justify-content: center;"] {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .radio-label {
+        font-size: 1rem;
+        margin: 5px 0;
+    }
 }
 
-.star-label:hover,
-.star-label:hover ~ .star-label {
-    color: #f5b301;
-}
+@media (max-width: 480px) {
+    .star-label {
+        font-size: 1.8rem;
+    }
 
-.rating input:checked ~ .star-label {
-    color: #f5b301;
-}
-
-.rating input:checked + .star-label:hover,
-.rating input:checked + .star-label:hover ~ .star-label {
-    color: #f5b301;
+    .Submit {
+        font-size: 16px;
+        padding: 8px 16px;
+    }
 }

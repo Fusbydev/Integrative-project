@@ -15,4 +15,9 @@ class Feedback extends Model
         'anonymous',
         'guest_id',
     ];
+
+    public function guest()
+    {
+        return $this->belongsTo(Guest::class);
+    }
 }
