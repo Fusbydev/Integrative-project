@@ -16,4 +16,8 @@ class Guest extends Model
         'address', 'check_in', 'check_out', 'booked_rooms', 'price_total'
     ];
     
+    public function feedbacks()
+    {
+        return $this->hasMany(Feedback::class);
+    }
 }
