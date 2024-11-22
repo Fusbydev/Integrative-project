@@ -1,4 +1,4 @@
-Integrative Project: Hotel Reservation Management for Laravel Suite with Email
+<h1>Integrative Project: Hotel Reservation Management for Laravel Suite with Email</h1>
 
 STEPS ON HOW TO SETUP:
 
