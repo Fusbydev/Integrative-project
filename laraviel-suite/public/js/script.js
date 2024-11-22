@@ -288,31 +288,25 @@ document.addEventListener("DOMContentLoaded", function () {
         }
 
         const guestData = {
-            bookingId: bookingId,
-            lastname: document.getElementById("lastname").value,
-            firstname: document.getElementById("firstname").value,
-            salutation: document.getElementById("salutation").value,
-            birthdate: document.getElementById("birthdate").value,
-            gender: document.querySelector(".dropdown-toggle.gender")
-                .textContent,
-            guestCount: document.getElementById("guestCount").value,
-            discountOption: document.querySelector(
-                'input[name="discountOption"]:checked'
-            ).value,
-            email: document.getElementById("email").value,
-            contactNumber: document.getElementById("contactNumber").value,
-            address: document.getElementById("address").value,
-            checkIn: cin,
-            checkOut: cout,
-            bookedRooms: $(".booked-rooms")
-                .text()
-                .trim()
-                .replace(/(\d{4,}\.\d{2})(?=\w)/g, "$1 "),
-            priceTotal: parseFloat(
-                $("span.totalPriceDisplay").text().replace("Php", "").trim()
-            ).toFixed(2),
+            bookingId: bookingId || "", // Ensure bookingId is a string
+            lastname: document.getElementById("lastname")?.value.trim() || "",
+            firstname: document.getElementById("firstname")?.value.trim() || "",
+            salutation: document.getElementById("salutation")?.value || "",
+            birthdate: document.getElementById("birthdate")?.value || "",
+            gender: document.querySelector(".dropdown-toggle.gender")?.textContent.trim() || "",
+            guestCount: parseInt(document.getElementById("guestCount")?.value, 10) || 0,
+            discountOption: document.querySelector('input[name="discountOption"]:checked')?.value || "None",
+            email: document.getElementById("email")?.value.trim() || "",
+            contactNumber: document.getElementById("contactNumber")?.value.trim() || "",
+            address: document.getElementById("address")?.value.trim() || "",
+            checkIn: cin || "", // Ensure `cin` is a valid date string
+            checkOut: cout || "", // Ensure `cout` is a valid date string
+            bookedRooms: Array.isArray($(".booked-rooms").text().trim().match(/(?<=\d{4,}\.\d{2})\w+/g)) 
+                ? $(".booked-rooms").text().trim().match(/(?<=\d{4,}\.\d{2})\w+/g).join(",") 
+                : "", // Convert array to comma-separated string
+            priceTotal: parseFloat($("span.totalPriceDisplay").text().replace("Php", "").trim()) || 0, // Ensure this is a valid number
         };
-
+        
         $(".greeting").text(
             `Dear ${guestData.salutation} ${guestData.lastname},`
         );
