@@ -5,7 +5,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-  <title>admin dashboard</title>
+  <title>CASHIER dashboard</title>
   <link href="{{ asset('css/admin.css') }}" rel="stylesheet">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
 </head>
@@ -18,7 +18,7 @@
   <!-- Sidebar -->
   <div class="sidebar" id="mySidebar">
     <div>
-      <a href="#dashboard" onclick="setActive(this)">Dashboard</a>
+      <a href="#dashboard" onclick="setActive(this)">Cashier Dashboard</a>
       <a href="#customer" onclick="setActive(this)">Customer</a>
       <a href="#room-service" onclick="setActive(this)">Room Service</a>
       <a href="#calendar" onclick="setActive(this)">Calendar</a>
