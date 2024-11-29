@@ -24,6 +24,10 @@
       <a href="#calendar" onclick="setActive(this)">Calendar</a>
       <a href="#room-management" onclick="setActive(this)">Room Management</a>
       <a href="#income-tracker" onclick="setActive(this)">Income Tracker</a>
+      <form method="POST" action="{{ route('logout') }}" class="d-inline">
+          @csrf
+          <button type="submit" class="nav-link btn btn-link" style="color: red; text-decoration: none;">Logout</button>
+      </form>
     </div>
   </div>
 
