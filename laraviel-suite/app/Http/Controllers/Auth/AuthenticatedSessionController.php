@@ -51,4 +51,14 @@ class AuthenticatedSessionController extends Controller
 
         return redirect()->intended(route('login', absolute: false));
     }
+    public function registerEmployee(Request $request): RedirectResponse
+    {
+        Auth::guard('web')->logout();
+
+        $request->session()->invalidate();
+
+        $request->session()->regenerateToken();
+
+        return redirect()->intended(route('register', absolute: false));
+    }
 }

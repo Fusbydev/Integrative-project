@@ -23,7 +23,6 @@ body {
     position: fixed;
     transition: transform 0.3s ease, width 0.3s ease;
     overflow-y: auto;
-    padding-top: 60px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -43,7 +42,13 @@ body {
     text-decoration: none;
     transition: background-color 0.3s ease;
 }
-
+.add-employee{
+    display: block;
+    padding: 15px 20px;
+    color: #ecf0f1;
+    text-decoration: none;
+    transition: background-color 0.3s ease;
+}
 .sidebar a:hover {
     background-color: #34495e;
 }

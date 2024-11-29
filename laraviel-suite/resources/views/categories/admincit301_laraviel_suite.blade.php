@@ -16,20 +16,34 @@
   <div class="burger-icon" onclick="toggleSidebar()">&#9776;</div>
 
   <!-- Sidebar -->
-  <div class="sidebar" id="mySidebar">
-    <div>
-      <a href="#dashboard" onclick="setActive(this)">Dashboard</a>
-      <a href="#customer" onclick="setActive(this)">Customer</a>
-      <a href="#room-service" onclick="setActive(this)">Room Service</a>
-      <a href="#calendar" onclick="setActive(this)">Calendar</a>
-      <a href="#room-management" onclick="setActive(this)">Room Management</a>
-      <a href="#income-tracker" onclick="setActive(this)">Income Tracker</a>
-      <form method="POST" action="{{ route('logout') }}" class="d-inline">
-          @csrf
-          <button type="submit" class="nav-link btn btn-link" style="color: red; text-decoration: none;">Logout</button>
-      </form>
+  <div class="sidebar d-flex flex-column" id="mySidebar" style="height: 100vh;">
+    <div class="text-center">
+    <img src="./images/logo.png" alt="" style="width: 100px;">
     </div>
+  <div>
+  <a href="#dashboard" onclick="setActive(this)">Dashboard</a>
+    <a href="#customer" onclick="setActive(this)">Customer</a>
+    <a href="#room-service" onclick="setActive(this)">Room Service</a>
+    <a href="#calendar" onclick="setActive(this)">Calendar</a>
+    <a href="#room-management" onclick="setActive(this)">Room Management</a>
+    <a href="#income-tracker" onclick="setActive(this)">Income Tracker</a>
+    <a href="{{ route('registeremployee') }}" class="add-employee">
+        Add Employee
+    </a>
+  </form>
   </div>
+  <footer class="mt-auto d-flex flex-column justify-content-center align-items-center text-center">
+  <form method="POST" action="{{ route('logout') }}" class="d-inline">
+    @csrf
+    <button type="submit" class="nav-link btn btn-link p-2" style="color: red; text-decoration: none; border: solid red 1px;">
+      <i class="bi bi-box-arrow-right"></i> Logout
+    </button>
+  </form>
+  <p style="font-size: 12px;" class="mt-3">&copy; Laraveil Suite.</p>
+</footer>
+
+</div>
+
 
   <!-- Main Content -->
   <div class="content">
@@ -104,9 +118,12 @@
     </section>
 
     <section id="room-service" class="bg-warning p-4 rounded-4 shadow my-2">
-      <p>
-        this container is for adding room services availed by the guests, add a checkbox for thre services and an input for booking id and a add button to add the services in inbcome tracker
-      </p>
+     <div class="container-fluid">
+      <h2>Room Service</h2>
+      <form action="" method="GET">
+
+      </form>
+     </div>
     </section>
 
     <!-- Calendar Section -->
