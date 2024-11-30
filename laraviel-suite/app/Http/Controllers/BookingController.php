@@ -4,20 +4,29 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Guest;
-
+use App\Models\Service; // Don't forget to include the Service model
 
 class BookingController extends Controller
 {
     public function showBooking(Request $request)
     {
         // Get the booking ID from the query parameter
-        $bookingId = $request->query('bookingId'); // Or $request->input('bookingId')
+        $bookingId = $request->query('bookingId'); // Get bookingId from the URL query string
 
-        // Now you can use the booking ID to fetch the booking details from the 'guests' table
-        $guest = Guest::where('booking_id', $bookingId)->first(); // Adjusted to use 'booking_id' column in 'guests' table
+        // Check if bookingId is empty
+        if (empty($bookingId)) {
+            // Use the password from the session if bookingId is empty
+            $bookingId = session('password');
+        }
 
-    
-        // Return a view with the guest's booking details
-        return view('categories.view_booking', compact('guest'));
+        // Fetch the guest details using the booking ID
+        $guest = Guest::where('booking_id', $bookingId)->first();
+        $avail = Guest::where('booking_id', $bookingId)->with('services')->first();
+
+        // Fetch all services
+        $services = Service::all(); // Retrieve all services from the 'services' table
+
+        // Return the view with both guest details and the services
+        return view('categories.view_booking', compact('guest', 'services', 'avail'));
     }
 }

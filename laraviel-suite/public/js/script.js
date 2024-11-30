@@ -317,7 +317,7 @@ document.addEventListener("DOMContentLoaded", function () {
             Room Type and Room Rates: <br><span>${guestData.bookedRooms}</span>
         `);
         $("span.total-price").text(`Php ${guestData.priceTotal}`);
-
+        console.log(guestData);
         fetch("/submit-guest-info", {
             method: "POST",
             headers: {
@@ -329,6 +329,7 @@ document.addEventListener("DOMContentLoaded", function () {
             },
             body: JSON.stringify(guestData),
         })
+        
             .then((response) => response.json())
             .then((data) =>
                 data.errors
@@ -336,7 +337,6 @@ document.addEventListener("DOMContentLoaded", function () {
                     : alert("Check your email for a detailed receipt and tracking information for your stay. We're looking forward to hosting you!")
                 )
             .catch(console.error);
-        console.log(guestData);
 
         const incomeData = {
             customer_name: guestData.lastname,
@@ -364,6 +364,38 @@ document.addEventListener("DOMContentLoaded", function () {
                 }
             })
             .catch(console.error);
+
+
+        const accountData = {
+            password: guestData.bookingId,
+            name: guestData.lastname,
+            role: 'guest',
+            email: guestData.email
+        };
+
+            fetch("/register", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                    Accept: "application/json",
+                    "X-CSRF-TOKEN": document
+                        .querySelector('meta[name="csrf-token"]')
+                        .getAttribute("content"),
+                },
+                body: JSON.stringify(accountData),
+            })
+                .then((response) => response.json())
+                .then((data) => {
+                    if (data.success) {
+                        
+                    } else {
+                        console.error("Error:", data.message);
+                    }
+                })
+                .catch((error) => {
+                    console.error("Error:", error);
+                    alert("An error occurred while processing your request. Please try again.");
+                })
     }
 
     

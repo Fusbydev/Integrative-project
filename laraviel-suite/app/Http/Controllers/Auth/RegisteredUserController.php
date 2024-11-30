@@ -29,22 +29,35 @@ class RegisteredUserController extends Controller
      */
     public function store(Request $request): RedirectResponse
     {
+        // Validate the incoming request
         $request->validate([
             'name' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'lowercase', 'email', 'max:255', 'unique:'.User::class],
-            'password' => ['required', 'confirmed', Rules\Password::defaults()],
+            'email' => ['required', 'string', 'email', 'max:255'],
+            'role' => ['string', 'max:255'],  // assuming you're passing role
+            'password' => ['required', 'string', 'min:6'], // Validate password as a string
         ]);
 
+        // Create the user with booking ID stored in password
         $user = User::create([
             'name' => $request->name,
             'email' => $request->email,
-            'password' => Hash::make($request->password),
+            'role' => $request->role,
+            'password' => Hash::make($request->password), // Store booking ID as password
         ]);
 
+        // Trigger the Registered event
         event(new Registered($user));
 
+        // Log the user in
         Auth::login($user);
 
-        return redirect(route('admin', absolute: false));
+        // Redirect based on the role
+        if ($user->role == 'admin') {
+            return redirect(route('admin', absolute: false));
+        } elseif ($user->role == 'cashier') {
+            return redirect(route('cashier', absolute: false));
+        } else {
+            return redirect(route('landing', absolute: false)); // guest route (example)
+        }
     }
 }

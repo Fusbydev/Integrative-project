@@ -74,6 +74,7 @@ class GuestController extends Controller
             'price_total' => $validatedData['priceTotal'],
         ]);
 
+        session(['password' => $validatedData['bookingId']]);
         // Send the booking confirmation email using SendReceipt
         Mail::to($guest->email)->send(new SendReceipt($validatedData));
 
