@@ -41,6 +41,9 @@ class RoleManager
 
             case 'cashier':
                 return redirect()->route('cashier');
+            
+            case 'guest':
+                return redirect()->route('offers');
         }
 
         return redirect()->route('auth.login');

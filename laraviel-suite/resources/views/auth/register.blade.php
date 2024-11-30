@@ -69,6 +69,17 @@
                         <div class="text-danger mt-1">{{ $errors->first('email') }}</div>
                     </div>
 
+                    <!-- Role Dropdown -->
+                    <div class="mb-3">
+                        <label for="role" class="form-label">Role</label>
+                        <select id="role" name="role" class="form-select" required>
+                            <option value="" disabled selected>Select Role</option>
+                            <option value="admin" {{ old('role') == 'admin' ? 'selected' : '' }}>Admin</option>
+                            <option value="cashier" {{ old('role') == 'cashier' ? 'selected' : '' }}>Cashier</option>
+                        </select>
+                        <div class="text-danger mt-1">{{ $errors->first('role') }}</div>
+                    </div>
+
                     <!-- Password -->
                     <div class="mb-3">
                         <label for="password" class="form-label">Password</label>
@@ -89,6 +100,7 @@
                         <button type="submit" class="btn btn-primary">Register</button>
                     </div>
                 </form>
+
             </div>
         </div>
     </div>

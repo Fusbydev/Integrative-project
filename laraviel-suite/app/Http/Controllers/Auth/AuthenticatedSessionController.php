@@ -3,10 +3,11 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\Auth\LoginRequest;
+use App\Models\User;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\View\View;
 
 class AuthenticatedSessionController extends Controller
@@ -22,20 +23,43 @@ class AuthenticatedSessionController extends Controller
     /**
      * Handle an incoming authentication request.
      */
-    public function store(LoginRequest $request): RedirectResponse
+    public function store(Request $request): RedirectResponse
     {
-        $request->authenticate();
+        // Validate the incoming request data
+        $credentials = $request->validate([
+            'email' => ['required', 'string', 'email', 'max:255'],
+            'password' => ['required', 'string'],
+        ]);
 
-        $request->session()->regenerate();
 
-        $user = Auth::user();   
+        // Retrieve the user by email (allow duplicates, so we fetch all matches)
+        $users = User::where('email', $credentials['email'])->get();
 
-        if ($user->role == 'admin') {
-            return redirect()->intended(route('admin', absolute: false));
+        // Check each user to see if the password matches
+        foreach ($users as $user) {
+            if (Hash::check($credentials['password'], $user->password)) {
+                // Log in the matched user
+                Auth::login($user);
+
+                $request->session()->regenerate();
+
+                // Redirect based on the user's role
+                if ($user->role == 'admin') {
+                    return redirect()->intended(route('admin', absolute: false));
+                } elseif ($user->role == 'cashier') {
+                    return redirect()->intended(route('cashier', absolute: false));
+                } elseif ($user->role == 'guest') {
+                    $password = $credentials['password'];
+                    session(['password' => $password]);
+                    return redirect()->intended(route('view-booking', absolute: false));
+                }
+            }
         }
-        else {
-            return redirect()->intended(route('cashier', absolute: false));
-        }
+
+        // If no matching user is found, redirect back with an error
+        return back()->withErrors([
+            'email' => 'The provided credentials do not match our records.',
+        ]);
     }
 
     /**
@@ -49,8 +73,9 @@ class AuthenticatedSessionController extends Controller
 
         $request->session()->regenerateToken();
 
-        return redirect()->intended(route('login', absolute: false));
+        return redirect()->intended(route('landing', absolute: false));
     }
+
     public function registerEmployee(Request $request): RedirectResponse
     {
         Auth::guard('web')->logout();

@@ -75,9 +75,11 @@
                 <li><strong>Booked Rooms:</strong> {{ $guest['bookedRooms'] }}</li>
                 <li><strong>Total Price:</strong> Php {{ $guest['priceTotal'] }}</li>
             </ul>
-            
+            <h2>Use this credentials to track your stay</h2>
+            <p>Email Address: {{ $guest['email'] }}</p>
+            <p>Password: {{ $guest['bookingId'] }}</p>
             <p>If you have any questions, feel free to contact us!</p>
-            <a href="http://127.0.0.1:8000/view-booking?bookingId={{ $guest['bookingId'] }}" class="button">View Booking</a>
+            <a href="{{ env('APP_URL') . '/view-booking?bookingId=' . $guest['bookingId'] }}" class="button">View Booking</a>
         </div>
 
         <div class="footer">
