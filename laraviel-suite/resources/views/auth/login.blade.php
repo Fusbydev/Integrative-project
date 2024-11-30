@@ -7,41 +7,57 @@
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <style>
-@import url('https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
-        :root {
-            --text-color:#070504;
-            --background:#fdfbfa;
-            --primary:#cb7c43;
-            --secondary:#ecb187;
-            --accent:#f38f47;
+        body {
+            background-color: #1b120a;
+            color: #FEF3E2;
+            font-family: 'Karla', sans-serif;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
         }
 
-        body {
-            background-color: var(--background);
-            color: var(--text-color);
-            font-family: 'Poppins', sans-serif;
-        }
         form {
-            background-color: var(--secondary);
-            box-shadow: 20px 20px 41px -7px rgba(0,0,0,0.17);
-            -webkit-box-shadow: 20px 20px 41px -7px rgba(0,0,0,0.17);
-            -moz-box-shadow: 20px 20px 41px -7px rgba(0,0,0,0.17);
+            background-color: rgba(68, 46, 26, 0.8);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
             border-radius: 20px;
+            padding: 20px;
         }
-        input {
-            border-radius: 20px!important;
+
+        input, select {
+            border-radius: 20px !important;
+            background-color: transparent;
+            color: #FEF3E2;
         }
+
         a {
-            color: var(--text-color)!important;
+            color: #FFB000 !important;
         }
+
         button {
-            color: var(--text-color)!important;
-            background-color: var(--accent)!important;
-            border: none!important;
+            color: #1E140C !important;
+            background-color: #FFB000 !important;
+            border: none !important;
+        }
+
+        .text-white {
+            color: #FFFFFF !important;
+        }
+
+        .form-control {
+            border-radius: 20px;
+            background-color: transparent;
+            color: #FEF3E2;
+        }
+
+        .btn {
+            color: #1E140C;
+            background-color: #FFB000;
+            border: none;
         }
     </style>
 </head>
-<body class="d-flex align-items-center justify-content-center vh-100">
+<body>
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-md-6">
@@ -50,9 +66,9 @@
                     <!-- Status Message Goes Here -->
                 </div>
                 <div class="text-center">
-                <img src="./images/logo.png" alt="" style="width: 100px;">
+                    <img src="./images/logo.png" alt="Logo" class="logo" style="width: 100px;">
                 </div>
-                <form method="POST" action="{{ route('login') }}" class="p-4 shadow-sm">
+                <form method="POST" action="{{ route('login') }}">
                     @csrf
 
                     <!-- Email Address -->
@@ -92,7 +108,7 @@
                                 Forgot your password?
                             </a>
                         @endif
-                        <button type="submit" class="btn btn-primary">
+                        <button type="submit" class="btn">
                             Log in
                         </button>
                     </div>

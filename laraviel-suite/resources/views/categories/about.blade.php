@@ -51,12 +51,12 @@
                 <!-- Mission Box -->
                 <div class="info-box mission-box">
                     <h2>Our Mission</h2>
-                    <p>To be the premier choice for travelers seeking an unparalleled blend of luxury, comfort, and personalized service in Bonifacio Global City, setting the standard for excellence in hospitality while fostering lasting connections with our guests and the community.</p>
+                    <p class="small-text">To be the premier choice for travelers seeking an unparalleled blend of luxury, comfort, and personalized service in Bonifacio Global City, setting the standard for excellence in hospitality while fostering lasting connections with our guests and the community.</p>
                 </div>
                 <!-- Approach Box -->
                 <div class="info-box approach-box">
                     <h2>Our Approach</h2>
-                    <p>Our approach emphasizes the guest experience, with a dedicated team that listens and responds to your needs, ensuring a seamless and enjoyable stay. We are also committed to sustainability and continuous improvement, striving to minimize our environmental impact while enhancing the quality of your experience. Together, these elements define Laraveil Suites as a destination where luxury and genuine hospitality converge to create unforgettable memories.</p>
+                    <p class="small-text">Our approach emphasizes the guest experience, with a dedicated team that listens and responds to your needs, ensuring a seamless and enjoyable stay. We are also committed to sustainability and continuous improvement, striving to minimize our environmental impact while enhancing the quality of your experience. Together, these elements define Laraveil Suites as a destination where luxury and genuine hospitality converge to create unforgettable memories.</p>
                 </div>
             </div>
 
@@ -64,13 +64,13 @@
             <div class="col-md-6">
                 <div class="info-box vision-box">
                     <h2>Our Vision</h2>
-                    <p>At Laraveil Suites, our mission is to create memorable experiences by providing exceptional accommodations and unmatched hospitality. We are dedicated to:</p>
+                    <p class="small-text">At Laraveil Suites, our mission is to create memorable experiences by providing exceptional accommodations and unmatched hospitality. We are dedicated to:</p>
                     <ul>
-                        <li>Delivering personalized service that anticipates and exceeds our guests' expectations.</li>
-                        <li>Maintaining the highest standards of cleanliness, comfort, and safety in our suites.</li>
-                        <li>Creating a welcoming and inclusive environment for all guests and staff.</li>
-                        <li>Embracing sustainability and responsible practices to positively impact our community.</li>
-                        <li>Fostering a culture of continuous improvement and professional development among our team members.</li>
+                        <li class="small-text">Delivering personalized service that anticipates and exceeds our guests' expectations.</li>
+                        <li class="small-text">Maintaining the highest standards of cleanliness, comfort, and safety in our suites.</li>
+                        <li class="small-text">Creating a welcoming and inclusive environment for all guests and staff.</li>
+                        <li class="small-text">Embracing sustainability and responsible practices to positively impact our community.</li>
+                        <li class="small-text">Fostering a culture of continuous improvement and professional development among our team members.</li>
                     </ul>
                 </div>
             </div>
