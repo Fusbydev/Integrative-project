@@ -13,6 +13,8 @@ use App\Models\Room;
 use App\Models\Guest;
 use App\Models\Feedback;
 use App\Models\IncomeTracker;
+use Illuminate\Http\Request;
+
 
 Route::get('/', function () {
     $feedbacks = Feedback::latest()->take(10)->get();
@@ -41,13 +43,32 @@ Route::delete('/room/{id}', [RoomController::class, 'destroy'])->name('room.dest
 Route::post('/mark-as-paid/{id}', [ServiceController::class, 'markAsPaid'])->name('mark.as.paid');
 Route::delete('/service/{service_id}', [ServiceController::class, 'destroy'])->name('service.destroy');
 
-Route::get('/admin', function() {
+Route::put('/guests/{id}', [GuestController::class, 'update'])->name('guest.update');
+Route::delete('/guest/{id}', [GuestController::class, 'destroy'])->name('guest.destroy');
+
+Route::get('/room/{id}/edit', [RoomController::class, 'edit'])->name('room.edit');
+Route::put('/room/{id}', [RoomController::class, 'update'])->name('room.update');
+Route::post('/rooms', [RoomController::class, 'store'])->name('room.store');
+
+
+// Admin-specific routes
+Route::get('/admin', function(Request $request) {
     $rooms = Room::all();
-    $guests = Guest::all(); // If you also need guest data
-    $totalRooms = Room::count(); // Get total number of rooms
-    $totalGuests = Guest::count(); // Get total number of guests
+    $guests = Guest::paginate(10);
+    $totalRooms = Room::count();
+    $totalGuests = Guest::count();
+
+    $search = $request->input('search');
+
+    // Query guests with optional search filter
+    $guests = Guest::when($search, function ($query, $search) {
+        return $query->where('lastname', 'like', "%{$search}%")
+                     ->orWhere('email', 'like', "%{$search}%")
+                     ->orWhere('booking_id', 'like', "%{$search}%");
+    })->paginate(10);
+
     $totalGuestPayments = IncomeTracker::sum('price');
-    $incomeTracker = IncomeTracker::all();
+    $incomeTracker = IncomeTracker::paginate(10);
     return view('categories.admincit301_laraviel_suite', compact('rooms', 'guests', 'totalRooms', 'totalGuests', 'totalGuestPayments', 'incomeTracker'));
 })->middleware(['auth', 'verified', 'roletype:admin'])->name('admin');
 

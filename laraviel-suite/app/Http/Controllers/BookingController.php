@@ -27,6 +27,11 @@ class BookingController extends Controller
         $services = Service::all(); // Retrieve all services from the 'services' table
 
         // Return the view with both guest details and the services
-        return view('categories.view_booking', compact('guest', 'services', 'avail'));
+        if ($guest) {
+            return view('categories.view_booking', compact('guest', 'services', 'avail'));
+        } else {
+            $guest = (object) ['booking_id' => 404]; // Create a guest object with 404 as the booking ID
+            return view('categories.view_booking', compact('guest', 'services'));
+        }
     }
 }

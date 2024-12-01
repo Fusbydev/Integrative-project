@@ -49,15 +49,17 @@ class RegisteredUserController extends Controller
         event(new Registered($user));
 
         // Log the user in
-        Auth::login($user);
+        if($user->role == 'guest') {
+            Auth::login($user);
+        }
 
         // Redirect based on the role
         if ($user->role == 'admin') {
             return redirect(route('admin', absolute: false));
         } elseif ($user->role == 'cashier') {
             return redirect(route('cashier', absolute: false));
-        } else {
-            return redirect(route('landing', absolute: false)); // guest route (example)
+        } elseif ($user->role == 'guest') {
+            return redirect(route('view-booking', absolute: false)); // guest route (example)
         }
     }
 }

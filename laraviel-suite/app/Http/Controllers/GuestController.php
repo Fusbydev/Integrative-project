@@ -100,10 +100,24 @@ class GuestController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
-    {
-        //
-    }
+    public function update(Request $request, $id)
+        {
+            $guest = Guest::findOrFail($id);
+
+            $request->validate([
+                'lastname' => 'required|string|max:255',
+                'contact_number' => 'required|string|max:15',
+                'email' => 'required|email',
+                'booked_rooms' => 'required|string|max:255',
+                'check_in' => 'required|date',
+                'check_out' => 'required|date',
+            ]);
+
+            $guest->update($request->all());
+
+            return redirect()->back()->with('success', 'Guest information updated successfully.');
+        }
+
 
     /**
      * Remove the specified resource from storage.

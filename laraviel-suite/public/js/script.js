@@ -132,13 +132,21 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     function generateCalendar(year, month, calendarId, titleId) {
+        // Adjust year and month if month exceeds December
+        if (month > 11) {
+            year += 1; // Increment year
+            month = 0; // Reset to January
+        }
+    
         const date = new Date(year, month),
             daysInMonth = new Date(year, month + 1, 0).getDate(),
             firstDay = new Date(year, month, 1).getDay();
+    
         document.getElementById(titleId).textContent = `${date.toLocaleString(
             "default",
             { month: "long" }
         )} ${year}`;
+    
         let table = `<thead><tr><th>Sun</th><th>Mon</th><th>Tue</th><th>Wed</th><th>Thu</th><th>Fri</th><th>Sat</th></tr></thead><tbody><tr>`;
         for (let i = 0; i < firstDay; i++) table += `<td></td>`;
         for (let day = 1; day <= daysInMonth; day++) {
@@ -150,6 +158,7 @@ document.addEventListener("DOMContentLoaded", function () {
         }
         table += `</tr></tbody>`;
         document.getElementById(calendarId).innerHTML = table;
+    
         document
             .querySelectorAll(`#${calendarId} .clickable-day`)
             .forEach((day) => {
@@ -204,6 +213,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 });
             });
     }
+    
 
     // Event listeners for the month dropdowns
     currentMonthDropdown.addEventListener("change", function () {

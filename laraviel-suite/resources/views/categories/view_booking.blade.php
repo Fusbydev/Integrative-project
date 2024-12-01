@@ -13,6 +13,7 @@
 
     <div class="container mt-5">
         <!-- Booking Details -->
+        @if($guest->booking_id != 404)
         <div class="booking-details mb-5">
             <h2 class="text-center text-warning">Booking Details</h2>
             <hr style="border-color: #BFA75D;">
@@ -57,20 +58,25 @@
         <!-- Service Feedback Section -->
 
         <div class="services mb-5">
-            <h2 class="text-center text-warning">Avail Our Services for a Better Experience</h2>
-            @if(auth()->user()->role == 'guest')
-            <form action="{{ route('services.submit') }}" method="POST" class="container mt-5">
-                @csrf
-                <h2 class="mb-4 text-white">Select Service</h2>
+    <h2 class="text-center text-primary mb-4">Avail Our Services for a Better Experience</h2>
 
-                <!-- Hidden field for booking ID -->
+    <!-- Check if user is a guest -->
+    @if(auth()->user()->role == 'guest')
+    <div class="container mt-5">
+        <div class="card shadow-sm p-4" style="background-color: #2c3e50; border-radius: 15px;">
+            <h2 class="mb-4 text-warning">Select Service</h2>
+
+            <!-- Service Form -->
+            <form action="{{ route('services.submit') }}" method="POST">
+                @csrf
+
+                <!-- Hidden fields -->
                 <input type="hidden" name="booking_id" value="{{ $guest->booking_id }}">
-                <!-- Hidden field for guest name -->
                 <input type="hidden" name="name" value="{{ $guest->firstname }} {{ $guest->lastname }}">
 
                 <!-- Dropdown for services -->
                 <div class="mb-3">
-                    <label for="service" class="form-label">Available Services:</label>
+                    <label for="service" class="form-label text-light">Available Services:</label>
                     <select name="service_id" id="service" class="form-select" aria-label="Select a service" required>
                         <option value="" disabled selected>Select a service</option>
                         @foreach($services as $service)
@@ -83,13 +89,13 @@
 
                 <!-- Service Date -->
                 <div class="mb-3">
-                    <label for="service_date" class="form-label">Service Date:</label>
+                    <label for="service_date" class="form-label text-light">Service Date:</label>
                     <input type="date" name="service_date" id="service_date" class="form-control" required>
                 </div>
 
-                <!-- Payment Method (Over the Counter or Online Payment) -->
+                <!-- Payment Method -->
                 <div class="mb-3">
-                    <label for="payment_method" class="form-label">Payment Method:</label>
+                    <label for="payment_method" class="form-label text-light">Payment Method:</label>
                     <select name="payment_method" id="payment_method" class="form-select" required>
                         <option value="over_the_counter">Over the Counter</option>
                         <option value="online_payment">Online Payment</option>
@@ -98,58 +104,69 @@
 
                 <!-- Total Price -->
                 <div class="mb-3">
-                    <label for="total_price" class="form-label">Total Price (Php):</label>
+                    <label for="total_price" class="form-label text-light">Total Price (Php):</label>
                     <input type="number" name="total_price" id="total_price" class="form-control" required readonly>
                 </div>
 
-                <!-- Submit button -->
-                <button type="submit" class="btn btn-primary">Submit</button>
+                <!-- Submit Button -->
+                <div class="d-flex justify-content-end">
+                    <button type="submit" class="btn btn-warning">Submit</button>
+                </div>
             </form>
-            @else
-            <p class="text-center">change to guest</p>
-            @endif
+        </div>
+    </div>
+    @else
+    <div class="container mt-5">
+        <p class="text-center text-danger">You must be a guest to avail services.</p>
+    </div>
+    @endif
 
+    <!-- Availed Services Table -->
+    <div class="container mt-5">
+        <h2 class="text-warning text-center mb-4">Availed Services</h2>
 
-            <div class="container">
-                <h2 class="text-warning">Availed Services</h2>
-                <table class="table table-responsive">
-                    <thead>
-                        <tr>
-                            <th>Service Name</th>
-                            <th>Service Date</th>
-                            <th>Payment Method</th>
-                            <th>Total Price</th>
-                            <th>Actions</th>
-                        </tr>
-                    </thead>
-            <tbody>
-                @forelse ($guest->services as $service)
+        <!-- Table for displaying availed services -->
+        <div class="table-responsive">
+            <table class="table table-striped table-bordered" style="background-color: #34495e; color: #ecf0f1;">
+                <thead class="table-dark">
+                    <tr>
+                        <th>Service Name</th>
+                        <th>Service Date</th>
+                        <th>Payment Method</th>
+                        <th>Total Price</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @forelse ($guest->services as $service)
                     <tr>
                         <td>{{ $service->service->service_name ?? 'Service not found' }}</td>
                         <td>{{ $service->service_date }}</td>
                         <td class="text-center">
-                                    <p class="{{ $service->payment_status == 'pending' ? 'bg-warning text-white' : 'bg-success text-white' }} p-2 rounded-pill">
-                                        {{ $service->payment_status }}
-                                    </p>
-                                </td>
+                            <span class="badge {{ $service->payment_status == 'pending' ? 'bg-warning' : 'bg-success' }} text-white">
+                                {{ ucfirst($service->payment_status) }}
+                            </span>
+                        </td>
                         <td>Php {{ number_format($service->total_price, 2) }}</td>
                         <td>
                             <form action="{{ route('service.destroy', $service->id) }}" method="POST">
                                 @csrf
                                 @method('DELETE')
-                                <button type="submit" class="btn btn-danger">Cancel</button>
+                                <button type="submit" class="btn btn-danger btn-sm">Cancel</button>
                             </form>
                         </td>
                     </tr>
-                @empty
+                    @empty
                     <tr>
-                        <td colspan="5" class="text-center">No services availed.</td>
+                        <td colspan="5" class="text-center text-dark">No services availed.</td>
                     </tr>
-                @endforelse
-                    </tbody>
-                </table>
-            </div>
+                    @endforelse
+                </tbody>
+            </table>
         </div>
+    </div>
+</div>
+
 
 
         <!-- Stay Experience Feedback Form -->
@@ -231,7 +248,9 @@
             totalPriceInput.value = price;
         });
     </script>
-
+@else($guest->booking_id == 404)
+    <p class="text-center text-warning">You have no active bookings or your stay has already concluded.</p>
+@endif
 </body>
 
 </html>

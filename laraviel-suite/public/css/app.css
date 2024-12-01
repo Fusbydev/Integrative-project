@@ -304,7 +304,8 @@ h2.section-title {
     margin-bottom: 2px;
 }
 .book-accom.card {
-    min-height: 340px;
+    min-height: 400px;
+
 }
 
 .book-accom .card-img-top {
@@ -747,7 +748,7 @@ td, th {
 .book-card {
     max-height: 400px;
     min-height: 300px;
-
+    margin-bottom: 25px;
 }
 
 .form-check-label {
