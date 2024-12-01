@@ -31,28 +31,28 @@
         <div class="images container"> <!-- Opening images section -->
             <div class="grid-wrapper mt-3 pt-5">
                 <div>
-                    <img src="./images/balcony.png" alt="" />
+                    <img src="./images/homepage about us pic.png" alt="" />
                 </div>
                 <div>
-                    <img src="./images/balcony.png" alt="" />
+                    <img src="./images/homepage gallery food.png" alt="" />
                 </div>
                 <div class="tall">
-                    <img src="./images/balcony.png" alt="">
+                    <img src="./images/pexels-valeriya-1860197.jpg" alt="">
                 </div>
                 <div class="wide">
-                    <img src="./images/balcony.png" alt="" />
+                    <img src="./images/homepage gallery pool.png" alt="" />
                 </div>
                 <div>
-                    <img src="./images/balcony.png" alt="" />
+                    <img src="./images/homepage gallery privacy.png" alt="" />
                 </div>
                 <div class="tall">
                     <img src="./images/balcony.png" alt="" />
                 </div>
                 <div class="wide">
-                <img src="./images/balcony.png" alt="" />
+                <img src="./images/food.jpg" alt="" />
                 </div>
                 <div>
-                    <img src="./images/balcony.png" alt="" />
+                    <img src="./images/homepage gallery seaside.png" alt="" />
                 </div>
             </div>
         </div> <!-- Closing images section -->

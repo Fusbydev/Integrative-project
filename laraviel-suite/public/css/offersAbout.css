@@ -186,12 +186,10 @@ body {
 }
 
 .info-box h2 {
-    font-family: 'Aboreto', serif;
+    font-size: 1.5rem;  /* Smaller font size */
+    margin-bottom: 15px;
     color: #FEF3E2;
-    font-size: 3.5rem;
-    margin-bottom: 30px;
-    letter-spacing: 2px;
-    text-transform: none;
+    font-family: 'Aboreto', serif;
 }
 
 .info-box p {
@@ -242,7 +240,7 @@ body {
     }
 
     .info-box h2 {
-        font-size: 2.5rem;
+        font-size: 1.2rem;  /* Even smaller on mobile devices */
     }
 
     .info-box p, .info-box ul li {
@@ -476,4 +474,14 @@ body {
 
 .card img:hover {
     scale: 105%;
+}
+
+.small-text {
+    font-size: 1.1rem !important;
+}
+
+@media (max-width: 768px) {
+    .small-text {
+        font-size: 0.9rem !important;
+    }
 }
