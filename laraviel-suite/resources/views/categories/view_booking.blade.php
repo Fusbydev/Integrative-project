@@ -32,6 +32,11 @@
         $checkOutDate = \Carbon\Carbon::parse($guest->check_out);
         $totalDays = $checkInDate->diffInDays($checkOutDate);
         $daysStayed = floor($checkInDate->diffInDays(now()));
+            if ($daysStayed < 0) {
+                $daysStayed = 0;
+            } else {
+                $daysStayed = $daysStayed;
+            }
         $remainingDays = max(0, $totalDays - $daysStayed);
         @endphp
 

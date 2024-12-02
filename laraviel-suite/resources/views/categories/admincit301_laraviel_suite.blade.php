@@ -88,56 +88,60 @@
 
     <!-- Guests Table -->
     <div class="table-responsive">
-        <table class="table table-bordered table-hover">
-            <thead class="table-dark">
-                <tr class="text-center" style="font-size: 12px;">
-                    <th>Booking ID</th>
-                    <th style="width: 100px;">Last Name</th>
-                    <th>Contact Number</th>
-                    <th>Email</th>
-                    <th>Room</th>
-                    <th style="width: 100px;">Check-in</th>
-                    <th style="width: 100px;">Check-out</th>
-                    <th style="width: 150px;">Action</th>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach($guests as $guest)
-                <tr>
-                    <td>{{ $guest->booking_id }}</td>
-                    <td>{{ $guest->lastname }}</td>
-                    <td>{{ $guest->contact_number }}</td>
-                    <td>{{ $guest->email }}</td>
-                    <td>{{ $guest->booked_rooms }}</td>
-                    <td>{{ $guest->check_in }}</td>
-                    <td>{{ $guest->check_out }}</td>
-                    <td class="d-flex">
-                        <!-- Edit Button -->
-                        <button
-                            type="button"
-                            class="btn btn-sm btn-primary me-2 d-flex"
-                            data-bs-toggle="modal"
-                            data-bs-target="#editModal-{{ $guest->id ?? 1 }}">
-                            <i class="bi bi-pencil-fill me-1"></i> Edit
-                        </button>
+    <table class="table table-bordered table-hover">
+        <thead class="table-dark">
+            <tr class="text-center" style="font-size: 12px;">
+                <th>Booking ID</th>
+                <th style="width: 100px;">Last Name</th>
+                <th>Contact Number</th>
+                <th>Email</th>
+                <th>Room</th>
+                <th style="width: 100px;">Check-in</th>
+                <th style="width: 100px;">Check-out</th>
+                <th style="width: 150px;">Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            @forelse($guests as $guest)
+            <tr>
+                <td>{{ $guest->booking_id }}</td>
+                <td>{{ $guest->lastname }}</td>
+                <td>{{ $guest->contact_number }}</td>
+                <td>{{ $guest->email }}</td>
+                <td>{{ $guest->booked_rooms }}</td>
+                <td>{{ $guest->check_in }}</td>
+                <td>{{ $guest->check_out }}</td>
+                <td class="d-flex">
+                    <!-- Edit Button -->
+                    <button
+                        type="button"
+                        class="btn btn-sm btn-primary me-2 d-flex"
+                        data-bs-toggle="modal"
+                        data-bs-target="#editModal-{{ $guest->id ?? 1 }}">
+                        <i class="bi bi-pencil-fill me-1"></i> Edit
+                    </button>
 
-                        <!-- Delete Button -->
-                        <form
-                            action="{{ route('guest.destroy', $guest->id ?? 1) }}"
-                            method="POST"
-                            onsubmit="return confirm('Are you sure you want to delete this guest?')">
-                            @csrf
-                            @method('DELETE')
-                            <button type="submit" class="btn btn-sm btn-danger d-flex">
-                                <i class="bi bi-trash-fill me-1"></i> Delete
-                            </button>
-                        </form>
-                    </td>
-                </tr>
-                @endforeach
-            </tbody>
-        </table>
-    </div>
+                    <!-- Delete Button -->
+                    <form
+                        action="{{ route('guest.destroy', $guest->id ?? 1) }}"
+                        method="POST"
+                        onsubmit="return confirm('Are you sure you want to delete this guest?')">
+                        @csrf
+                        @method('DELETE')
+                        <button type="submit" class="btn btn-sm btn-danger d-flex">
+                            <i class="bi bi-trash-fill me-1"></i> Delete
+                        </button>
+                    </form>
+                </td>
+            </tr>
+            @empty
+            <tr>
+                <td colspan="8" class="text-center">No guests found.</td>
+            </tr>
+            @endforelse
+        </tbody>
+    </table>
+</div>
 
     <!-- Pagination -->
     <div class="d-flex justify-content-center">
@@ -259,8 +263,10 @@
                     <td>{{ $roomService->description }}</td>
                     <td>{{ $roomService->price }}</td>
                     <td>
-                      <a href="#" class="btn btn-primary">Edit</a>
-                      <a href="#" class="btn btn-danger">Delete</a>
+                      <div class="d-flex gap-2">
+                      <a href="#" class="btn btn-primary"><i class="bi bi-pencil-fill"></i> Edit</a>
+                      <a href="#" class="btn btn-danger"><i class="bi bi-trash-fill"></i> Delete</a>
+                      </div>
                     </td>
                   </tr>
                 </tbody>
@@ -387,7 +393,7 @@
                     <div class="mb-3">
                         <label for="roomType" class="form-label">Room Type</label>
                         <select class="form-select" id="roomType" name="room_type" required>
-                            <option value="Standard">Standard</option>
+                            <option value="Standard" selected>Standard</option>
                             <option value="Deluxe">Deluxe</option>
                             <option value="Luxury">Luxury</option>
                         </select>

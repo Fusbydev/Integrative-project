@@ -43,6 +43,7 @@ class ServiceController extends Controller
             'customer_name' => $validatedData['name'],
             'availed_service' => $service->service_name,
             'price' => $validatedData['total_price'],
+            'payment_status'
         ]);
 
         // Redirect to the '/' route
@@ -94,5 +95,38 @@ public function destroy($id)
     // If the service does not exist, redirect back with an error message
     return redirect()->back()->with('error', 'Service not found.');
 }
+
+public function refund($id)
+{
+    // Find the service record by ID
+    $availedService = AvailedService::find($id);
+
+    if ($availedService) {
+        // If the payment status is 'paid', remove the corresponding entry in IncomeTracker
+        if ($availedService->payment_status == 'paid') {
+            // Get the corresponding IncomeTracker record
+            $incomeTracker = IncomeTracker::where('customer_name', $availedService->guest_name)
+                                          ->where('availed_service', $availedService->service->service_name)
+                                          ->where('price', $availedService->total_price)
+                                          ->first();
+
+            // If a matching record is found, delete it
+            if ($incomeTracker) {
+                $incomeTracker->delete();
+            }
+        }
+
+        // Update the payment status to 'Refunded'
+        $availedService->payment_status = 'Refunded';
+        $availedService->save();
+
+        // Redirect back with a success message
+        return redirect()->back()->with('success', 'Payment status updated to refunded, and income tracker entry removed.');
+    }
+
+    // If the service does not exist, redirect back with an error message
+    return redirect()->back()->with('error', 'Service not found.');
+}
+
 
 }

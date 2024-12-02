@@ -44,6 +44,7 @@ Route::delete('/room/{id}', [RoomController::class, 'destroy'])->name('room.dest
 
 Route::post('/mark-as-paid/{id}', [ServiceController::class, 'markAsPaid'])->name('mark.as.paid');
 Route::delete('/service/{service_id}', [ServiceController::class, 'destroy'])->name('service.destroy');
+Route::post('/refund/{id}', [ServiceController::class, 'refund'])->name('service.refund');
 
 Route::put('/guests/{id}', [GuestController::class, 'update'])->name('guest.update');
 Route::delete('/guest/{id}', [GuestController::class, 'destroy'])->name('guest.destroy');
@@ -75,9 +76,22 @@ Route::get('/admin', function(Request $request) {
     return view('categories.admincit301_laraviel_suite', compact('rooms', 'guests', 'totalRooms', 'totalGuests', 'totalGuestPayments', 'incomeTracker', 'roomServices'));
 })->middleware(['auth', 'verified', 'roletype:admin'])->name('admin');
 
-Route::get('/cashier', function() {
-    $availed_services = AvailedService::all();
-    return view('categories.cashier', compact('availed_services'));
+Route::get('/cashier', function (Request $request) {
+    $search = $request->input('booking_id'); // Input for search
+    $paymentStatus = $request->input('payment_status'); // Input for payment status
+
+    $availed_services = AvailedService::when($search, function ($query, $search) {
+        return $query->where('booking_id', 'like', "%{$search}%")
+                     ->orWhere('guest_name', 'like', "%{$search}%");
+    })
+    ->when($paymentStatus, function ($query, $paymentStatus) {
+        return $query->where('payment_status', $paymentStatus);
+    })
+    ->paginate(5);
+
+    $incomeTracker = IncomeTracker::paginate(10);
+
+    return view('categories.cashier', compact('availed_services', 'incomeTracker'));
 })->middleware(['auth', 'verified', 'roletype:cashier'])->name('cashier');
 
 Route::middleware('auth')->group(function () {

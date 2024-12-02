@@ -27,12 +27,13 @@
             color: #FEF3E2;
         }
 
-        .table td, .table th {
+        .table td,
+        .table th {
             border-color: rgba(68, 46, 26, 0.3);
             vertical-align: middle;
         }
 
-        
+
 
         .btn-danger {
             background-color: #dc3545;
@@ -58,7 +59,7 @@
 
         .btn-success:hover {
             transform: translateY(-2px);
-            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
         }
 
         .bg-warning {
@@ -135,7 +136,9 @@
                 padding: 1rem;
             }
 
-            .logo-col, .title-col, .logout-col {
+            .logo-col,
+            .title-col,
+            .logout-col {
                 width: 100%;
                 justify-content: center;
                 text-align: center;
@@ -176,12 +179,12 @@
             <div class="col-md-4 col-12 d-flex align-items-center logo-col">
                 <img src="{{ asset('images/logo.png') }}" alt="Logo" style="width: 100px; height: auto;">
             </div>
-            
+
             <!-- Title -->
             <div class="col-md-4 col-12 title-col">
-                <h2 class="mb-0 text-uppercase text-center d-flex justify-content-center align-items-center" 
+                <h2 class="mb-0 text-uppercase text-center d-flex justify-content-center align-items-center"
                     style="color: #442E1A; font-family: 'Karla', sans-serif; letter-spacing: 1px; height: 100%;">
-                    Tellering
+                    Transaction Overview
                 </h2>
             </div>
 
@@ -195,13 +198,47 @@
                 </form>
             </div>
         </div>
-
+    
         <div class="row">
             <div class="container">
                 <div class="row">
-                    <table class="table-resposnive table border table-striped">
+                    <!-- Search function using booking_id -->
+                    <div class="col-md-6">
+                        <form action="{{ url('/cashier') }}" method="GET">
+                            <div class="input-group mb-3">
+                                <input type="text" name="booking_id" class="form-control" placeholder="Search by Booking ID" value="{{ request()->input('booking_id') }}">
+                                <button type="submit" class="btn btn-primary">Search</button>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="col-md-6">
+                        <form action="{{ url('/cashier') }}" method="GET">
+                            <div class="d-flex align-items-center mb-3">
+                                <!-- Payment Status Filters -->
+                                <div class="form-check form-check-inline me-3">
+                                    <input class="form-check-input" type="radio" name="payment_status" id="pending" value="pending" {{ request()->payment_status == 'pending' ? 'checked' : '' }}>
+                                    <label class="form-check-label" for="pending">Pending</label>
+                                </div>
+                                <div class="form-check form-check-inline me-3">
+                                    <input class="form-check-input" type="radio" name="payment_status" id="paid" value="paid" {{ request()->payment_status == 'paid' ? 'checked' : '' }}>
+                                    <label class="form-check-label" for="paid">Paid</label>
+                                </div>
+                                <div class="form-check form-check-inline me-3">
+                                    <input class="form-check-input" type="radio" name="payment_status" id="paid" value="Refunded" {{ request()->payment_status == 'Refunded' ? 'checked' : '' }}>
+                                    <label class="form-check-label" for="paid">Refunded</label>
+                                </div>
+                                <!-- Filter Button -->
+                                <button type="submit" class="btn btn-primary">
+                                    <i class="bi bi-filter"></i> Filter
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                    <h2>Services Availed</h2>
+                    <!-- Table to display services -->
+                    <table class="table-responsive table border table-striped">
                         <thead class="table-dark">
-                            <tr>
+                            <tr class="text-center">
                                 <th>Name</th>
                                 <th>Service Name</th>
                                 <th>Service Date</th>
@@ -212,40 +249,94 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach ($availed_services as $availed_service)
-                            <tr>
+                            @forelse ($availed_services as $availed_service)
+                            <tr class="text-center">
                                 <td>{{ $availed_service->guest_name }}</td>
                                 <td>{{ $availed_service->service ? $availed_service->service->service_name : 'N/A' }}</td>
                                 <td>{{ $availed_service->service_date }}</td>
                                 <td>{{ $availed_service->payment_method }}</td>
                                 <td class="text-center">
-                                    <p class="{{ $availed_service->payment_status == 'pending' ? 'bg-warning text-white' : 'bg-success text-white' }} p-2 rounded-pill">
+                                    <p class="{{ $availed_service->payment_status == 'pending' ? 'bg-warning text-white' : '' }}
+                                            {{ $availed_service->payment_status == 'paid' ? 'bg-success text-white' : '' }}
+                                            {{ $availed_service->payment_status == 'Refunded' ? 'bg-secondary text-white' : '' }}
+                                            p-2 rounded-pill">
                                         {{ $availed_service->payment_status }}
                                     </p>
                                 </td>
-
                                 <td>{{ $availed_service->total_price }}</td>
                                 <td>
                                     <div class="d-flex align-items-center justify-content-center" style="gap: 8px;">
+                                        <!-- Action Buttons -->
                                         <form action="{{ route('service.destroy', $availed_service->id) }}" method="POST" style="margin: 0;">
                                             @csrf
                                             @method('DELETE')
                                             <button type="submit" class="btn btn-danger" style="width: 80px; height: 38px;">Delete</button>
                                         </form>
 
+                                        @if($availed_service->payment_status == 'pending')
                                         <form action="{{ route('mark.as.paid', $availed_service->id) }}" method="POST" style="margin: 0;">
                                             @csrf
                                             <button type="submit" class="btn btn-success" style="width: 80px; height: 38px;">Paid</button>
                                         </form>
+                                        @elseif ($availed_service->payment_status == 'paid')
+                                        <form action="{{ route('service.refund', $availed_service->id) }}" method="POST" style="margin: 0;">
+                                            @csrf
+                                            <button type="submit" class="btn btn-warning" style="width: 80px; height: 38px;">Refund</button>
+                                        </form>
+                                        @endif
                                     </div>
                                 </td>
                             </tr>
-                            @endforeach
+                            @empty
+                            <!-- Message displayed when no data is found -->
+                            <tr>
+                                <td colspan="7" class="text-center text-muted">
+                                    No Data Was Found
+                                </td>
+                            </tr>
+                            @endforelse
                         </tbody>
                     </table>
                 </div>
+                {{ $availed_services->links('pagination::bootstrap-5') }}
             </div>
         </div>
+
+        <div class="row">
+    <div class="col-md-12">
+        <!-- Table for Income Tracker -->
+        <h2 class="my-4">Income Tracker</h2>
+        <div class="table-responsive">
+            <table class="table table-bordered table-striped table-hover">
+                <thead class="table-dark">
+                    <tr class="text-center">
+                        <th>Customer Name</th>
+                        <th>Availed Services</th>
+                        <th>Price</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @forelse ($incomeTracker as $income)
+                    <tr class="text-center">
+                        <td>{{ $income->customer_name }}</td>
+                        <td>{{ $income->availed_service }}</td>
+                        <td>{{ $income->price }}</td>
+                    </tr>
+                    @empty
+                    <tr>
+                        <td colspan="3" class="text-center text-muted">
+                            No Data Was Found
+                        </td>
+                    </tr>
+                    @endforelse
+                </tbody>
+            </table>
+        </div>
+        <!-- Pagination -->
+        {{ $incomeTracker->links('pagination::bootstrap-5') }}
+    </div>
+</div>
+
     </div>
 
 </body>
