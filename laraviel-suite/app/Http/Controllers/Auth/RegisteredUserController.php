@@ -48,10 +48,7 @@ class RegisteredUserController extends Controller
         // Trigger the Registered event
         event(new Registered($user));
 
-        // Log the user in
-        if($user->role == 'guest') {
             Auth::login($user);
-        }
 
         // Redirect based on the role
         if ($user->role == 'admin') {

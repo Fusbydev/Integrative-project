@@ -7,6 +7,7 @@ use App\Http\Controllers\BookingController;
 use App\Http\Controllers\IncomeTrackerController;
 use App\Http\Controllers\FeedbackController;
 use App\Http\Controllers\ServiceController;
+use App\Http\Controllers\RoomServiceController;
 use App\Models\AvailedService;
 use Illuminate\Support\Facades\Route;
 use App\Models\Room;
@@ -14,6 +15,7 @@ use App\Models\Guest;
 use App\Models\Feedback;
 use App\Models\IncomeTracker;
 use Illuminate\Http\Request;
+use App\Models\Service;
 
 
 Route::get('/', function () {
@@ -50,7 +52,7 @@ Route::get('/room/{id}/edit', [RoomController::class, 'edit'])->name('room.edit'
 Route::put('/room/{id}', [RoomController::class, 'update'])->name('room.update');
 Route::post('/rooms', [RoomController::class, 'store'])->name('room.store');
 
-
+Route::post('create-room-service', [RoomServiceController::class,'createRoomService'])->name('room.create');
 // Admin-specific routes
 Route::get('/admin', function(Request $request) {
     $rooms = Room::all();
@@ -69,7 +71,8 @@ Route::get('/admin', function(Request $request) {
 
     $totalGuestPayments = IncomeTracker::sum('price');
     $incomeTracker = IncomeTracker::paginate(10);
-    return view('categories.admincit301_laraviel_suite', compact('rooms', 'guests', 'totalRooms', 'totalGuests', 'totalGuestPayments', 'incomeTracker'));
+    $roomServices = Service::all();
+    return view('categories.admincit301_laraviel_suite', compact('rooms', 'guests', 'totalRooms', 'totalGuests', 'totalGuestPayments', 'incomeTracker', 'roomServices'));
 })->middleware(['auth', 'verified', 'roletype:admin'])->name('admin');
 
 Route::get('/cashier', function() {

@@ -235,14 +235,75 @@
     </div>
 
 
-    <section id="room-service" class="bg-warning p-4 rounded-4 shadow my-2">
+    <section id="room-service" class=" p-4 rounded-4 shadow my-2">
       <div class="container-fluid">
         <h2>Room Service</h2>
-        <form action="" method="GET">
 
-        </form>
+        
+              <table class="table table-bordered table-hover">
+                <thead>
+                  <tr>
+                    <th scope="col">Service Name</th>
+                    <th scope="col">Available Services</th>
+                    <th scope="col">Description</th>
+                    <th scope="col">Price</th>
+                    <th scope="col">Action</th>
+                  </tr>
+                </thead>
+                @foreach ($roomServices as $roomService)
+                <tbody>
+                
+                  <tr>
+                    <td>{{ $roomService->service_name }}</td>
+                    <td>{{ $roomService->availed_service }}</td>
+                    <td>{{ $roomService->description }}</td>
+                    <td>{{ $roomService->price }}</td>
+                    <td>
+                      <a href="#" class="btn btn-primary">Edit</a>
+                      <a href="#" class="btn btn-danger">Delete</a>
+                    </td>
+                  </tr>
+                </tbody>
+                @endforeach
+              </table>
+            <button type="submit" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addRoomServiceModal">Add Room Service</button>
+
       </div>
     </section>
+
+    <!--modal for add room service-->
+    <div class="modal fade" id="addRoomServiceModal" tabindex="-1" aria-labelledby="addRoomServiceModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="addRoomServiceModalLabel">Add Room Service</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <form action="{{ route('room.create') }}" method="POST">
+              @csrf
+              <div class="mb-3">
+                <label for="service_name" class="form-label">Service Name</label>
+                <input type="text" class="form-control" id="service_name" name="service_name" required>
+              </div>
+              <div class="mb-3">
+                <label for="description" class="form-label">Description</label>
+                <input type="text" class="form-control" id="description" name="description" required>
+              </div>
+              <div class="mb-3">
+                <label for="price" class="form-label">Price</label>
+                <input type="number" class="form-control" id="price" name="price" min="0" step="0.01" required>
+              </div>
+              <div class="mb-3">
+                <label for="availed_service" class="form-label">Available Services</label>
+                <input type="text" class="form-control" id="availed_service" name="availed_service" required>
+              </div>
+              <button type="submit" class="btn btn-primary">Add Room Service</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
 
     <!-- Calendar Section -->
     <section id="calendar">

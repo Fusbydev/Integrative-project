@@ -61,7 +61,7 @@
     <h2 class="text-center text-primary mb-4">Avail Our Services for a Better Experience</h2>
 
     <!-- Check if user is a guest -->
-    @if(auth()->user()->role == 'guest')
+
     <div class="container mt-5">
         <div class="card shadow-sm p-4" style="background-color: #2c3e50; border-radius: 15px;">
             <h2 class="mb-4 text-warning">Select Service</h2>
@@ -115,11 +115,6 @@
             </form>
         </div>
     </div>
-    @else
-    <div class="container mt-5">
-        <p class="text-center text-danger">You must be a guest to avail services.</p>
-    </div>
-    @endif
 
     <!-- Availed Services Table -->
     <div class="container mt-5">
