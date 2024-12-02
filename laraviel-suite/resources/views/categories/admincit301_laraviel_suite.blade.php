@@ -68,86 +68,86 @@
 
     <!-- Customer Section -->
     <section id="customer" class="container my-4">
-    <h2 class="mb-3">Customer Information</h2>
+      <h2 class="mb-3">Customer Information</h2>
 
-    <!-- Search Form -->
-    <form action="{{ url('/admin') }}" method="GET" class="mb-3">
+      <!-- Search Form -->
+      <form action="{{ url('/admin') }}" method="GET" class="mb-3">
         <div class="input-group">
-            <input
-                type="text"
-                class="form-control"
-                name="search"
-                placeholder="Search by last name, email, or booking ID"
-                value="{{ request()->input('search') }}"
-                aria-label="Search" />
-            <button type="submit" class="btn btn-primary">
-                <i class="bi bi-search"></i> Search
-            </button>
+          <input
+            type="text"
+            class="form-control"
+            name="search"
+            placeholder="Search by last name, email, or booking ID"
+            value="{{ request()->input('search') }}"
+            aria-label="Search" />
+          <button type="submit" class="btn btn-primary">
+            <i class="bi bi-search"></i> Search
+          </button>
         </div>
-    </form>
+      </form>
 
-    <!-- Guests Table -->
-    <div class="table-responsive">
-    <table class="table table-bordered table-hover">
-        <thead class="table-dark">
+      <!-- Guests Table -->
+      <div class="table-responsive">
+        <table class="table table-bordered table-hover">
+          <thead class="table-dark">
             <tr class="text-center" style="font-size: 12px;">
-                <th>Booking ID</th>
-                <th style="width: 100px;">Last Name</th>
-                <th>Contact Number</th>
-                <th>Email</th>
-                <th>Room</th>
-                <th style="width: 100px;">Check-in</th>
-                <th style="width: 100px;">Check-out</th>
-                <th style="width: 150px;">Action</th>
+              <th>Booking ID</th>
+              <th style="width: 100px;">Last Name</th>
+              <th>Contact Number</th>
+              <th>Email</th>
+              <th>Room</th>
+              <th style="width: 100px;">Check-in</th>
+              <th style="width: 100px;">Check-out</th>
+              <th style="width: 150px;">Action</th>
             </tr>
-        </thead>
-        <tbody>
+          </thead>
+          <tbody>
             @forelse($guests as $guest)
             <tr>
-                <td>{{ $guest->booking_id }}</td>
-                <td>{{ $guest->lastname }}</td>
-                <td>{{ $guest->contact_number }}</td>
-                <td>{{ $guest->email }}</td>
-                <td>{{ $guest->booked_rooms }}</td>
-                <td>{{ $guest->check_in }}</td>
-                <td>{{ $guest->check_out }}</td>
-                <td class="d-flex">
-                    <!-- Edit Button -->
-                    <button
-                        type="button"
-                        class="btn btn-sm btn-primary me-2 d-flex"
-                        data-bs-toggle="modal"
-                        data-bs-target="#editModal-{{ $guest->id ?? 1 }}">
-                        <i class="bi bi-pencil-fill me-1"></i> Edit
-                    </button>
+              <td>{{ $guest->booking_id }}</td>
+              <td>{{ $guest->lastname }}</td>
+              <td>{{ $guest->contact_number }}</td>
+              <td>{{ $guest->email }}</td>
+              <td>{{ $guest->booked_rooms }}</td>
+              <td>{{ $guest->check_in }}</td>
+              <td>{{ $guest->check_out }}</td>
+              <td class="d-flex">
+                <!-- Edit Button -->
+                <button
+                  type="button"
+                  class="btn btn-sm btn-primary me-2 d-flex"
+                  data-bs-toggle="modal"
+                  data-bs-target="#editModal-{{ $guest->id ?? 1 }}">
+                  <i class="bi bi-pencil-fill me-1"></i> Edit
+                </button>
 
-                    <!-- Delete Button -->
-                    <form
-                        action="{{ route('guest.destroy', $guest->id ?? 1) }}"
-                        method="POST"
-                        onsubmit="return confirm('Are you sure you want to delete this guest?')">
-                        @csrf
-                        @method('DELETE')
-                        <button type="submit" class="btn btn-sm btn-danger d-flex">
-                            <i class="bi bi-trash-fill me-1"></i> Delete
-                        </button>
-                    </form>
-                </td>
+                <!-- Delete Button -->
+                <form
+                  action="{{ route('guest.destroy', $guest->id ?? 1) }}"
+                  method="POST"
+                  onsubmit="return confirm('Are you sure you want to delete this guest?')">
+                  @csrf
+                  @method('DELETE')
+                  <button type="submit" class="btn btn-sm btn-danger d-flex">
+                    <i class="bi bi-trash-fill me-1"></i> Delete
+                  </button>
+                </form>
+              </td>
             </tr>
             @empty
             <tr>
-                <td colspan="8" class="text-center">No guests found.</td>
+              <td colspan="8" class="text-center">No guests found.</td>
             </tr>
             @endforelse
-        </tbody>
-    </table>
-</div>
+          </tbody>
+        </table>
+      </div>
 
-    <!-- Pagination -->
-    <div class="d-flex justify-content-center">
+      <!-- Pagination -->
+      <div class="d-flex justify-content-center">
         {{ $guests->links('pagination::bootstrap-5') }}
-    </div>
-</section>
+      </div>
+    </section>
 
 
 
@@ -239,43 +239,93 @@
     </div>
 
 
-    <section id="room-service" class=" p-4 rounded-4 shadow my-2">
-      <div class="container-fluid">
-        <h2>Room Service</h2>
+    <section id="room-service" class="p-4 rounded-4 shadow my-2">
+  <div class="container-fluid">
+    <h2>Room Service</h2>
+    <table class="table table-bordered table-hover">
+      <thead class="table-dark">
+        <tr>
+          <th scope="col">Service Name</th>
+          <th scope="col">Available Services</th>
+          <th scope="col">Description</th>
+          <th scope="col">Price</th>
+          <th scope="col">Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        @forelse ($roomServices as $roomService)
+          <tr>
+            <td>{{ $roomService->service_name }}</td>
+            <td>{{ $roomService->availed_service }}</td>
+            <td>{{ $roomService->description }}</td>
+            <td>{{ $roomService->price }}</td>
+            <td>
+              <div class="d-flex gap-2">
+                <!-- Edit Button -->
+                <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#editRoomServiceModal-{{ $roomService->service_id }}">
+                  <i class="bi bi-pencil-fill"></i> Edit
+                </button>
+                <!-- Delete Button -->
+                <form action="{{ route('service.delete', $roomService->service_id) }}" method="POST">
+                  @csrf
+                  @method('DELETE')
+                  <button type="submit" class="btn btn-danger">
+                    <i class="bi bi-trash-fill"></i> Delete
+                  </button>
+                </form>
+              </div>
+            </td>
+          </tr>
+        @empty
+          <tr>
+            <td colspan="5" class="text-center">No room services available.</td>
+          </tr>
+        @endforelse
+      </tbody>
+    </table>
+    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addRoomServiceModal">Add Room Service</button>
+  </div>
+</section>
 
-        
-              <table class="table table-bordered table-hover">
-                <thead>
-                  <tr>
-                    <th scope="col">Service Name</th>
-                    <th scope="col">Available Services</th>
-                    <th scope="col">Description</th>
-                    <th scope="col">Price</th>
-                    <th scope="col">Action</th>
-                  </tr>
-                </thead>
-                @foreach ($roomServices as $roomService)
-                <tbody>
-                
-                  <tr>
-                    <td>{{ $roomService->service_name }}</td>
-                    <td>{{ $roomService->availed_service }}</td>
-                    <td>{{ $roomService->description }}</td>
-                    <td>{{ $roomService->price }}</td>
-                    <td>
-                      <div class="d-flex gap-2">
-                      <a href="#" class="btn btn-primary"><i class="bi bi-pencil-fill"></i> Edit</a>
-                      <a href="#" class="btn btn-danger"><i class="bi bi-trash-fill"></i> Delete</a>
+    @foreach($roomServices as $roomService)
+    <div class="modal fade" id="editRoomServiceModal-{{ $roomService->service_id }}" tabindex="-1" aria-labelledby="editRoomServiceModalLabel-{{ $roomService->service_id }}" aria-hidden="true">
+              <div class="modal-dialog">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title" id="editRoomServiceModalLabel-{{ $roomService->service_id }}">Edit Room Service</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                  </div>
+                  <div class="modal-body">
+                    <form action="{{ route('service.update', $roomService->service_id) }}" method="POST">
+                      @csrf
+                      @method('PUT')
+                      <div class="mb-3">
+                        <label for="serviceName" class="form-label">Service Name</label>
+                        <input type="text" class="form-control" id="serviceName" name="service_name" value="{{ $roomService->service_name }}" required>
                       </div>
-                    </td>
-                  </tr>
-                </tbody>
-                @endforeach
-              </table>
-            <button type="submit" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addRoomServiceModal">Add Room Service</button>
+                      <div class="mb-3">
+                        <label for="availedService" class="form-label">Available Services</label>
+                        <input type="text" class="form-control" id="availedService" name="availed_service" value="{{ $roomService->availed_service }}" required>
+                      </div>
+                      <div class="mb-3">
+                        <label for="description" class="form-label">Description</label>
+                        <textarea class="form-control" id="description" name="description" rows="3" required>{{ $roomService->description }}</textarea>
+                      </div>
+                      <div class="mb-3">
+                        <label for="price" class="form-label">Price</label>
+                        <input type="number" class="form-control" id="price" name="price" value="{{ $roomService->price }}" required>
+                      </div>
+                      <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-primary">Save changes</button>
+                      </div>
+                    </form>
+                  </div>
+                </div>
+              </div>
+            </div>
+            @endforeach
 
-      </div>
-    </section>
 
     <!--modal for add room service-->
     <div class="modal fade" id="addRoomServiceModal" tabindex="-1" aria-labelledby="addRoomServiceModalLabel" aria-hidden="true">
@@ -340,160 +390,160 @@
 
     <!-- Room Management Section -->
     <section id="room-management">
-    <div class="card">
+      <div class="card">
         <h3>Room Management</h3>
 
         <!-- Room List Container -->
         <div class="room-list" id="roomList">
-            <div class="row">
-                @foreach($rooms as $room)
-                <div class="col-md-6 col-lg-4 col-sm-12 mb-4">
-                    <div class="room d-flex flex-column text-center" style="height: 100%; display: flex; flex-direction: column;">
-                        <img src="{{ $room->image_path }}" alt="Room Image" class="img-fluid mb-3">
-                        <h4>{{ $room->room_type }}</h4>
-                        <p>Description: {{ $room->description }}</p>
-                        <p>Price: Php {{ number_format($room->price, 2) }}</p>
+          <div class="row">
+            @foreach($rooms as $room)
+            <div class="col-md-6 col-lg-4 col-sm-12 mb-4">
+              <div class="room d-flex flex-column text-center" style="height: 100%; display: flex; flex-direction: column;">
+                <img src="{{ $room->image_path }}" alt="Room Image" class="img-fluid mb-3">
+                <h4>{{ $room->room_type }}</h4>
+                <p>Description: {{ $room->description }}</p>
+                <p>Price: Php {{ number_format($room->price, 2) }}</p>
 
-                        <!-- Button Container -->
-                        <div class="mt-auto d-flex justify-content-center mt-3">
-                            <form action="{{ route('room.destroy', $room->id) }}" method="POST" onsubmit="return confirm('Are you sure you want to delete this room?')">
-                                @csrf
-                                @method('DELETE')
-                                <button type="submit" class="btn btn-sm btn-danger me-2"><i class="bi bi-trash-fill"></i> Delete</button>
-                            </form>
+                <!-- Button Container -->
+                <div class="mt-auto d-flex justify-content-center mt-3">
+                  <form action="{{ route('room.destroy', $room->id) }}" method="POST" onsubmit="return confirm('Are you sure you want to delete this room?')">
+                    @csrf
+                    @method('DELETE')
+                    <button type="submit" class="btn btn-sm btn-danger me-2"><i class="bi bi-trash-fill"></i> Delete</button>
+                  </form>
 
-                            <!-- Edit Button triggers a modal -->
-                            <button  class="btn btn-primary ms-2" data-bs-toggle="modal" data-bs-target="#editRoomModal{{ $room->id }}">
-                                <i class="bi bi-pencil-fill me-2"></i>Edit
-                            </button>
-                        </div>
-                    </div>
+                  <!-- Edit Button triggers a modal -->
+                  <button class="btn btn-primary ms-2" data-bs-toggle="modal" data-bs-target="#editRoomModal{{ $room->id }}">
+                    <i class="bi bi-pencil-fill me-2"></i>Edit
+                  </button>
                 </div>
-                @endforeach
+              </div>
             </div>
+            @endforeach
+          </div>
         </div>
 
         <!-- Add New Room Button -->
         <a class="btn btn-success" data-bs-toggle="modal" data-bs-target="#addRoomModal">Add New Room</a>
 
-    </div>
-</section>
-<!-- Modal -->
-<div class="modal fade" id="addRoomModal" tabindex="-1" aria-labelledby="addRoomModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-lg">
+      </div>
+    </section>
+    <!-- Modal -->
+    <div class="modal fade" id="addRoomModal" tabindex="-1" aria-labelledby="addRoomModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-lg">
         <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="addRoomModalLabel">Add New Room</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          <div class="modal-header">
+            <h5 class="modal-title" id="addRoomModalLabel">Add New Room</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <form action="{{ route('room.store') }}" method="POST" enctype="multipart/form-data">
+            @csrf
+            <div class="modal-body">
+              <!-- Room Type Dropdown -->
+              <div class="mb-3">
+                <label for="roomType" class="form-label">Room Type</label>
+                <select class="form-select" id="roomType" name="room_type" required>
+                  <option value="Standard" selected>Standard</option>
+                  <option value="Deluxe">Deluxe</option>
+                  <option value="Luxury">Luxury</option>
+                </select>
+              </div>
+
+              <!-- Room Price -->
+              <div class="mb-3">
+                <label for="roomPrice" class="form-label">Price</label>
+                <input type="number" class="form-control" id="roomPrice" name="price" required>
+              </div>
+              <!-- Room description -->
+              <div class="mb-3">
+                <label for="roomDescription" class="form-label">Description</label>
+                <input type="text" class="form-control" id="roomDescription" name="description" required>
+              </div>
+              <!-- Room Image -->
+              <div class="mb-3">
+                <label for="roomImage" class="form-label">Room Image</label>
+                <input type="file" class="form-control" id="roomImage" name="image" accept="image/*" required>
+              </div>
             </div>
-            <form action="{{ route('room.store') }}" method="POST" enctype="multipart/form-data">
-                @csrf
-                <div class="modal-body">
-                    <!-- Room Type Dropdown -->
-                    <div class="mb-3">
-                        <label for="roomType" class="form-label">Room Type</label>
-                        <select class="form-select" id="roomType" name="room_type" required>
-                            <option value="Standard" selected>Standard</option>
-                            <option value="Deluxe">Deluxe</option>
-                            <option value="Luxury">Luxury</option>
-                        </select>
-                    </div>
-
-                    <!-- Room Price -->
-                    <div class="mb-3">
-                        <label for="roomPrice" class="form-label">Price</label>
-                        <input type="number" class="form-control" id="roomPrice" name="price" required>
-                    </div>
-                      <!-- Room description -->
-                    <div class="mb-3">
-                        <label for="roomDescription" class="form-label">Description</label>
-                        <input type="text" class="form-control" id="roomDescription" name="description" required>
-                    </div>
-                    <!-- Room Image -->
-                    <div class="mb-3">
-                        <label for="roomImage" class="form-label">Room Image</label>
-                        <input type="file" class="form-control" id="roomImage" name="image" accept="image/*" required>
-                    </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    <button type="submit" class="btn btn-primary">Save Room</button>
-                </div>
-            </form>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+              <button type="submit" class="btn btn-primary">Save Room</button>
+            </div>
+          </form>
         </div>
+      </div>
     </div>
-</div>
 
-@foreach($rooms as $room)
-<div class="modal fade" id="editRoomModal{{ $room->id }}" tabindex="-1" aria-labelledby="editRoomModalLabel{{ $room->id }}" aria-hidden="true">
-    <div class="modal-dialog modal-lg">
+    @foreach($rooms as $room)
+    <div class="modal fade" id="editRoomModal{{ $room->id }}" tabindex="-1" aria-labelledby="editRoomModalLabel{{ $room->id }}" aria-hidden="true">
+      <div class="modal-dialog modal-lg">
         <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="editRoomModalLabel{{ $room->id }}">Edit Room Details</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          <div class="modal-header">
+            <h5 class="modal-title" id="editRoomModalLabel{{ $room->id }}">Edit Room Details</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <form action="{{ route('room.update', $room->id) }}" method="POST" enctype="multipart/form-data">
+            @csrf
+            @method('PUT')
+            <div class="modal-body">
+              <div class="mb-3">
+                <select class="form-select" id="roomType" name="room_type" required>
+                  <option value="Standard" {{$room->room_type == 'Standard Room' ? 'selected' : ''}}>Standard</option>
+                  <option value="Deluxe" {{$room->room_type == 'Deluxe Room' ? 'selected' : ''}}>Deluxe</option>
+                  <option value="Luxury" {{$room->room_type == 'Luxury Room' ? 'selected' : ''}}>Luxury</option>
+                </select>
+              </div>
+              <div class="mb-3">
+                <label for="roomDescription" class="form-label">Description</label>
+                <textarea class="form-control" id="roomDescription" name="description" rows="3" required>{{ $room->description }}</textarea>
+              </div>
+              <div class="mb-3">
+                <label for="roomPrice" class="form-label">Price</label>
+                <input type="number" class="form-control" id="roomPrice" name="price" value="{{ $room->price }}" required>
+              </div>
+              <div class="mb-3">
+                <label for="roomImage" class="form-label">Image</label>
+                <input type="file" class="form-control" id="roomImage" name="image">
+              </div>
             </div>
-            <form action="{{ route('room.update', $room->id) }}" method="POST" enctype="multipart/form-data">
-                @csrf
-                @method('PUT')
-                <div class="modal-body">
-                    <div class="mb-3">
-                    <select class="form-select" id="roomType" name="room_type" required>
-                            <option value="Standard" {{$room->room_type == 'Standard Room' ? 'selected' : ''}}>Standard</option>
-                            <option value="Deluxe" {{$room->room_type == 'Deluxe Room' ? 'selected' : ''}}>Deluxe</option>
-                            <option value="Luxury" {{$room->room_type == 'Luxury Room' ? 'selected' : ''}}>Luxury</option>
-                        </select>
-                    </div>
-                    <div class="mb-3">
-                        <label for="roomDescription" class="form-label">Description</label>
-                        <textarea class="form-control" id="roomDescription" name="description" rows="3" required>{{ $room->description }}</textarea>
-                    </div>
-                    <div class="mb-3">
-                        <label for="roomPrice" class="form-label">Price</label>
-                        <input type="number" class="form-control" id="roomPrice" name="price" value="{{ $room->price }}" required>
-                    </div>
-                    <div class="mb-3">
-                        <label for="roomImage" class="form-label">Image</label>
-                        <input type="file" class="form-control" id="roomImage" name="image">
-                    </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    <button type="submit" class="btn btn-primary">Save changes</button>
-                </div>
-            </form>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+              <button type="submit" class="btn btn-primary">Save changes</button>
+            </div>
+          </form>
         </div>
+      </div>
     </div>
-</div>
-@endforeach
+    @endforeach
 
 
-<div class="income-tracker container-fluid" id="income-tracker">
-    <h2>Income Tracker</h2>
-    <table>
+    <div class="income-tracker container-fluid" id="income-tracker">
+      <h2>Income Tracker</h2>
+      <table>
         <thead>
-            <tr>
-                <th class="text-center">Customer Name</th>
-                <th class="text-center">Availed Services</th>
-                <th class="text-center">Price</th>
-            </tr>
+          <tr>
+            <th class="text-center">Customer Name</th>
+            <th class="text-center">Availed Services</th>
+            <th class="text-center">Price</th>
+          </tr>
         </thead>
         <tbody id="incomeList">
-            <!-- Loop through the incomeTracker data -->
-            @foreach($incomeTracker as $income)
-            <tr>
-                <td class="text-center">{{ $income->customer_name }}</td>
-                <td class="text-center">{{ $income->availed_service }}</td>
-                <td class="text-center">Php {{ number_format($income->price, 2) }}</td>
-            </tr>
-            @endforeach
+          <!-- Loop through the incomeTracker data -->
+          @foreach($incomeTracker as $income)
+          <tr>
+            <td class="text-center">{{ $income->customer_name }}</td>
+            <td class="text-center">{{ $income->availed_service }}</td>
+            <td class="text-center">Php {{ number_format($income->price, 2) }}</td>
+          </tr>
+          @endforeach
         </tbody>
-    </table>
+      </table>
 
-    <!-- Pagination links -->
-    <div class="text-center">
+      <!-- Pagination links -->
+      <div class="text-center">
         {{ $incomeTracker->links('pagination::bootstrap-5') }}
+      </div>
     </div>
-</div>
 
 
   </div>

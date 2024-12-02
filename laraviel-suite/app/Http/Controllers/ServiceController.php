@@ -128,5 +128,50 @@ public function refund($id)
     return redirect()->back()->with('error', 'Service not found.');
 }
 
+public function update(Request $request, $id)
+{
+    // Validate input
+    $request->validate([
+        'service_name' => 'required|string|max:255',
+        'availed_service' => 'required|string|max:255',
+        'description' => 'required|string',
+        'price' => 'required|numeric',
+    ]);
+
+    // Find and update service
+    $roomService = Service::where('service_id', $id)->firstOrFail();
+
+    $roomService->update([
+        'service_name' => $request->service_name,
+        'availed_service' => $request->availed_service,
+        'description' => $request->description,
+        'price' => $request->price,
+    ]);
+
+    // Redirect back with a success message
+    return redirect()->back()->with('success', 'Service updated successfully.');
+}
+
+//delete a service
+public function delete($id)
+{
+    try {
+        // Check if the service exists
+        $service = Service::find($id);
+        
+        // If the service is found, delete it
+        if ($service) {
+            $service->delete();
+            return redirect()->back()->with('success', 'Service deleted successfully.');
+        } else {
+            return redirect()->back()->with('error', 'Service not found.');
+        }
+    } catch (\Exception $e) {
+        // Log the exception or display the error message
+        \Log::error("Error deleting service: " . $e->getMessage());
+        return redirect()->back()->with('error', 'An error occurred while deleting the service.');
+    }
+}
+
 
 }

@@ -46,6 +46,10 @@ Route::post('/mark-as-paid/{id}', [ServiceController::class, 'markAsPaid'])->nam
 Route::delete('/service/{service_id}', [ServiceController::class, 'destroy'])->name('service.destroy');
 Route::post('/refund/{id}', [ServiceController::class, 'refund'])->name('service.refund');
 
+Route::put('/service-update/{id}', [ServiceController::class, 'update'])->name('service.update');
+Route::delete('/service-delete/{id}', [ServiceController::class, 'delete'])->name('service.delete');
+
+
 Route::put('/guests/{id}', [GuestController::class, 'update'])->name('guest.update');
 Route::delete('/guest/{id}', [GuestController::class, 'destroy'])->name('guest.destroy');
 
@@ -56,6 +60,7 @@ Route::post('/rooms', [RoomController::class, 'store'])->name('room.store');
 Route::post('create-room-service', [RoomServiceController::class,'createRoomService'])->name('room.create');
 // Admin-specific routes
 Route::get('/admin', function(Request $request) {
+   
     $rooms = Room::all();
     $guests = Guest::paginate(10);
     $totalRooms = Room::count();
