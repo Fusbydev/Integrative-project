@@ -242,6 +242,13 @@
     <section id="room-service" class="p-4 rounded-4 shadow my-2">
   <div class="container-fluid">
     <h2>Room Service</h2>
+    @if (session('approved'))
+    <div class="alert alert-success alert-dismissible fade show" role="alert">
+        <p class=" text-start">{{ session('approved') }}</p>
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+@endif
+
     <table class="table table-bordered table-hover">
       <thead class="table-dark">
         <tr>
@@ -392,6 +399,12 @@
     <section id="room-management">
       <div class="card">
         <h3>Room Management</h3>
+        @if (session('success'))
+            <div class="alert alert-success alert-dismissible fade show" role="alert">
+                {{ session('success') }}
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+        @endif
 
         <!-- Room List Container -->
         <div class="room-list" id="roomList">

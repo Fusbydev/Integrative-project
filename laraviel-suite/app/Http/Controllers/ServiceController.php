@@ -149,7 +149,7 @@ public function update(Request $request, $id)
     ]);
 
     // Redirect back with a success message
-    return redirect()->back()->with('success', 'Service updated successfully.');
+    return redirect()->back()->with('approved', 'Service updated successfully.');
 }
 
 //delete a service
@@ -162,13 +162,12 @@ public function delete($id)
         // If the service is found, delete it
         if ($service) {
             $service->delete();
-            return redirect()->back()->with('success', 'Service deleted successfully.');
+            return redirect()->back()->with('approved', 'Service deleted successfully.');
         } else {
             return redirect()->back()->with('error', 'Service not found.');
         }
     } catch (\Exception $e) {
         // Log the exception or display the error message
-        \Log::error("Error deleting service: " . $e->getMessage());
         return redirect()->back()->with('error', 'An error occurred while deleting the service.');
     }
 }

@@ -26,7 +26,7 @@ class RoomServiceController extends Controller
             'price' => $validatedData['price']
         ]);
 
-        return redirect()->back()->with('success', 'Room Service created successfully.');
+        return redirect()->back()->with('approved', 'Room Service created successfully.');
     }
 }
 
