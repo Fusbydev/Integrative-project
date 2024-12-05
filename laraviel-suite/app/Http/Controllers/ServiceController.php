@@ -41,6 +41,7 @@ class ServiceController extends Controller
 
         IncomeTracker::create([
             'customer_name' => $validatedData['name'],
+            'booking_id' => $validatedData['booking_id'],
             'availed_service' => $service->service_name,
             'price' => $validatedData['total_price'],
             'payment_status'
@@ -54,7 +55,7 @@ class ServiceController extends Controller
     return redirect('view-booking')->with('info', 'Payment is pending.');
 }
 
-public function markAsPaid($id)
+public function markAsPaid($id, $booking_id)
 {
     // Find the availed service record by ID
     $availedService = AvailedService::find($id);
@@ -71,6 +72,7 @@ public function markAsPaid($id)
         // Create an entry in IncomeTracker
         IncomeTracker::create([
             'customer_name' => $availedService->guest_name,
+            'booking_id' => $booking_id,
             'availed_service' => $service->service_name,  // Store only the service name
             'price' => $availedService->total_price,
         ]);

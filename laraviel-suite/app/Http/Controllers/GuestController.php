@@ -4,9 +4,12 @@ namespace App\Http\Controllers;
 
 use App\Models\Guest;
 use Illuminate\Http\Request;
+use App\Models\IncomeTracker;
 use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Hash;
 use App\Mail\SendReceipt;  // Use your SendReceipt Mailable
 use App\Models\Feedback;
+use App\Models\User;
 
 class GuestController extends Controller
 {
@@ -52,7 +55,7 @@ class GuestController extends Controller
             'checkIn' => 'required|date',
             'checkOut' => 'required|date',
             'bookedRooms' => 'required|string',
-            'priceTotal' => 'required|numeric',
+            'priceTotal' => 'required|numeric   ',
         ]);
 
         // Save the data into the database
@@ -72,6 +75,20 @@ class GuestController extends Controller
             'check_out' => $validatedData['checkOut'],
             'booked_rooms' => $validatedData['bookedRooms'],
             'price_total' => $validatedData['priceTotal'],
+        ]);
+
+        IncomeTracker::create([
+            'customer_name' => $validatedData['firstname'] . ' ' . $validatedData['lastname'],
+            'price' => $validatedData['priceTotal'],
+            'availed_service' => 'Booking Reservation',
+            'booking_id' => $validatedData['bookingId'],
+        ]);
+
+        User::create([
+            'name' => $validatedData['firstname'],
+            'email' => $validatedData['email'],
+            'role' => 'guest',
+            'password' => Hash::make($validatedData['bookingId']),
         ]);
 
         session(['password' => $validatedData['bookingId']]);
@@ -100,23 +117,75 @@ class GuestController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, $id)
-        {
-            $guest = Guest::findOrFail($id);
-
-            $request->validate([
-                'lastname' => 'required|string|max:255',
-                'contact_number' => 'required|string|max:15',
-                'email' => 'required|email',
-                'booked_rooms' => 'required|string|max:255',
-                'check_in' => 'required|date',
-                'check_out' => 'required|date',
-            ]);
-
-            $guest->update($request->all());
-
-            return redirect()->back()->with('success', 'Guest information updated successfully.');
+    public function update(Request $request, $id, $booking_id)
+    {
+        $guest = Guest::findOrFail($id);
+    
+        // Validate input
+        $request->validate([
+            'lastname' => 'required|string|max:255',
+            'contact_number' => 'required|string|max:15',
+            'email' => 'required|email',
+            'check_in' => 'required|date',
+            'check_out' => 'required|date',
+            // Room validations
+            'standard_v1' => 'required|integer|min:0',
+            'standard_v2' => 'required|integer|min:0',
+            'standard_v3' => 'required|integer|min:0',
+            'deluxe_v1' => 'required|integer|min:0',
+            'deluxe_v2' => 'required|integer|min:0',
+            'deluxe_v3' => 'required|integer|min:0',
+            'luxury_v1' => 'required|integer|min:0',
+            'luxury_v2' => 'required|integer|min:0',
+            'luxury_v3' => 'required|integer|min:0',
+        ]);
+    
+        // Generate the booked rooms string
+        $bookedRooms = [];
+        foreach (['Standard', 'Deluxe', 'Luxury'] as $roomType) {
+            foreach (['v1', 'v2', 'v3'] as $subtype) {
+                $field = strtolower($roomType) . '_' . $subtype;
+                $count = $request->$field;
+                if ($count > 0) {
+                    $bookedRooms = array_merge($bookedRooms, array_fill(0, $count, $roomType . ' ' . strtoupper($subtype)));
+                }
+            }
         }
+    
+        $bookedRoomsString = implode(',', $bookedRooms);
+    
+        // Update guest data
+        $guest->update([
+            'lastname' => $request->lastname,
+            'contact_number' => $request->contact_number,
+            'email' => $request->email,
+            'discount_option' => $request->discount_options,
+            'booked_rooms' => $bookedRoomsString,
+            'check_in' => $request->check_in,
+            'check_out' => $request->check_out,
+            'price_total' => $request->price_total, // Ensure this is calculated as needed
+        ]);
+
+        // Find the corresponding IncomeTracker entry by booking_id
+        $incomeTracker = IncomeTracker::where('booking_id', $booking_id)->first();
+    
+        if ($incomeTracker) {
+            // Update the price in IncomeTracker based on the total price
+            $incomeTracker->update([
+                'price' => $request->price_total, // Assuming price_total is calculated and passed
+            ]);
+        } else {
+            // Optionally, you could create a new IncomeTracker entry if no match is found
+            IncomeTracker::create([
+                'booking_id' => $request->booking_id,
+                'customer_name' => $guest->lastname, // You can adjust this to match the required field
+                'availed_service' => 'Room Booking', // Adjust this as needed
+                'price' => $request->price_total,
+            ]);
+        }
+    
+        return redirect()->back()->with('guestAlert', 'Guest information updated successfully.');
+    }
 
 
     /**
@@ -128,7 +197,7 @@ class GuestController extends Controller
 
         if ($guest) {
             $guest->delete();
-            return redirect()->back()->with('success', 'Guest deleted successfully');
+            return redirect()->back()->with('guestAlert', 'Guest deleted successfully');
         }
 
         return redirect()->back()->with('error', 'Guest not found');

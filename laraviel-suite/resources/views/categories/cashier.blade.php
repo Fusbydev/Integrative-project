@@ -274,7 +274,7 @@
                                         </form>
 
                                         @if($availed_service->payment_status == 'pending')
-                                        <form action="{{ route('mark.as.paid', $availed_service->id) }}" method="POST" style="margin: 0;">
+                                        <form action="{{ route('mark.as.paid', ['id' => $availed_service->id, 'booking_id' => $availed_service->booking_id]) }}" method="POST" style="margin: 0;">
                                             @csrf
                                             <button type="submit" class="btn btn-success" style="width: 80px; height: 38px;">Paid</button>
                                         </form>

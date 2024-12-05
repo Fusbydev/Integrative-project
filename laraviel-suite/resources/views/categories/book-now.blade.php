@@ -4,6 +4,7 @@
 @section('title', 'Laraveil Suite')
 @section('custom-css')
 <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+
 @endsection
 
 @section('content')
@@ -140,6 +141,7 @@
         <div class="row">
             <div class="col-12 col-md-9"> <!-- Adjusted column size for cards -->
             <form action="">
+                @csrf
                 <div class="row">
                     <div class="col-md-4 col-lg-4 col-sm-6 mb-3">
                         <label for="lastname">Lastname <span class="req">*</span></label>

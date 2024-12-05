@@ -10,14 +10,31 @@ class RoomController extends Controller
      * Display a listing of the resource.
      */
     public function index()
-    {
-        try {
-            $rooms = Room::all(); // Fetch all rooms
-            return response()->json($rooms); // Return as JSON
-        } catch (\Exception $e) {
-            return response()->json(['error' => $e->getMessage()], 500);
-        }
+{
+    try {
+        // Fetch all rooms with the associated price details (only fetching price from RoomPrices)
+        $rooms = Room::with('price:id,price')->get();
+
+        // Format the response to include room_price_id and price
+        $roomsData = $rooms->map(function ($room) {
+            return [
+                'id' => $room->id,
+                'room_type' => $room->room_type,
+                'description' => $room->description,
+                'image_path' => $room->image_path,
+                'room_price_id' => $room->room_price_id, // Room Price ID
+                'price' => $room->price ? $room->price->price : null, // Get the actual price from the RoomPrices model
+            ];
+        });
+
+        return response()->json($roomsData); // Return the formatted response as JSON
+    } catch (\Exception $e) {
+        // Handle any exceptions and return an error message
+        return response()->json(['error' => $e->getMessage()], 500);
     }
+}
+
+
 
     public function adminRoom() {
             $rooms = Room::all(); // Fetch all room records
@@ -37,13 +54,14 @@ class RoomController extends Controller
      * Store a newly created resource in storage.
      */
     public function store(Request $request)
-    {
-        // Validate the incoming request
-        $request->validate([
+{
+    try {
+        // Validate the incoming data
+        $validatedData = $request->validate([
             'room_type' => 'required|string',
-            'price' => 'required|numeric',
             'description' => 'required|string',
-            'image' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'image' => 'required|image',
+            'priceId' => 'required|exists:room_prices,id',
         ]);
 
         // Handle image upload
@@ -53,16 +71,22 @@ class RoomController extends Controller
             $imagePath = './images/roomImage/' . $roomImageName;
         }
 
-        // Create a new room
-        Room::create([
-            'room_type' => $request->room_type,
-            'price' => $request->price,
-            'description' => $request->description,
-            'image_path' => $imagePath,
-        ]);
+        // Create a new room and associate the price ID (not the price itself)
+        $room = new Room();
+        $room->room_type = $request->room_type;
+        $room->description = $request->description;
+        $room->image_path = $imagePath;
+        $room->room_price_id = $request->priceId;
+        $room->save();
 
-        return redirect()->route('admin')->with('success', 'Room added successfully!');
+        // Log data to check the insertion
+
+        return redirect()->route('rooms.index')->with('success', 'Room added successfully!');
+    } catch (\Exception $e) {
+        return redirect()->back()->with('error', 'There was an error adding the room.');
     }
+}
+
 
     /**
      * Display the specified resource.
@@ -87,7 +111,7 @@ public function update(Request $request, $id)
     $validatedData = $request->validate([
         'room_type' => 'required|string',
         'description' => 'required|string',
-        'price' => 'required|numeric',
+        'priceId' => 'required|numeric',
         'image' => 'nullable|image|mimes:jpeg,png,jpg,gif', // Validate image
     ]);
 
@@ -95,9 +119,9 @@ public function update(Request $request, $id)
     $room = Room::findOrFail($id);
 
     // Update room data
-    $room->room_type = $validatedData['room_type'] . ' Room';
+    $room->room_type = $validatedData['room_type'];
     $room->description = $validatedData['description'];
-    $room->price = $validatedData['price'];
+    $room->room_price_id = $validatedData['priceId'];
 
     // Check if an image is uploaded
     if ($request->hasFile('image')) {

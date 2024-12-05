@@ -93,7 +93,7 @@ $(document).ready(function () {
                 roomTotal += roomPrice; // Add the room price to room total
                 bookedRooms += `<p><strong>${$(this).data(
                     "room-type"
-                )}</strong> : Php ${roomPrice.toFixed(2)}</p>`;
+                )}</strong></p>`;
             });
 
             // Calculate the total price based on the number of nights

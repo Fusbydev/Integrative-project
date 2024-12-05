@@ -13,21 +13,21 @@ document.addEventListener("DOMContentLoaded", function () {
         .then((data) => {
             const container = document.querySelector(".standard-room"); // Select the container
             data.forEach((room) => {
+                // Get the actual price and room_price_id
+                const roomPrice = room.price; // Actual price
+                const roomPriceId = room.room_price_id; // Room Price ID
+                
                 const roomHtml = `
                 <div class="col-md-6 col-lg-4 col-sm-12">
                     <div class="suite card">
-                        <img src="${
-                            room.image_path
-                            }" class="card-img-top w-369.33" alt="${
-                            room.room_type
-                            }">
+                        <img src="${room.image_path}" class="card-img-top w-369.33" alt="${room.room_type}">
                         <div class="card-body">
                             <h3 class="card-title">${room.room_type}</h3>
                             <p class="card-text">${room.description}</p>
-                            <h4 class="suite-price mt-2">Php ${parseFloat(
-                                room.price
-                                ).toFixed(2)}/per night
+                            <h4 class="suite-price mt-2">
+                                Php ${parseFloat(roomPrice).toFixed(2)}/per night
                             </h4>
+                            <p class="room-price-id mt-2">Price ID: ${roomPriceId}</p> <!-- Display room price ID -->
                             <div class="row text-center">
                                 <div class="col">
                                     <a href="/book-now" class="card-book">BOOK NOW</a>
@@ -35,10 +35,13 @@ document.addEventListener("DOMContentLoaded", function () {
                             </div>
                         </div>
                     </div>
-                    </div>
-            `;
-                container.insertAdjacentHTML("beforeend", roomHtml); // Append to the container
+                </div>
+                `;
+                
+                // Append the generated HTML to the container
+                container.insertAdjacentHTML("beforeend", roomHtml);
             });
+            
         })
         .catch((error) => {
             console.error("Error fetching rooms:", error);
@@ -311,10 +314,9 @@ document.addEventListener("DOMContentLoaded", function () {
             address: document.getElementById("address")?.value.trim() || "",
             checkIn: cin || "", // Ensure `cin` is a valid date string
             checkOut: cout || "", // Ensure `cout` is a valid date string
-            bookedRooms: Array.isArray($(".booked-rooms").text().trim().match(/(?<=\d{4,}\.\d{2})\w+/g)) 
-                ? $(".booked-rooms").text().trim().match(/(?<=\d{4,}\.\d{2})\w+/g).join(",") 
-                : "", // Convert array to comma-separated string
-            priceTotal: parseFloat($("span.totalPriceDisplay").text().replace("Php", "").trim()) || 0, // Ensure this is a valid number
+            bookedRooms: $(".booked-rooms").text().trim().replace(/(V\d+)/g, '$1,').trim(), // Convert array to comma-separated string
+                priceTotal: parseFloat(parseFloat($("span.totalPriceDisplay").text().replace("Php", "").trim()).toFixed(2)) || 0,
+                // Ensure this is a valid number
         };
         
         $(".greeting").text(
@@ -348,63 +350,6 @@ document.addEventListener("DOMContentLoaded", function () {
                 )
             .catch(console.error);
 
-        const incomeData = {
-            customer_name: guestData.lastname,
-            availed_service: "booking reservation",
-            price: guestData.priceTotal,
-        };
-    
-        fetch("/add-income", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-                Accept: "application/json",
-                "X-CSRF-TOKEN": document
-                    .querySelector('meta[name="csrf-token"]')
-                    .getAttribute("content"),
-            },
-            body: JSON.stringify(incomeData),
-        })
-            .then((response) => response.json())
-            .then((data) => {
-                if (data.success) {
-                    
-                } else {
-                    console.error("Error:", data.message);
-                }
-            })
-            .catch(console.error);
-
-
-        const accountData = {
-            password: guestData.bookingId,
-            name: guestData.lastname,
-            role: 'guest',
-            email: guestData.email
-        };
-
-            fetch("/register", {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json",
-                Accept: "application/json",
-                "X-CSRF-TOKEN": document
-                    .querySelector('meta[name="csrf-token"]')
-                    .getAttribute("content"),
-                },
-                body: JSON.stringify(accountData),
-            })
-                .then((response) => response.json())
-                .then((data) => {
-                    if (data.success) {
-                        
-                    } else {
-                        console.error("Error:", data.message);
-                    }
-                })
-                .catch((error) => {
-
-                })
     }
 
     

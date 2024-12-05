@@ -33,6 +33,7 @@ class IncomeTrackerController extends Controller
             $validatedData = $request->validate([
                 
                 'customer_name' => 'required|string|max:255',
+                'booking_id' => 'required|string|max:255',
                 'availed_service' => 'required|string|max:255',
                 'price' => 'required|numeric',
             ]);
@@ -41,6 +42,7 @@ class IncomeTrackerController extends Controller
                 // Insert the data into the database
                     IncomeTracker::create([
                     'customer_name' => $validatedData['customer_name'],
+                    'booking_id' => $validatedData['booking_id'],
                     'availed_service' => $validatedData['availed_service'],
                     'price' => $validatedData['price'],
                     'created_at' => now(),

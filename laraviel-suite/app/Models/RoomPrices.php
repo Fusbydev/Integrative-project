@@ -5,9 +5,11 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class IncomeTracker extends Model
+class RoomPrices extends Model
 {
     use HasFactory;
-    protected $fillable = ['booking_id','customer_name', 'availed_service', 'price'];
-
+    protected $fillable = [
+        'id',
+        'price',
+    ];
 }

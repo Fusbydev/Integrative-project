@@ -8,12 +8,14 @@ use App\Http\Controllers\IncomeTrackerController;
 use App\Http\Controllers\FeedbackController;
 use App\Http\Controllers\ServiceController;
 use App\Http\Controllers\RoomServiceController;
+use App\Http\Controllers\RoomPriceController;
 use App\Models\AvailedService;
 use Illuminate\Support\Facades\Route;
 use App\Models\Room;
 use App\Models\Guest;
 use App\Models\Feedback;
 use App\Models\IncomeTracker;
+use App\Models\RoomPrices;
 use Illuminate\Http\Request;
 use App\Models\Service;
 
@@ -29,6 +31,21 @@ Route::view('/offers', 'categories.offers')->name('offers');
 Route::view('/about', 'categories.about');
 Route::view('/book-now', 'categories.book-now');
 
+
+Route::get('/api/room-prices', [RoomPriceController::class, 'getRoomPrices']);
+Route::get('/api/room-prices/{roomType}', function ($roomType) {
+    $roomPrice = RoomPrices::where('room_type', $roomType)->first();
+
+    if ($roomPrice) {
+        return response()->json([
+            'price' => $roomPrice->price,
+            'id' => $roomPrice->id
+        ]);
+    }
+
+    return response()->json(['message' => 'Room type not found'], 404);
+});
+
 Route::view('/privacy-policy', 'categories.privacy-policy');
 Route::get('/view-booking', [BookingController::class, 'showBooking'])->name('view-booking');
 Route::post('/add-income', [IncomeTrackerController::class, 'addincome'])->name('add-income');
@@ -42,7 +59,7 @@ Route::post('/services/submit', [ServiceController::class, 'submit'])->name('ser
 Route::delete('/guest/{id}', [GuestController::class, 'destroy'])->name('guest.destroy');
 Route::delete('/room/{id}', [RoomController::class, 'destroy'])->name('room.destroy');
 
-Route::post('/mark-as-paid/{id}', [ServiceController::class, 'markAsPaid'])->name('mark.as.paid');
+Route::post('/mark-as-paid/{id}/{booking_id}', [ServiceController::class, 'markAsPaid'])->name('mark.as.paid');
 Route::delete('/service/{service_id}', [ServiceController::class, 'destroy'])->name('service.destroy');
 Route::post('/refund/{id}', [ServiceController::class, 'refund'])->name('service.refund');
 
@@ -50,7 +67,7 @@ Route::put('/service-update/{id}', [ServiceController::class, 'update'])->name('
 Route::delete('/service-delete/{id}', [ServiceController::class, 'delete'])->name('service.delete');
 
 
-Route::put('/guests/{id}', [GuestController::class, 'update'])->name('guest.update');
+Route::put('/guest/{id}/{booking_id}', [GuestController::class, 'update'])->name('guest.update');
 Route::delete('/guest/{id}', [GuestController::class, 'destroy'])->name('guest.destroy');
 
 Route::get('/room/{id}/edit', [RoomController::class, 'edit'])->name('room.edit');
