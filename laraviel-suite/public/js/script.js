@@ -133,113 +133,97 @@ document.addEventListener("DOMContentLoaded", function () {
         dateSelectionStep = 0;
         return false;
     }
-
-    function generateCalendar(year, month, calendarId, titleId) {
-        // Adjust year and month if month exceeds December
-        if (month > 11) {
-            year += 1; // Increment year
-            month = 0; // Reset to January
-        }
-    
-        const date = new Date(year, month),
-            daysInMonth = new Date(year, month + 1, 0).getDate(),
-            firstDay = new Date(year, month, 1).getDay();
-    
-        document.getElementById(titleId).textContent = `${date.toLocaleString(
-            "default",
-            { month: "long" }
-        )} ${year}`;
-    
-        let table = `<thead><tr><th>Sun</th><th>Mon</th><th>Tue</th><th>Wed</th><th>Thu</th><th>Fri</th><th>Sat</th></tr></thead><tbody><tr>`;
-        for (let i = 0; i < firstDay; i++) table += `<td></td>`;
-        for (let day = 1; day <= daysInMonth; day++) {
-            const paddedDay = String(day).padStart(2, "0");
-            table += `<td><span class="clickable-day" data-date="${year}-${
-                month + 1
-            }-${paddedDay}">${paddedDay}</span></td>`;
-            if ((day + firstDay) % 7 === 0) table += `</tr><tr>`;
-        }
-        table += `</tr></tbody>`;
-        document.getElementById(calendarId).innerHTML = table;
-    
-        document
-            .querySelectorAll(`#${calendarId} .clickable-day`)
-            .forEach((day) => {
-                day.addEventListener("click", function () {
-                    const selectedDate = this.getAttribute("data-date");
-                    const parentTd = this.parentElement;
-                    if (dateSelectionStep === 0) {
-                        checkInDate = selectedDate;
-                        document.querySelector(".check-in").textContent =
-                            checkInDate;
-                        checkInCell = parentTd;
-                        dateSelectionStep = 1;
-                        parentTd.classList.add("active-cell");
-                    } else {
-                        checkOutDate = selectedDate;
-                        document.querySelector(".check-out").textContent =
-                            checkOutDate;
-                        checkOutCell = parentTd;
-                        if (calculateNights(checkInDate, checkOutDate)) {
-                            dateSelectionStep = 0;
-                            document
-                                .querySelectorAll(`#${calendarId} td`)
-                                .forEach((cell) =>
-                                    cell.classList.remove("active-cell")
-                                );
-                            checkInCell.classList.add("active-cell");
-                            checkOutCell.classList.add("active-cell");
-                            let currentDate = new Date(checkInDate),
-                                checkOutDateObject = new Date(checkOutDate);
-                            while (currentDate <= checkOutDateObject) {
-                                const dateString = `${currentDate.getFullYear()}-${
-                                    currentDate.getMonth() + 1
-                                }-${String(currentDate.getDate()).padStart(
-                                    2,
-                                    "0"
-                                )}`;
-                                const dayElement = document.querySelector(
-                                    `.clickable-day[data-date="${dateString}"]`
-                                );
-                                if (dayElement)
-                                    dayElement.parentElement.classList.add(
-                                        "active-cell"
-                                    );
-                                currentDate.setDate(currentDate.getDate() + 1);
-                            }
+        function generateCalendar(year, month, calendarId, titleId) {
+            if (month > 11) {
+                year += 1; // Increment year
+                month = 0; // Reset to January
+            }
+        
+            const date = new Date(year, month),
+                daysInMonth = new Date(year, month + 1, 0).getDate(),
+                firstDay = new Date(year, month, 1).getDay();
+        
+            document.getElementById(titleId).textContent = `${date.toLocaleString(
+                "default",
+                { month: "long" }
+            )} ${year}`;
+        
+            let table = `<thead class="thead-dark">
+                            <tr>
+                                <th>Sun</th>
+                                <th>Mon</th>
+                                <th>Tue</th>
+                                <th>Wed</th>
+                                <th>Thu</th>
+                                <th>Fri</th>
+                                <th>Sat</th>
+                            </tr>
+                         </thead>
+                         <tbody><tr>`;
+            for (let i = 0; i < firstDay; i++) table += `<td></td>`;
+            for (let day = 1; day <= daysInMonth; day++) {
+                const paddedDay = String(day).padStart(2, "0");
+                table += `<td><span class="clickable-day" data-date="${year}-${
+                    month + 1
+                }-${paddedDay}">${paddedDay}</span></td>`;
+                if ((day + firstDay) % 7 === 0) table += `</tr><tr>`;
+            }
+            table += `</tr></tbody>`;
+            document.getElementById(calendarId).innerHTML = table;
+        
+            // Add click event listeners
+            document
+                .querySelectorAll(`#${calendarId} .clickable-day`)
+                .forEach((day) => {
+                    day.addEventListener("click", function () {
+                        const selectedDate = this.getAttribute("data-date");
+                        const parentTd = this.parentElement;
+                        if (dateSelectionStep === 0) {
+                            checkInDate = selectedDate;
+                            document.querySelector(".check-in").textContent =
+                                checkInDate;
+                            checkInCell = parentTd;
+                            dateSelectionStep = 1;
+                            parentTd.classList.add("active-cell");
                         } else {
-                            alert(
-                                "Invalid date selection! Please select valid check-in and check-out dates."
-                            );
+                            checkOutDate = selectedDate;
+                            document.querySelector(".check-out").textContent =
+                                checkOutDate;
+                            checkOutCell = parentTd;
+                            if (calculateNights(checkInDate, checkOutDate)) {
+                                dateSelectionStep = 0;
+                                document
+                                    .querySelectorAll(`#${calendarId} td`)
+                                    .forEach((cell) =>
+                                        cell.classList.remove("active-cell")
+                                    );
+                                checkInCell.classList.add("active-cell");
+                                checkOutCell.classList.add("active-cell");
+                                let currentDate = new Date(checkInDate),
+                                    checkOutDateObject = new Date(checkOutDate);
+                                while (currentDate <= checkOutDateObject) {
+                                    const dateString = `${currentDate.getFullYear()}-${
+                                        currentDate.getMonth() + 1
+                                    }-${String(currentDate.getDate()).padStart(2, "0")}`;
+                                    const dayElement = document.querySelector(
+                                        `.clickable-day[data-date="${dateString}"]`
+                                    );
+                                    if (dayElement)
+                                        dayElement.parentElement.classList.add(
+                                            "active-cell"
+                                        );
+                                    currentDate.setDate(currentDate.getDate() + 1);
+                                }
+                            } else {
+                                alert(
+                                    "Invalid date selection! Please select valid check-in and check-out dates."
+                                );
+                            }
                         }
-                    }
+                    });
                 });
-            });
-    }
-    
-
-    // Event listeners for the month dropdowns
-    currentMonthDropdown.addEventListener("change", function () {
-        const selectedMonth = parseInt(currentMonthDropdown.value) - 1; // Convert to 0-based index
-        generateCalendar(
-            currentDate.getFullYear(),
-            selectedMonth,
-            "currentMonthCalendar",
-            "currentMonthTitle"
-        );
-    });
-
-    nextMonthDropdown.addEventListener("change", function () {
-        const selectedMonth = parseInt(nextMonthDropdown.value) - 1; // Convert to 0-based index
-        const selectedYear =
-            selectedMonth <= currentMonth ? currentYear + 1 : currentYear; // Check if we need to increment the year
-        generateCalendar(
-            selectedYear,
-            selectedMonth,
-            "nextMonthCalendar",
-            "nextMonthTitle"
-        );
-    });
+        }
+        
 
 
 

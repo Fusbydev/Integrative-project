@@ -92,12 +92,10 @@ li a.footer-link:hover {
 .elevate {
     color: #FEF3E2;
     font-family: 'aboreto';
-    font-size: 100px;
 }
 .hotel-name {
     color: #FEF3E2;
     font-family: 'allura';
-    font-size: 100px;
 }
 .newSction {
     height: auto;
@@ -223,6 +221,7 @@ img {
     margin: 0 auto;
     padding: 20px;
 }
+
 
 .accomodation-bg {
     background-image: url('/images/ACCOMODATION PAGE PIC.jpeg');

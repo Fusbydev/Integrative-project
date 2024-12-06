@@ -58,10 +58,10 @@
             </div>
         </div>
     </div>
-    <div class="container-fluid booking-contents d-flex">
-        <div class="container-fluid date-picker" id="date-picker">
-        <div class="row p-2 gap-3 justify-content-center text-center">
-    <div class="col-md-5 col-lg-5 col-sm-12 rounded">
+    <div class="booking-contents">
+        <div class="date-picker" id="date-picker">
+        <div class="row justify-content-center text-center p-2">
+    <div class="col-md-6 col-lg-6 col-sm-12 rounded">
         <div class="d-flex justify-content-center align-items-center">
             <h2 id="currentMonthTitle" class="me-2"></h2>
             <select id="currentMonthDropdown" class="form-select w-auto">
@@ -72,7 +72,7 @@
             <table id="currentMonthCalendar" class="table table-borderless table-custom"></table>
         </div>
     </div>
-    <div class="col-md-5 col-lg-5 col-sm-12 rounded">
+    <div class="col-md-6 col-lg-6 col-sm-12 rounded">
         <div class="d-flex justify-content-center align-items-center">
             <h2 id="nextMonthTitle" class="me-2"></h2>
             <select id="nextMonthDropdown" class="form-select w-auto">

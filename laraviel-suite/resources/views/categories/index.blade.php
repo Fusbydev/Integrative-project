@@ -10,8 +10,13 @@
     <div class="container-fluid bg overlay"> 
         <div class="d-flex align-items-center justify-content-center h-100 text-center">
             <div class="d-flex flex-column">
-                <h1 class="mx-auto elevate">ELEVATE YOUR STAY</h1>
-                <p class="hotel-name">Laraveil Suites</p>
+            <h1 class="mx-auto elevate display-5 display-md-4 display-lg-3 fw-bold text-light text-shadow">
+    ELEVATE YOUR STAY
+</h1>
+<h2 class="hotel-name fs-6 fs-md-5 fs-lg-4 fw-light text-light text-shadow">
+    Laraveil Suites
+</h2>
+
             </div>
         </div>
     </div>
